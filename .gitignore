@@ -1,0 +1,12 @@
+/build
+/antbuild
+/target
+/dist
+/doc
+/.idea
+*.iml
+.settings*
+.classpath
+.project
+/out
+versions.properties

@@ -1,0 +1,8 @@
+* text=auto !eol
+*.scala text eol=lf
+*.sc text eol=lf
+*.sh text eol=lf
+*.properties text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

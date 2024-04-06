@@ -1,0 +1,11 @@
+jdk:
+  - oraclejdk11
+before_install:
+  - curl -JLso versions.properties https://raw.githubusercontent.com/sireum/kekinian/master/versions.properties
+  - curl -JLso bin/init.sh https://raw.githubusercontent.com/sireum/kekinian/master/bin/init.sh
+  - curl -JLso bin/sireum https://raw.githubusercontent.com/sireum/kekinian/master/bin/sireum
+  - chmod +x bin/init.sh bin/sireum
+  - SIREUM_NO_SETUP=true bin/init.sh
+install:
+  - unset JAVA_TOOL_OPTIONS
+  - bin/sireum proyek publish --target jvm . org.sireum
