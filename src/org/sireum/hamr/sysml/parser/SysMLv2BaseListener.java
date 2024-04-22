@@ -1,4 +1,4 @@
-// Generated from /Users/robby/Repositories/Sireum/hamr-sysml-parser/src/org/sireum/hamr/sysml/parser/SysMLv2.g4 by ANTLR 4.13.1
+// Generated from /Users/belt/devel/sireum/hamr-sysml-parser/src/org/sireum/hamr/sysml/parser/SysMLv2.g4 by ANTLR 4.13.1
 package org.sireum.hamr.sysml.parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -1901,25 +1901,13 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleValuePart1(SysMLv2Parser.RuleValuePart1Context ctx) { }
+	@Override public void enterRuleValuePart(SysMLv2Parser.RuleValuePartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleValuePart1(SysMLv2Parser.RuleValuePart1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleValuePart2(SysMLv2Parser.RuleValuePart2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleValuePart2(SysMLv2Parser.RuleValuePart2Context ctx) { }
+	@Override public void exitRuleValuePart(SysMLv2Parser.RuleValuePartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1932,66 +1920,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleFeatureValue(SysMLv2Parser.RuleFeatureValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFeatureValueExpression(SysMLv2Parser.RuleFeatureValueExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFeatureValueExpression(SysMLv2Parser.RuleFeatureValueExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleEmptyAssignmentActionMember(SysMLv2Parser.RuleEmptyAssignmentActionMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleEmptyAssignmentActionMember(SysMLv2Parser.RuleEmptyAssignmentActionMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleEmptyAssignmentAction(SysMLv2Parser.RuleEmptyAssignmentActionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleEmptyAssignmentAction(SysMLv2Parser.RuleEmptyAssignmentActionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleEmptyTargetMember(SysMLv2Parser.RuleEmptyTargetMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleEmptyTargetMember(SysMLv2Parser.RuleEmptyTargetMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleEmptyTargetParameter(SysMLv2Parser.RuleEmptyTargetParameterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleEmptyTargetParameter(SysMLv2Parser.RuleEmptyTargetParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -3485,13 +3413,13 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleBindingConnector(SysMLv2Parser.RuleBindingConnectorContext ctx) { }
+	@Override public void enterRuleBindingConnectorAsUsage(SysMLv2Parser.RuleBindingConnectorAsUsageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleBindingConnector(SysMLv2Parser.RuleBindingConnectorContext ctx) { }
+	@Override public void exitRuleBindingConnectorAsUsage(SysMLv2Parser.RuleBindingConnectorAsUsageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -3509,13 +3437,13 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleSuccession(SysMLv2Parser.RuleSuccessionContext ctx) { }
+	@Override public void enterRuleSuccessionAsUsage(SysMLv2Parser.RuleSuccessionAsUsageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleSuccession(SysMLv2Parser.RuleSuccessionContext ctx) { }
+	@Override public void exitRuleSuccessionAsUsage(SysMLv2Parser.RuleSuccessionAsUsageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -5045,37 +4973,37 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleChangeExpressionMember(SysMLv2Parser.RuleChangeExpressionMemberContext ctx) { }
+	@Override public void enterRuleArgumentExpressionMember(SysMLv2Parser.RuleArgumentExpressionMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleChangeExpressionMember(SysMLv2Parser.RuleChangeExpressionMemberContext ctx) { }
+	@Override public void exitRuleArgumentExpressionMember(SysMLv2Parser.RuleArgumentExpressionMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleChangeExpression(SysMLv2Parser.RuleChangeExpressionContext ctx) { }
+	@Override public void enterRuleArgumentExpression(SysMLv2Parser.RuleArgumentExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleChangeExpression(SysMLv2Parser.RuleChangeExpressionContext ctx) { }
+	@Override public void exitRuleArgumentExpression(SysMLv2Parser.RuleArgumentExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleChangeResultExpressionMember(SysMLv2Parser.RuleChangeResultExpressionMemberContext ctx) { }
+	@Override public void enterRuleArgumentExpressionValue(SysMLv2Parser.RuleArgumentExpressionValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleChangeResultExpressionMember(SysMLv2Parser.RuleChangeResultExpressionMemberContext ctx) { }
+	@Override public void exitRuleArgumentExpressionValue(SysMLv2Parser.RuleArgumentExpressionValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -6329,18 +6257,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleCalculationUsageDeclaration(SysMLv2Parser.RuleCalculationUsageDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleCalculationUsageDeclaration(SysMLv2Parser.RuleCalculationUsageDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterRuleConstraintKeyword(SysMLv2Parser.RuleConstraintKeywordContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -6408,6 +6324,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleAssertConstraintUsage(SysMLv2Parser.RuleAssertConstraintUsageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleConstraintUsageDeclaration(SysMLv2Parser.RuleConstraintUsageDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleConstraintUsageDeclaration(SysMLv2Parser.RuleConstraintUsageDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -7337,13 +7265,25 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleViewRenderingUsage(SysMLv2Parser.RuleViewRenderingUsageContext ctx) { }
+	@Override public void enterRuleViewRenderingUsage1(SysMLv2Parser.RuleViewRenderingUsage1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleViewRenderingUsage(SysMLv2Parser.RuleViewRenderingUsageContext ctx) { }
+	@Override public void exitRuleViewRenderingUsage1(SysMLv2Parser.RuleViewRenderingUsage1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleViewRenderingUsage2(SysMLv2Parser.RuleViewRenderingUsage2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleViewRenderingUsage2(SysMLv2Parser.RuleViewRenderingUsage2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-03/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 grammar SysMLv2;
 
 entryRuleRootNamespace: ruleRootNamespace EOF;
@@ -27,9 +27,9 @@ ruleAnnotatingElement:
   | ruleTextualRepresentation #ruleAnnotatingElement3
   | ruleMetadataUsage #ruleAnnotatingElement4;
 
-ruleComment: ('comment' ruleIdentification? ('about' ruleAnnotation (',' ruleAnnotation)*)?)? RULE_REGULAR_COMMENT;
+ruleComment: ('comment' ruleIdentification? ('about' ruleAnnotation (',' ruleAnnotation)*)?)? ('locale' RULE_STRING_VALUE)? RULE_REGULAR_COMMENT;
 
-ruleDocumentation: 'doc' ruleIdentification? RULE_REGULAR_COMMENT;
+ruleDocumentation: 'doc' ruleIdentification? ('locale' RULE_STRING_VALUE)? RULE_REGULAR_COMMENT;
 
 ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' RULE_STRING_VALUE RULE_REGULAR_COMMENT;
 
@@ -41,7 +41,7 @@ ruleMetadataUsageKeyword:
   ruleMetadataKeyword #ruleMetadataUsageKeyword1
   | '@' #ruleMetadataUsageKeyword2;
 
-ruleMetadataDefinition: 'abstract'? ruleMetadataDefKeyword ruleDefinition;
+ruleMetadataDefinition: 'abstract'? ruleDefinitionExtensionKeyword* ruleMetadataDefKeyword ruleDefinition;
 
 rulePrefixMetadataAnnotation: '#' rulePrefixMetadataUsage;
 
@@ -49,7 +49,7 @@ rulePrefixMetadataMember: '#' rulePrefixMetadataUsage;
 
 rulePrefixMetadataUsage: ruleMetadataTyping;
 
-ruleMetadataUsage: ruleMetadataUsageKeyword ruleMetadataUsageDeclaration ('about' ruleAnnotation (',' ruleAnnotation)*)? ruleMetadataBody;
+ruleMetadataUsage: ruleUsageExtensionKeyword* ruleMetadataUsageKeyword ruleMetadataUsageDeclaration ('about' ruleAnnotation (',' ruleAnnotation)*)? ruleMetadataBody;
 
 ruleMetadataUsageDeclaration: (ruleIdentification? ruleDefinedByKeyword)? ruleMetadataTyping;
 
@@ -277,21 +277,9 @@ ruleUsageCompletion: ruleValuePart? ruleUsageBody;
 
 ruleUsageBody: ruleDefinitionBody;
 
-ruleValuePart:
-  ruleFeatureValue #ruleValuePart1
-  | ruleFeatureValueExpression ruleEmptyAssignmentActionMember #ruleValuePart2;
+ruleValuePart: ruleFeatureValue;
 
-ruleFeatureValue: ('=' | 'default' ('=' | ':=')?) ruleOwnedExpression;
-
-ruleFeatureValueExpression: ':=' ruleOwnedExpression;
-
-ruleEmptyAssignmentActionMember: ruleEmptyAssignmentAction;
-
-ruleEmptyAssignmentAction: ruleEmptyTargetMember ruleEmptyParameterMember;
-
-ruleEmptyTargetMember: ruleEmptyTargetParameter;
-
-ruleEmptyTargetParameter: ruleTargetFeatureMember;
+ruleFeatureValue: ('=' | ':=' | 'default' ('=' | ':=')?) ruleOwnedExpression;
 
 ruleReferenceKeyword: 'ref';
 
@@ -308,8 +296,8 @@ ruleNonOccurrenceUsageElement:
   | ruleReferenceUsage #ruleNonOccurrenceUsageElement2
   | ruleAttributeUsage #ruleNonOccurrenceUsageElement3
   | ruleEnumerationUsage #ruleNonOccurrenceUsageElement4
-  | ruleBindingConnector #ruleNonOccurrenceUsageElement5
-  | ruleSuccession #ruleNonOccurrenceUsageElement6
+  | ruleBindingConnectorAsUsage #ruleNonOccurrenceUsageElement5
+  | ruleSuccessionAsUsage #ruleNonOccurrenceUsageElement6
   | ruleExtendedUsage #ruleNonOccurrenceUsageElement7;
 
 ruleOccurrenceUsageElement:
@@ -355,8 +343,8 @@ ruleVariantUsageElement:
   ruleVariantReference #ruleVariantUsageElement1
   | ruleReferenceUsage #ruleVariantUsageElement2
   | ruleAttributeUsage #ruleVariantUsageElement3
-  | ruleBindingConnector #ruleVariantUsageElement4
-  | ruleSuccession #ruleVariantUsageElement5
+  | ruleBindingConnectorAsUsage #ruleVariantUsageElement4
+  | ruleSuccessionAsUsage #ruleVariantUsageElement5
   | ruleOccurrenceUsage #ruleVariantUsageElement6
   | ruleIndividualUsage #ruleVariantUsageElement7
   | rulePortionUsage #ruleVariantUsageElement8
@@ -394,7 +382,7 @@ ruleEnumerationDefKeyword: ruleEnumerationKeyword 'def';
 
 ruleEnumerationUsageKeyword: ruleEnumerationKeyword;
 
-ruleEnumerationDefinition: ruleEnumerationDefKeyword ruleDefinitionDeclaration ruleEnumerationBody;
+ruleEnumerationDefinition: ruleDefinitionExtensionKeyword* ruleEnumerationDefKeyword ruleDefinitionDeclaration ruleEnumerationBody;
 
 ruleEnumerationBody:
   ';' #ruleEnumerationBody1
@@ -402,7 +390,7 @@ ruleEnumerationBody:
 
 ruleEnumerationUsageMember: ruleMemberPrefix ruleEnumeratedValue;
 
-ruleEnumeratedValue: ruleEnumerationUsageKeyword? ruleUsage;
+ruleEnumeratedValue: ruleUsageExtensionKeyword* ruleEnumerationUsageKeyword? ruleUsage;
 
 ruleEnumerationUsage: ruleUsagePrefix ruleEnumerationUsageKeyword ruleUsage;
 
@@ -490,11 +478,11 @@ ruleConnectorEnd: (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting
 
 ruleBindingKeyword: 'binding';
 
-ruleBindingConnector: ruleUsagePrefix (ruleBindingKeyword ruleUsageDeclaration?)? 'bind' ruleConnectorEndMember '=' ruleConnectorEndMember ruleDefinitionBody;
+ruleBindingConnectorAsUsage: ruleUsagePrefix (ruleBindingKeyword ruleUsageDeclaration?)? 'bind' ruleConnectorEndMember '=' ruleConnectorEndMember ruleDefinitionBody;
 
 ruleSuccessionKeyword: 'succession';
 
-ruleSuccession: ruleUsagePrefix (ruleSuccessionKeyword ruleUsageDeclaration?)? 'first' ruleConnectorEndMember 'then' ruleConnectorEndMember ruleDefinitionBody;
+ruleSuccessionAsUsage: ruleUsagePrefix (ruleSuccessionKeyword ruleUsageDeclaration?)? 'first' ruleConnectorEndMember 'then' ruleConnectorEndMember ruleDefinitionBody;
 
 ruleConnectionKeyword: 'connection';
 
@@ -506,7 +494,7 @@ ruleConnectorKeyword: 'connect';
 
 ruleConnectionUsageKeyword: ruleConnectionKeyword;
 
-ruleConnectionUsage: ruleOccurrenceUsagePrefix (ruleConnectionUsageKeyword ruleUsageDeclaration? (ruleConnectorKeyword ruleConnectorPart)? | ruleConnectorKeyword ruleConnectorPart) ruleUsageBody;
+ruleConnectionUsage: ruleOccurrenceUsagePrefix (ruleConnectionUsageKeyword ruleUsageDeclaration? ruleValuePart? (ruleConnectorKeyword ruleConnectorPart)? | ruleConnectorKeyword ruleConnectorPart) ruleUsageBody;
 
 ruleConnectorPart:
   ruleBinaryConnectorPart #ruleConnectorPart1
@@ -602,8 +590,8 @@ ruleInterfaceNonOccurrenceUsageElement:
   ruleReferenceUsage #ruleInterfaceNonOccurrenceUsageElement1
   | ruleAttributeUsage #ruleInterfaceNonOccurrenceUsageElement2
   | ruleEnumerationUsage #ruleInterfaceNonOccurrenceUsageElement3
-  | ruleBindingConnector #ruleInterfaceNonOccurrenceUsageElement4
-  | ruleSuccession #ruleInterfaceNonOccurrenceUsageElement5;
+  | ruleBindingConnectorAsUsage #ruleInterfaceNonOccurrenceUsageElement4
+  | ruleSuccessionAsUsage #ruleInterfaceNonOccurrenceUsageElement5;
 
 ruleInterfaceOccurrenceUsageMember: ruleMemberPrefix ruleInterfaceOccurrenceUsageElement;
 
@@ -719,8 +707,8 @@ ruleTriggerValuePart: ruleTriggerFeatureValue;
 ruleTriggerFeatureValue: ruleTriggerExpression;
 
 ruleTriggerExpression:
-  ruleTimeTriggerKind ruleOwnedExpressionMember #ruleTriggerExpression1
-  | ruleChangeTriggerKind ruleChangeExpressionMember #ruleTriggerExpression2;
+  ruleTimeTriggerKind ruleArgumentMember #ruleTriggerExpression1
+  | ruleChangeTriggerKind ruleArgumentExpressionMember #ruleTriggerExpression2;
 
 ruleTimeTriggerKind:
   'at' #ruleTimeTriggerKind1
@@ -728,11 +716,11 @@ ruleTimeTriggerKind:
 
 ruleChangeTriggerKind: 'when';
 
-ruleChangeExpressionMember: ruleChangeExpression;
+ruleArgumentExpressionMember: ruleArgumentExpression;
 
-ruleChangeExpression: ruleChangeResultExpressionMember;
+ruleArgumentExpression: ruleArgumentExpressionValue;
 
-ruleChangeResultExpressionMember: ruleOwnedExpression;
+ruleArgumentExpressionValue: ruleOwnedExpressionReference;
 
 ruleSendNode: ruleOccurrenceUsagePrefix ruleSendNodeDeclaration ruleActionBody;
 
@@ -740,7 +728,7 @@ ruleSendNodeDeclaration: ruleActionNodeUsageDeclaration? 'send' ruleNodeParamete
 
 ruleNodeParameterMember: ruleNodeParameter;
 
-ruleNodeParameter:  ruleFeatureBinding;
+ruleNodeParameter: ruleFeatureBinding;
 
 ruleFeatureBinding: ruleOwnedExpression;
 
@@ -786,7 +774,7 @@ ruleControlNode:
   | ruleJoinNode #ruleControlNode3
   | ruleForkNode #ruleControlNode4;
 
-ruleControlNodePrefix: ruleRefPrefix 'individual'? rulePortionKind?;
+ruleControlNodePrefix: ruleRefPrefix 'individual'? rulePortionKind? ruleUsageExtensionKeyword*;
 
 ruleMergeNode: ruleControlNodePrefix 'merge' ruleUsageDeclaration? ruleActionNodeBody;
 
@@ -927,9 +915,7 @@ ruleResultExpressionMember: ruleMemberPrefix ruleOwnedExpression;
 
 ruleCalculationUsageKeyword: ruleCalculationKeyword;
 
-ruleCalculationUsage: ruleOccurrenceUsagePrefix ruleCalculationUsageKeyword ruleCalculationUsageDeclaration ruleCalculationBody;
-
-ruleCalculationUsageDeclaration: ruleUsageDeclaration? ruleValuePart?;
+ruleCalculationUsage: ruleOccurrenceUsagePrefix ruleCalculationUsageKeyword ruleActionUsageDeclaration ruleCalculationBody;
 
 ruleConstraintKeyword: 'constraint';
 
@@ -939,9 +925,11 @@ ruleConstraintDefinition: ruleOccurrenceDefinitionPrefix ruleConstraintDefKeywor
 
 ruleConstraintUsageKeyword: ruleConstraintKeyword;
 
-ruleConstraintUsage: ruleOccurrenceUsagePrefix ruleConstraintUsageKeyword ruleCalculationUsageDeclaration ruleCalculationBody;
+ruleConstraintUsage: ruleOccurrenceUsagePrefix ruleConstraintUsageKeyword ruleConstraintUsageDeclaration ruleCalculationBody;
 
-ruleAssertConstraintUsage: ruleOccurrenceUsagePrefix 'assert' 'not'? (ruleOwnedReferenceSubsetting ruleFeatureSpecializationPart? | ruleConstraintUsageKeyword ruleUsageDeclaration?) ruleCalculationBody;
+ruleAssertConstraintUsage: ruleOccurrenceUsagePrefix 'assert' 'not'? (ruleOwnedReferenceSubsetting ruleFeatureSpecializationPart? | ruleConstraintUsageKeyword ruleConstraintUsageDeclaration) ruleCalculationBody;
+
+ruleConstraintUsageDeclaration: ruleUsageDeclaration? ruleValuePart?;
 
 ruleRequirementKeyword: 'requirement';
 
@@ -969,14 +957,14 @@ ruleSubjectUsage: 'subject' ruleUsageExtensionKeyword* ruleUsage;
 ruleRequirementConstraintMember: ruleMemberPrefix ruleRequirementConstraintKind ruleRequirementConstraintUsage;
 
 ruleRequirementConstraintUsage:
-  ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleRequirementBody #ruleRequirementConstraintUsage1
-  | (ruleUsageExtensionKeyword* ruleConstraintUsageKeyword | ruleUsageExtensionKeyword+) ruleCalculationUsageDeclaration ruleCalculationBody #ruleRequirementConstraintUsage2;
+  ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleCalculationBody #ruleRequirementConstraintUsage1
+  | (ruleUsageExtensionKeyword* ruleConstraintUsageKeyword | ruleUsageExtensionKeyword+) ruleConstraintUsageDeclaration ruleCalculationBody #ruleRequirementConstraintUsage2;
 
 ruleFramedConcernMember: ruleMemberPrefix ruleFramedConcernKind ruleFramedConcernUsage;
 
 ruleFramedConcernUsage:
   ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleRequirementBody #ruleFramedConcernUsage1
-  | (ruleUsageExtensionKeyword* ruleConcernUsageKeyword | ruleUsageExtensionKeyword+) ruleCalculationUsageDeclaration ruleCalculationBody #ruleFramedConcernUsage2;
+  | (ruleUsageExtensionKeyword* ruleConcernUsageKeyword | ruleUsageExtensionKeyword+) ruleConstraintUsageDeclaration ruleCalculationBody #ruleFramedConcernUsage2;
 
 ruleActorMember: ruleMemberPrefix ruleActorUsage;
 
@@ -988,7 +976,7 @@ ruleStakeholderUsage: 'stakeholder' ruleUsageExtensionKeyword* ruleUsage;
 
 ruleRequirementUsageKeyword: ruleRequirementKeyword;
 
-ruleRequirementUsage: ruleOccurrenceUsagePrefix ruleRequirementUsageKeyword ruleCalculationUsageDeclaration ruleRequirementBody;
+ruleRequirementUsage: ruleOccurrenceUsagePrefix ruleRequirementUsageKeyword ruleConstraintUsageDeclaration ruleRequirementBody;
 
 ruleSatisfyRequirementUsage: ruleOccurrenceUsagePrefix 'assert'? 'not'? 'satisfy' (ruleOwnedReferenceSubsetting ruleFeatureSpecializationPart? | ruleRequirementUsageKeyword ruleUsageDeclaration?) ruleValuePart? ('by' ruleSatisfactionSubjectMember)? ruleRequirementBody;
 
@@ -1008,7 +996,7 @@ ruleConcernDefinition: ruleOccurrenceDefinitionPrefix ruleConcernDefKeyword rule
 
 ruleConcernUsageKeyword: ruleConcernKeyword;
 
-ruleConcernUsage: ruleOccurrenceUsagePrefix ruleConcernUsageKeyword ruleCalculationUsageDeclaration ruleRequirementBody;
+ruleConcernUsage: ruleOccurrenceUsagePrefix ruleConcernUsageKeyword ruleConstraintUsageDeclaration ruleRequirementBody;
 
 ruleCaseKeyword: 'case';
 
@@ -1028,11 +1016,11 @@ ruleCaseBodyItem:
 
 ruleObjectiveMember: ruleMemberPrefix 'objective' ruleObjectiveRequirementUsage;
 
-ruleObjectiveRequirementUsage: ruleUsageExtensionKeyword* ruleCalculationUsageDeclaration ruleRequirementBody;
+ruleObjectiveRequirementUsage: ruleUsageExtensionKeyword* ruleConstraintUsageDeclaration ruleRequirementBody;
 
 ruleCaseUsageKeyword: ruleCaseKeyword;
 
-ruleCaseUsage: ruleOccurrenceUsagePrefix ruleCaseUsageKeyword ruleCalculationUsageDeclaration ruleCaseBody;
+ruleCaseUsage: ruleOccurrenceUsagePrefix ruleCaseUsageKeyword ruleActionUsageDeclaration ruleCaseBody;
 
 ruleAnalysisCaseKeyword: 'analysis';
 
@@ -1042,7 +1030,7 @@ ruleAnalysisCaseUsageKeyword: ruleAnalysisCaseKeyword;
 
 ruleAnalysisCaseDefinition: ruleOccurrenceDefinitionPrefix ruleAnalysisCaseDefKeyword ruleDefinitionDeclaration ruleCaseBody;
 
-ruleAnalysisCaseUsage: ruleOccurrenceUsagePrefix ruleAnalysisCaseUsageKeyword ruleCalculationUsageDeclaration ruleCaseBody;
+ruleAnalysisCaseUsage: ruleOccurrenceUsagePrefix ruleAnalysisCaseUsageKeyword ruleActionUsageDeclaration ruleCaseBody;
 
 ruleVerificationCaseKeyword: 'verification';
 
@@ -1052,13 +1040,13 @@ ruleVerificationCaseUsageKeyword: ruleVerificationCaseKeyword;
 
 ruleVerificationCaseDefinition: ruleOccurrenceDefinitionPrefix ruleVerificationCaseDefKeyword ruleDefinitionDeclaration ruleCaseBody;
 
-ruleVerificationCaseUsage: ruleOccurrenceUsagePrefix ruleVerificationCaseUsageKeyword ruleCalculationUsageDeclaration ruleCaseBody;
+ruleVerificationCaseUsage: ruleOccurrenceUsagePrefix ruleVerificationCaseUsageKeyword ruleActionUsageDeclaration ruleCaseBody;
 
 ruleRequirementVerificationMember: ruleMemberPrefix ruleRequirementVerificationKind ruleRequirementVerificationUsage;
 
 ruleRequirementVerificationUsage:
   ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleRequirementBody #ruleRequirementVerificationUsage1
-  | (ruleUsageExtensionKeyword* ruleRequirementUsageKeyword | ruleUsageExtensionKeyword+) ruleCalculationUsageDeclaration ruleRequirementBody #ruleRequirementVerificationUsage2;
+  | (ruleUsageExtensionKeyword* ruleRequirementUsageKeyword | ruleUsageExtensionKeyword+) ruleConstraintUsageDeclaration ruleRequirementBody #ruleRequirementVerificationUsage2;
 
 ruleUseCaseKeyword: 'use' 'case';
 
@@ -1068,7 +1056,7 @@ ruleUseCaseUsageKeyword: ruleUseCaseKeyword;
 
 ruleUseCaseDefinition: ruleOccurrenceDefinitionPrefix ruleUseCaseDefKeyword ruleDefinitionDeclaration ruleCaseBody;
 
-ruleUseCaseUsage: ruleOccurrenceUsagePrefix ruleUseCaseUsageKeyword ruleCalculationUsageDeclaration ruleCaseBody;
+ruleUseCaseUsage: ruleOccurrenceUsagePrefix ruleUseCaseUsageKeyword ruleActionUsageDeclaration ruleCaseBody;
 
 ruleIncludeUseCaseUsage: ruleOccurrenceUsagePrefix 'include' (ruleOwnedReferenceSubsetting ruleFeatureSpecializationPart? | ruleUseCaseUsageKeyword ruleUsageDeclaration?) ruleValuePart? ruleCaseBody;
 
@@ -1089,7 +1077,9 @@ ruleViewDefinitionBodyItem:
 
 ruleViewRenderingMember: ruleMemberPrefix 'render' ruleViewRenderingUsage;
 
-ruleViewRenderingUsage: ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleUsageBody;
+ruleViewRenderingUsage:
+  ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleUsageBody #ruleViewRenderingUsage1
+  | (ruleUsageExtensionKeyword* 'rendering' | ruleUsageExtensionKeyword+) ruleUsage #ruleViewRenderingUsage2;
 
 ruleViewUsageKeyword: ruleViewKeyword;
 
@@ -1119,7 +1109,7 @@ ruleViewpointUsageKeyword: ruleViewpointKeyword;
 
 ruleViewpointDefinition: ruleOccurrenceDefinitionPrefix ruleViewpointDefKeyword ruleDefinitionDeclaration ruleRequirementBody;
 
-ruleViewpointUsage: ruleOccurrenceUsagePrefix ruleViewpointUsageKeyword ruleCalculationUsageDeclaration ruleRequirementBody;
+ruleViewpointUsage: ruleOccurrenceUsagePrefix ruleViewpointUsageKeyword ruleConstraintUsageDeclaration ruleRequirementBody;
 
 ruleRenderingKeyword: 'rendering';
 
@@ -1250,7 +1240,7 @@ ruleMultiplicativeOperator:
   | '/' #ruleMultiplicativeOperator2
   | '%' #ruleMultiplicativeOperator3;
 
-ruleExponentiationExpression: ruleUnaryExpression ( ruleExponentiationOperator ruleUnaryExpression)*;
+ruleExponentiationExpression: ruleUnaryExpression ( ruleExponentiationOperator ruleExponentiationExpression)?;
 
 ruleExponentiationOperator:
   '**' #ruleExponentiationOperator1
@@ -1405,6 +1395,7 @@ K_FROM: 'from';
 K_TO: 'to';
 K_COMMENT: 'comment';
 K_ABOUT: 'about';
+K_LOCALE: 'locale';
 K_DOC: 'doc';
 K_REP: 'rep';
 K_LANGUAGE: 'language';
@@ -1500,9 +1491,9 @@ K_USE: 'use';
 K_INCLUDE: 'include';
 K_VIEW: 'view';
 K_RENDER: 'render';
+K_RENDERING: 'rendering';
 K_EXPOSE: 'expose';
 K_VIEWPOINT: 'viewpoint';
-K_RENDERING: 'rendering';
 K_IMPLIES: 'implies';
 K_OR: 'or';
 K_XOR: 'xor';
@@ -1579,6 +1570,7 @@ def isKeyword(tokenType: Int): Boolean = {
          K_TO |
          K_COMMENT |
          K_ABOUT |
+         K_LOCALE |
          K_DOC |
          K_REP |
          K_LANGUAGE |
@@ -1674,9 +1666,9 @@ def isKeyword(tokenType: Int): Boolean = {
          K_INCLUDE |
          K_VIEW |
          K_RENDER |
+         K_RENDERING |
          K_EXPOSE |
          K_VIEWPOINT |
-         K_RENDERING |
          K_IMPLIES |
          K_OR |
          K_XOR |
@@ -1718,6 +1710,6 @@ RULE_REGULAR_COMMENT: '/*' .*? '*/';
 
 RULE_ML_NOTE: '//*' .*? '*/' -> channel(HIDDEN);
 
-RULE_SL_NOTE: '//' (~('\n' | '\r') ~('\n' | '\r')*)? ('\r'? '\n')? -> channel(HIDDEN);
+RULE_SL_NOTE: '//' ~'*' (~('\n' | '\r') ~('\n' | '\r')*)? ('\r'? '\n')? -> channel(HIDDEN);
 
 RULE_WS: (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
