@@ -6712,6 +6712,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleViewBodyItem4(SysMLv2Parser.RuleViewBodyItem4Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleExposePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleExposePrefix(SysMLv2Parser.RuleExposePrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleExposePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleExposePrefix(SysMLv2Parser.RuleExposePrefixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleExpose}.
 	 * @param ctx the parse tree
 	 */

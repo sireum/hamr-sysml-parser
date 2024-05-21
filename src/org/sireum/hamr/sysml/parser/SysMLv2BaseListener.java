@@ -7385,6 +7385,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleExposePrefix(SysMLv2Parser.RuleExposePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleExposePrefix(SysMLv2Parser.RuleExposePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleExpose(SysMLv2Parser.RuleExposeContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -26,7 +26,7 @@ val antlr4Version: String =
   if (versions.exists) versions.properties.get("org.antlr%antlr4-runtime%").get
   else Sireum.versions.get("org.antlr:antlr4-runtime:").get
 
-val version: String = "2024-03"
+val version: String = "2024-04.1"
 
 val outDir = home / "src" / "org" / "sireum" / "hamr" / "sysml" / "parser"
 outDir.removeAll()

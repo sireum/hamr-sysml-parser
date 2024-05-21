@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-03/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-04.1/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 grammar SysMLv2;
 
 entryRuleRootNamespace: ruleRootNamespace EOF;
@@ -1095,11 +1095,13 @@ ruleViewBodyItem:
   | ruleExpose #ruleViewBodyItem3
   | ruleViewRenderingMember #ruleViewBodyItem4;
 
+ruleExposePrefix: ruleVisibilityIndicator? 'expose';
+
 ruleExpose: (ruleMembershipExpose | ruleNamespaceExpose) ruleRelationshipBody;
 
-ruleMembershipExpose: ruleVisibilityIndicator? 'expose' ruleImportedMembership;
+ruleMembershipExpose: ruleExposePrefix ruleImportedMembership;
 
-ruleNamespaceExpose: ruleVisibilityIndicator? 'expose' (ruleImportedNamespace | ruleFilterPackage);
+ruleNamespaceExpose: ruleExposePrefix (ruleImportedNamespace | ruleFilterPackage);
 
 ruleViewpointKeyword: 'viewpoint';
 
