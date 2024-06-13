@@ -32,12 +32,14 @@ val gumboVersion: String = "4.20240419.b033c44"
 assert(ops.StringOps(proc"$sireum hamr sysml translator --help".runCheck().out).contains(sysmlVersion), s"Translator isn't using version $sysmlVersion")
 
 val parserDir: Os.Path = home / "src" / "org" / "sireum" / "hamr" / "sysml" / "parser"
-parserDir.removeAll()
+//parserDir.removeAll()
 
 def regenSysML(outFileName: String, version: String, outDir: Os.Path, url: String): Unit = {
-  outDir.mkdirAll()
-  Sireum.procCheck(Os.proc(ISZ(sireum.string, "hamr", "sysml", "translator", "--version", version, "--url", url, s"${outDir / outFileName}")).echo.console,
-    message.Reporter.create)
+
+  //outDir.mkdirAll()
+  //Sireum.procCheck(Os.proc(ISZ(sireum.string, "hamr", "sysml", "translator", "--version", version, "--url", url, s"${outDir / outFileName}")).echo.console,
+  //  message.Reporter.create)
+
   val deps = Coursier.fetch(Sireum.scalaVer, ISZ(s"org.antlr:antlr4:$antlr4Version"))
   val classpath: ISZ[String] = for (dep <- deps) yield dep.path.string
   val java = Os.path(Sireum.javaHomePathString) / "bin" / (if (Os.isWin) "java.exe" else "java")
@@ -47,6 +49,6 @@ def regenSysML(outFileName: String, version: String, outDir: Os.Path, url: Strin
 }
 
 regenSysML("SysMLv2.g4", sysmlVersion, parserDir, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g")
-regenSysML("KerMLv2.g4", sysmlVersion, parserDir, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g")
+//regenSysML("KerMLv2.g4", sysmlVersion, parserDir, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g")
 //regenSysML("GUMBO.g4", gumboVersion, parserDir / "imports", "https://raw.githubusercontent.com/sireum/aadl-gumbo/master/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumboParser.g")
-regenSysML("GUMBO.g4", gumboVersion, parserDir / "imports", "https://people.cs.ksu.edu/~belt/temp/InternalGumboParser.g")
+//regenSysML("GUMBO.g4", gumboVersion, parserDir, "https://people.cs.ksu.edu/~belt/temp/InternalGumboParserv2.g")
