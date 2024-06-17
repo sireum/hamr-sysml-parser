@@ -31,7 +31,7 @@ ruleComment: ('comment' ruleIdentification? ('about' ruleAnnotation (',' ruleAnn
 
 ruleDocumentation: 'doc' ruleIdentification? ('locale' RULE_STRING_VALUE)? RULE_REGULAR_COMMENT;
 
-//ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' RULE_STRING_VALUE RULE_REGULAR_COMMENT;
+// ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' RULE_STRING_VALUE RULE_REGULAR_COMMENT;
 ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' (('"GUMBO"' '/*{' ruleSpecSection '}*/' ) | (RULE_STRING_VALUE RULE_REGULAR_COMMENT)); // GUMBO version
 
 ruleMetadataKeyword: 'metadata';
