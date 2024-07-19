@@ -1,9 +1,13 @@
-// Auto-generated from https://people.cs.ksu.edu/~belt/temp/InternalGumboParserv2.g
+// Auto-generated from https://raw.githubusercontent.com/sireum/aadl-gumbo/sysmlv2/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 grammar GUMBO;
 
-entryRuleGumboLibrary: ruleGumboLibrary EOF;
+entryRuleAnnexLibrary: ruleAnnexLibrary EOF;
+
+ruleAnnexLibrary: ruleGumboLibrary;
 
 ruleGumboLibrary:  ruleFunctions?;
+
+ruleGumboSubclause:  ruleSpecSection;
 
 ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute?;
 
@@ -21,7 +25,7 @@ ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStateme
 
 ruleInitializeSpecStatement: ruleGuaranteeStatement;
 
-ruleCompute:  'compute' (ruleSlangModifies ';')? ruleSpecStatement* ('cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+ruleCompute:  'compute' (ruleSlangModifies ';')? ruleSpecStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
 
 ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
 
@@ -41,21 +45,23 @@ ruleGuaranteeStatement: 'guarantee' RULE_ID RULE_STRING_VALUE? ':' ruleOwnedExpr
 
 ruleAnonGuaranteeStatement: 'guarantee' ruleOwnedExpression ';';
 
-ruleOtherDataRef: RULE_ID ('.' ruleOtherDataRef)?;
+ruleDataElement: ruleQualifiedName;
 
 ruleFunctions: 'functions' ruleFuncSpec+;
 
 ruleFuncSpec: ruleSlangDefDef ';';
 
-ruleSlangDefDecl: 'def' ruleSlangDefMods? ruleSlangDefExt? RULE_ID ruleSlangTypeParams? ruleSlangDefParams? ':' ruleSlangType ruleSlangDefContract?;
+ruleSlangDefDecl: 'def' ruleSlangDefMods? ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams? ':' ruleSlangType ruleSlangDefContract?;
 
-ruleSlangDefDef: 'def' ruleSlangDefExt? RULE_ID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
+ruleSlangDefDef: 'def' ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
 
 ruleSlangDefMods:
   '@strictpure' #ruleSlangDefMods1
   | '@pure' #ruleSlangDefMods2;
 
 ruleSlangDefExt: '(' RULE_ID ':' ruleSlangType ')';
+
+ruleSlangDefID: RULE_ID;
 
 ruleSlangDefParams: '(' (ruleSlangDefParam (',' ruleSlangDefParam)*)? ')';
 
@@ -81,6 +87,12 @@ ruleSlangModifies: 'modifies' ruleOwnedExpression (',' ruleOwnedExpression)*;
 
 ruleSlangEnsures: 'guarantee' ruleOwnedExpression (',' ruleOwnedExpression)*;
 
+ruleSlangType: ruleSlangBaseType;
+
+ruleSlangBaseType: ruleQualifiedName;
+
+ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
+
 ruleSlangStmt:
    ruleSlangVarDef #ruleSlangStmt1
   |  'if' ruleOwnedExpression ruleSlangBlock ruleSlangElse? #ruleSlangStmt2
@@ -91,7 +103,7 @@ ruleSlangStmt:
   |  'assert' ruleOwnedExpression RULE_STRING_VALUE? #ruleSlangStmt7
   |  'halt' RULE_STRING_VALUE? #ruleSlangStmt8
   |  'do' ruleOwnedExpression #ruleSlangStmt9
-  |  RULE_ID (':' | ruleSlangLHSSuffix* (':=' ruleOwnedExpression)?) #ruleSlangStmt10;
+  |  RULE_ID (':' | ruleSlangLHSSuffix* ((':=' | RULE_DEFOP) ruleOwnedExpression)?) #ruleSlangStmt10;
 
 ruleSlangElse: 'else' ('if' ruleOwnedExpression ruleSlangBlock ruleSlangElse? | ruleSlangBlock);
 
@@ -118,256 +130,167 @@ ruleSlangVarMod:
   'val' #ruleSlangVarMod1
   | 'var' #ruleSlangVarMod2;
 
-ruleSlangType: ruleQualifiedName;
+ruleSlangBlock:  '{' ruleSlangStmt* ruleSlangRet? '}';
 
-ruleSlangBlock: '{' ruleSlangStmt* ruleSlangRet? '}';
+ruleOwnedExpression:
+   ruleSlangAccess (ruleOperator ruleSlangAccess)* #ruleOwnedExpression1
+  |  'if' '(' ruleOwnedExpression ')' ruleOwnedExpression 'else' ruleOwnedExpression #ruleOwnedExpression2
+  |  ('\\all' | '\\some' | '\u2200' | '\u2203') ruleSlangQuantVar (',' ruleSlangQuantVar)* '=>' ruleOwnedExpression #ruleOwnedExpression3
+  |  ruleOperator ruleSlangAccess #ruleOwnedExpression4;
 
-ruleSlangRet: 'return' ruleOwnedExpression?;
+ruleSlangQuantVar: RULE_ID ':' ruleOwnedExpression (('..' | '..<') ruleOwnedExpression)?;
 
-ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
+ruleSlangAccess:  ruleSlangTerm ruleSlangAccessSuffix*;
 
-ruleOwnedExpressionMember: ruleOwnedExpression;
+ruleSlangAccessSuffix:  '.' RULE_ID;
 
-ruleOwnedExpression: ruleConditionalExpression;
+ruleOtherDataRef: RULE_ID ruleArrayRange* ('.' ruleOtherDataRef)?;
 
-ruleOwnedExpressionReference: ruleOwnedExpressionMember;
+ruleSlangTerm:
+   ruleSlangLit #ruleSlangTerm1
+  |  ruleSlangInterp #ruleSlangTerm2
+  |  'In' '(' RULE_ID ')' #ruleSlangTerm3
+  |  'MaySend' '(' RULE_ID (',' ruleOwnedExpression)? ')' #ruleSlangTerm4
+  |  'MustSend' '(' RULE_ID (',' ruleOwnedExpression)? ')' #ruleSlangTerm5
+  |  'NoSend' '(' RULE_ID ')' #ruleSlangTerm6
+  |  'HasEvent' '(' RULE_ID ')' #ruleSlangTerm7
+  |  ruleQualifiedName ruleSlangCallSuffix #ruleSlangTerm8
+  |  ruleQCLREF '.' RULE_ID #ruleSlangTerm9
+  |  ruleDataElement '{' RULE_ID '=' ruleOwnedExpression (';' RULE_ID '=' ruleOwnedExpression)* '}' #ruleSlangTerm10
+  |  RULE_ID ('.' ruleOtherDataRef)? #ruleSlangTerm11
+  |  '(' ruleOwnedExpression ')' #ruleSlangTerm12
+  |  'for' ruleSlangForRange (',' ruleSlangForRange)* 'yield' (ruleSlangBlock | '(' ruleOwnedExpression ')') #ruleSlangTerm13
+  |  '{' ((ruleSlangParams '=>')? ruleOwnedExpression '}' | ruleSlangStmt* ruleSlangRet? '}') #ruleSlangTerm14;
 
-ruleConditionalExpression:
-  ruleNullCoalescingExpression #ruleConditionalExpression1
-  |  ruleConditionalOperator ruleNullCoalescingExpression '?' ruleOwnedExpressionReference 'else' ruleOwnedExpressionReference #ruleConditionalExpression2;
+ruleSlangParams: '(' ruleSlangParam (',' ruleSlangParam)? ')';
 
-ruleConditionalOperator: 'if';
+ruleSlangParam: 'var'? RULE_ID ':' '=>'? ruleSlangType '*'?;
 
-ruleNullCoalescingExpression: ruleImpliesExpression ( ruleNullCoalescingOperator ruleImpliesExpressionReference)*;
+ruleSlangForRange: RULE_ID ':' ruleOwnedExpression (('..' | '..<') ruleOwnedExpression ('by' ruleOwnedExpression)?)?;
 
-ruleNullCoalescingOperator: '??';
+ruleSlangRet:  'return' ruleOwnedExpression?;
 
-ruleImpliesExpressionReference: ruleImpliesExpressionMember;
+ruleSlangCallSuffix:  ruleSlangCallArgs;
 
-ruleImpliesExpressionMember: ruleImpliesExpression;
+ruleSlangCallArgs:  '(' (ruleOwnedExpression (',' ruleOwnedExpression)*)? ')';
 
-ruleImpliesExpression: ruleOrExpression ( ruleImpliesOperator ruleOrExpressionReference)*;
+ruleSlangLit:
+   ('T' | 'F' | 'true' | 'false') #ruleSlangLit1
+  |  'res' #ruleSlangLit2
+  |  RULE_INTEGER_LIT #ruleSlangLit3
+  |  RULE_HEX #ruleSlangLit4
+  |  RULE_BIN #ruleSlangLit5
+  |  RULE_F32_LIT #ruleSlangLit6
+  |  (RULE_F64_LIT | RULE_REAL_LIT) #ruleSlangLit7
+  |  'F32' #ruleSlangLit8
+  |  'F64' #ruleSlangLit9
+  |  RULE_STRING_VALUE #ruleSlangLit10
+  |  RULE_MSTRING #ruleSlangLit11;
 
-ruleImpliesOperator: 'implies';
+ruleSlangInterp:
+   RULE_MSP #ruleSlangInterp1
+  |  RULE_SLI #ruleSlangInterp2
+  |  RULE_MSPB ruleSlangMInterp #ruleSlangInterp3;
 
-ruleOrExpressionReference: ruleOrExpressionMember;
+ruleSlangMInterp: '{' ruleOwnedExpression '}' (RULE_MSPM ruleSlangMInterp | RULE_MSPE);
 
-ruleOrExpressionMember: ruleOrExpression;
+ruleQualifiedName: ruleQCREF;
 
-ruleOrExpression: ruleXorExpression ( (ruleOrOperator ruleXorExpression | ruleConditionalOrOperator ruleXorExpressionReference))*;
+ruleOperator:
+  RULE_OP #ruleOperator1
+  | rulePlusMinus #ruleOperator2
+  | ruleSTAR #ruleOperator3
+  | RULE_IMPLIES #ruleOperator4
+  | RULE_SIMPLIES #ruleOperator5;
 
-ruleOrOperator: '|';
+ruleContainedPropertyAssociation: ruleQPREF ('=>' | '+=>') 'constant'? ruleOptionalModalPropertyValue (',' ruleOptionalModalPropertyValue)* (ruleAppliesToKeywords ruleContainmentPath (',' ruleContainmentPath)*)? (ruleInBindingKeywords '(' ruleQCREF ')')? ';';
 
-ruleConditionalOrOperator: 'or';
+ruleContainmentPath: ruleContainmentPathElement;
 
-ruleXorExpressionReference: ruleXorExpressionMember;
+ruleOptionalModalPropertyValue: rulePropertyExpression (ruleInModesKeywords '(' RULE_ID (',' RULE_ID)* ')')?;
 
-ruleXorExpressionMember: ruleXorExpression;
+rulePropertyValue: rulePropertyExpression;
 
-ruleXorExpression: ruleAndExpression ( ruleXorOperator ruleAndExpression)*;
+rulePropertyExpression:
+  ruleRecordTerm #rulePropertyExpression1
+  | ruleReferenceTerm #rulePropertyExpression2
+  | ruleComponentClassifierTerm #rulePropertyExpression3
+  | ruleComputedTerm #rulePropertyExpression4
+  | ruleStringTerm #rulePropertyExpression5
+  | ruleNumericRangeTerm #rulePropertyExpression6
+  | ruleRealTerm #rulePropertyExpression7
+  | ruleIntegerTerm #rulePropertyExpression8
+  | ruleListTerm #rulePropertyExpression9
+  | ruleBooleanLiteral #rulePropertyExpression10
+  | ruleLiteralorReferenceTerm #rulePropertyExpression11;
 
-ruleXorOperator: 'xor';
+ruleLiteralorReferenceTerm: ruleQPREF;
 
-ruleAndExpression: ruleEqualityExpression ( (ruleAndOperator ruleEqualityExpression | ruleConditionalAndOperator ruleEqualityExpressionReference))*;
+ruleBooleanLiteral:  ('true' | 'false');
 
-ruleAndOperator: '&';
+ruleConstantValue: ruleQPREF;
 
-ruleConditionalAndOperator: 'and';
+ruleReferenceTerm: 'reference' '(' ruleContainmentPathElement ')';
 
-ruleEqualityExpressionReference: ruleEqualityExpressionMember;
+ruleRecordTerm: '[' ruleFieldPropertyAssociation+ ']';
 
-ruleEqualityExpressionMember: ruleEqualityExpression;
+ruleComputedTerm: 'compute' '(' RULE_ID ')';
 
-ruleEqualityExpression: ruleClassificationExpression ( ruleEqualityOperator ruleClassificationExpression)*;
+ruleComponentClassifierTerm: 'classifier' '(' ruleQCREF ')';
 
-ruleEqualityOperator:
-  '==' #ruleEqualityOperator1
-  | '!=' #ruleEqualityOperator2
-  | '===' #ruleEqualityOperator3
-  | '!==' #ruleEqualityOperator4;
+ruleListTerm:  '(' (rulePropertyExpression (',' rulePropertyExpression)*)? ')';
 
-ruleClassificationExpression:
-  ruleRelationalExpression ( ruleClassificationTestOperator ruleTypeReferenceMember |  ruleCastOperator ruleTypeResultMember)? #ruleClassificationExpression1
-  |  ruleSelfReferenceExpression ruleClassificationTestOperator ruleTypeReferenceMember #ruleClassificationExpression2
-  |  ruleMetadataReference ruleMetaClassificationTestOperator ruleTypeReferenceMember #ruleClassificationExpression3
-  |  ruleSelfReferenceExpression ruleCastOperator ruleTypeResultMember #ruleClassificationExpression4
-  |  ruleMetadataReference ruleMetaCastOperator ruleTypeResultMember #ruleClassificationExpression5;
+ruleFieldPropertyAssociation: RULE_ID '=>' rulePropertyExpression ';';
 
-ruleClassificationTestOperator:
-  'hastype' #ruleClassificationTestOperator1
-  | 'istype' #ruleClassificationTestOperator2
-  | '@' #ruleClassificationTestOperator3;
+ruleContainmentPathElement: RULE_ID ruleArrayRange* ('.' ruleContainmentPathElement)?;
 
-ruleMetaClassificationTestOperator: '@@';
+rulePlusMinus:
+  '+' #rulePlusMinus1
+  | '-' #rulePlusMinus2;
 
-ruleCastOperator: 'as';
+ruleStringTerm: ruleNoQuoteString;
 
-ruleMetaCastOperator: 'meta';
+ruleNoQuoteString: RULE_STRING;
 
-ruleMetadataReference: ruleQualifiedName;
+ruleArrayRange:  '[' ruleINTVALUE ('..' ruleINTVALUE)? ']';
 
-ruleTypeReferenceMember: ruleTypeReference;
+ruleSignedConstant: rulePlusMinus ruleConstantValue;
 
-ruleTypeResultMember: ruleTypeReference;
+ruleIntegerTerm: ruleSignedInt RULE_ID?;
 
-ruleTypeReference: ruleReferenceTyping;
+ruleSignedInt: ('+' | '-')? RULE_INTEGER_LIT;
 
-ruleReferenceTyping: ruleQualifiedName;
+ruleRealTerm: ruleSignedReal RULE_ID?;
 
-ruleSelfReferenceExpression: ruleSelfReferenceMember;
+ruleSignedReal: ('+' | '-')? RULE_REAL_LIT;
 
-ruleSelfReferenceMember: ruleEmptyFeature;
+ruleNumericRangeTerm: ruleNumAlt '..' ruleNumAlt ('delta' ruleNumAlt)?;
 
-ruleEmptyFeature: ;
+ruleNumAlt:
+  ruleRealTerm #ruleNumAlt1
+  | ruleIntegerTerm #ruleNumAlt2
+  | ruleSignedConstant #ruleNumAlt3
+  | ruleConstantValue #ruleNumAlt4;
 
-ruleRelationalExpression: ruleRangeExpression ( ruleRelationalOperator ruleRangeExpression)*;
+ruleAppliesToKeywords: 'applies' 'to';
 
-ruleRelationalOperator:
-  '<' #ruleRelationalOperator1
-  | '>' #ruleRelationalOperator2
-  | '<=' #ruleRelationalOperator3
-  | '>=' #ruleRelationalOperator4;
+ruleInBindingKeywords: 'in' 'binding';
 
-ruleRangeExpression: ruleAdditiveExpression ( '..' ruleAdditiveExpression)?;
+ruleInModesKeywords: 'in' 'modes';
 
-ruleAdditiveExpression: ruleMultiplicativeExpression ( ruleAdditiveOperator ruleMultiplicativeExpression)*;
+ruleINTVALUE: RULE_INTEGER_LIT;
 
-ruleAdditiveOperator:
-  '+' #ruleAdditiveOperator1
-  | '-' #ruleAdditiveOperator2;
+ruleQCLREF: RULE_ID '::' RULE_ID;
 
-ruleMultiplicativeExpression: ruleExponentiationExpression ( ruleMultiplicativeOperator ruleExponentiationExpression)*;
+ruleQPREF: RULE_ID ('::' RULE_ID)?;
 
-ruleMultiplicativeOperator:
-  '*' #ruleMultiplicativeOperator1
-  | '/' #ruleMultiplicativeOperator2
-  | '%' #ruleMultiplicativeOperator3;
+ruleQCREF: (RULE_ID '::')* RULE_ID ('.' RULE_ID)?;
 
-ruleExponentiationExpression: ruleUnaryExpression ( ruleExponentiationOperator ruleExponentiationExpression)?;
+ruleSTAR: '*';
 
-ruleExponentiationOperator:
-  '**' #ruleExponentiationOperator1
-  | '^' #ruleExponentiationOperator2;
+RULE_F32_LIT: RULE_REAL_LIT 'f';
 
-ruleUnaryExpression:
-   ruleUnaryOperator ruleExtentExpression #ruleUnaryExpression1
-  | ruleExtentExpression #ruleUnaryExpression2;
-
-ruleUnaryOperator:
-  '+' #ruleUnaryOperator1
-  | '-' #ruleUnaryOperator2
-  | '~' #ruleUnaryOperator3
-  | 'not' #ruleUnaryOperator4;
-
-ruleExtentExpression:
-   'all' ruleTypeResultMember #ruleExtentExpression1
-  | rulePrimaryExpression #ruleExtentExpression2;
-
-rulePrimaryExpression: ruleBaseExpression ( '.' ruleFeatureChainMember)? (( '#' '(' ruleSequenceExpression ')' |  '[' ruleSequenceExpression ']' |  '->' ruleReferenceTyping (ruleBodyExpression | ruleFunctionReferenceExpression | ruleArgumentList) |  '.' ruleBodyExpression |  '.?' ruleBodyExpression) ( '.' ruleFeatureChainMember)?)*;
-
-ruleFunctionReferenceExpression: ruleFunctionReferenceMember;
-
-ruleFunctionReferenceMember: ruleFunctionReference;
-
-ruleFunctionReference: ruleReferenceTyping;
-
-ruleFeatureChainMember:
-  ruleQualifiedName #ruleFeatureChainMember1
-  |  ruleOwnedFeatureChain #ruleFeatureChainMember2;
-
-ruleBaseExpression:
-  ruleNullExpression #ruleBaseExpression1
-  | ruleLiteralExpression #ruleBaseExpression2
-  | ruleFeatureReferenceExpression #ruleBaseExpression3
-  | ruleMetadataAccessExpression #ruleBaseExpression4
-  | ruleInvocationExpression #ruleBaseExpression5
-  | ruleBodyExpression #ruleBaseExpression6
-  | '(' ruleSequenceExpression ')' #ruleBaseExpression7;
-
-ruleBodyExpression: ruleExpressionBodyMember;
-
-ruleExpressionBodyMember: ruleExpressionBody;
-
-ruleExpressionBody: '{' (ruleBodyParameterMember ';')* ruleResultExpressionMember '}';
-
-ruleResultExpressionMember: ruleOwnedExpression;
-
-ruleBodyParameterMember: 'in' ruleBodyParameter;
-
-ruleBodyParameter: ruleName;
-
-ruleSequenceExpression: ruleOwnedExpression (',' |  ',' ruleSequenceExpression)?;
-
-ruleFeatureReferenceExpression: ruleFeatureReferenceMember;
-
-ruleFeatureReferenceMember: ruleQualifiedName;
-
-ruleMetadataAccessExpression: ruleQualifiedName '.' 'metadata';
-
-ruleInvocationExpression: ruleOwnedFeatureTyping ruleArgumentList;
-
-ruleOwnedFeatureTyping:
-  ruleQualifiedName #ruleOwnedFeatureTyping1
-  | ruleOwnedFeatureChain #ruleOwnedFeatureTyping2;
-
-ruleOwnedFeatureChain: ruleFeatureChain;
-
-ruleFeatureChain: ruleOwnedFeatureChaining ('.' ruleOwnedFeatureChaining)+;
-
-ruleOwnedFeatureChaining: ruleQualifiedName;
-
-ruleArgumentList: '(' (rulePositionalArgumentList | ruleNamedArgumentList)? ')';
-
-rulePositionalArgumentList: ruleArgumentMember (',' ruleArgumentMember)*;
-
-ruleArgumentMember: ruleArgument;
-
-ruleArgument: ruleArgumentValue;
-
-ruleNamedArgumentList: ruleNamedArgumentMember (',' ruleNamedArgumentMember)*;
-
-ruleNamedArgumentMember: ruleNamedArgument;
-
-ruleNamedArgument: ruleParameterRedefinition '=' ruleArgumentValue;
-
-ruleParameterRedefinition: ruleQualifiedName;
-
-ruleArgumentValue: ruleOwnedExpression;
-
-ruleNullExpression:  ('null' | '(' ')');
-
-ruleLiteralExpression:
-  ruleLiteralBoolean #ruleLiteralExpression1
-  | ruleLiteralString #ruleLiteralExpression2
-  | ruleLiteralInteger #ruleLiteralExpression3
-  | ruleLiteralReal #ruleLiteralExpression4
-  | ruleLiteralInfinity #ruleLiteralExpression5;
-
-ruleLiteralBoolean: ruleBooleanValue;
-
-ruleBooleanValue:
-  'true' #ruleBooleanValue1
-  | 'false' #ruleBooleanValue2;
-
-ruleLiteralString: RULE_STRING_VALUE;
-
-ruleLiteralInteger: RULE_DECIMAL_VALUE;
-
-ruleLiteralReal: ruleRealValue;
-
-ruleRealValue:
-  RULE_DECIMAL_VALUE? '.' (RULE_DECIMAL_VALUE | RULE_EXP_VALUE) #ruleRealValue1
-  | RULE_EXP_VALUE #ruleRealValue2;
-
-ruleLiteralInfinity:  '*';
-
-ruleName:
-  RULE_ID #ruleName1
-  | RULE_UNRESTRICTED_NAME #ruleName2;
-
-ruleQualification: (ruleName '::')+;
-
-ruleQualifiedName: ruleQualification? ruleName;
+RULE_F64_LIT: RULE_REAL_LIT 'd';
 
 K_STATE: 'state';
 K_INVARIANTS: 'invariants';
@@ -375,7 +298,7 @@ K_INV: 'inv';
 K_INTEGRATION: 'integration';
 K_INITIALIZE: 'initialize';
 K_COMPUTE: 'compute';
-K_CASES: 'cases';
+K_COMPUTE_CASES: 'compute_cases';
 K_INFOFLOW: 'infoflow';
 K_FROM: 'from';
 K_TO: 'to';
@@ -399,22 +322,31 @@ K_DO: 'do';
 K_ELSE: 'else';
 K_VAL: 'val';
 K_VAR: 'var';
+K_IN: 'In';
+K_MAYSEND: 'MaySend';
+K_MUSTSEND: 'MustSend';
+K_NOSEND: 'NoSend';
+K_HASEVENT: 'HasEvent';
+K_FOR: 'for';
+K_YIELD: 'yield';
+K_BY: 'by';
 K_RETURN: 'return';
-K_IMPLIES: 'implies';
-K_OR: 'or';
-K_XOR: 'xor';
-K_AND: 'and';
-K_HASTYPE: 'hastype';
-K_ISTYPE: 'istype';
-K_AS: 'as';
-K_META: 'meta';
-K_NOT: 'not';
-K_ALL: 'all';
-K_IN: 'in';
-K_METADATA: 'metadata';
-K_NULL: 'null';
+K_T: 'T';
+K_F: 'F';
 K_TRUE: 'true';
 K_FALSE: 'false';
+K_RES: 'res';
+K_F32: 'F32';
+K_F64: 'F64';
+K_CONSTANT: 'constant';
+K_REFERENCE: 'reference';
+K_CLASSIFIER: 'classifier';
+K_DELTA: 'delta';
+K_APPLIES: 'applies';
+K_IN: 'in';
+K_BINDING: 'binding';
+K_MODES: 'modes';
+K_D: 'd';
 
 LPAREN: '(';
 RPAREN: ')';
@@ -422,44 +354,30 @@ LSQUARE: '[';
 RSQUARE: ']';
 LBRACE: '{';
 RBRACE: '}';
-LANGLE: '<';
-RANGLE: '>';
 
 OP_COLON: ':';
 OP_SEMI: ';';
 OP_COMMA: ',';
-OP_DOT: '.';
 OP_COLON_EQ: ':=';
 OP_AT_____115_________116_________114_________105_________99_________116_________112_________117_________114_________101____: '@strictpure';
 OP_AT_____112_________117_________114_________101____: '@pure';
 OP_EQ_RANGLE: '=>';
 OP_STAR: '*';
+OP_DOT: '.';
 OP_____95____: '_';
-OP_QMARK: '?';
-OP_QMARK_QMARK: '??';
-OP_BAR: '|';
-OP_AND: '&';
-OP_EQ_EQ: '==';
-OP_BANG_EQ: '!=';
-OP_EQ_EQ_EQ: '===';
-OP_BANG_EQ_EQ: '!==';
-OP_AT: '@';
-OP_AT_AT: '@@';
-OP_LANGLE_EQ: '<=';
-OP_RANGLE_EQ: '>=';
+OP_BSLASH_BSLASH_____97_________108_________108____: '\\all';
+OP_BSLASH_BSLASH_____115_________111_________109_________101____: '\\some';
+OP_BSLASH_____117_________50_________50_________48_________48____: '\u2200';
+OP_BSLASH_____117_________50_________50_________48_________51____: '\u2203';
 OP_DOT_DOT: '..';
+OP_DOT_DOT_LANGLE: '..<';
+OP_EQ: '=';
+OP_PLUS_EQ_RANGLE: '+=>';
 OP_PLUS: '+';
 OP_MINUS: '-';
-OP_SLASH: '/';
-OP_PERCENT: '%';
-OP_STAR_STAR: '**';
-OP_HAT: '^';
-OP_TILDE: '~';
-OP_HASH: '#';
-OP_MINUS_RANGLE: '->';
-OP_DOT_QMARK: '.?';
-OP_EQ: '=';
 OP_COLON_COLON: '::';
+OP_DQUOTE: '"';
+OP_BSLASH_BSLASH: '\\';
 
 /*
 def isKeyword(tokenType: Int): Boolean = {
@@ -471,7 +389,7 @@ def isKeyword(tokenType: Int): Boolean = {
          K_INTEGRATION |
          K_INITIALIZE |
          K_COMPUTE |
-         K_CASES |
+         K_COMPUTE_CASES |
          K_INFOFLOW |
          K_FROM |
          K_TO |
@@ -495,41 +413,123 @@ def isKeyword(tokenType: Int): Boolean = {
          K_ELSE |
          K_VAL |
          K_VAR |
-         K_RETURN |
-         K_IMPLIES |
-         K_OR |
-         K_XOR |
-         K_AND |
-         K_HASTYPE |
-         K_ISTYPE |
-         K_AS |
-         K_META |
-         K_NOT |
-         K_ALL |
          K_IN |
-         K_METADATA |
-         K_NULL |
+         K_MAYSEND |
+         K_MUSTSEND |
+         K_NOSEND |
+         K_HASEVENT |
+         K_FOR |
+         K_YIELD |
+         K_BY |
+         K_RETURN |
+         K_T |
+         K_F |
          K_TRUE |
-         K_FALSE => true
+         K_FALSE |
+         K_RES |
+         K_F32 |
+         K_F64 |
+         K_CONSTANT |
+         K_REFERENCE |
+         K_CLASSIFIER |
+         K_DELTA |
+         K_APPLIES |
+         K_IN |
+         K_BINDING |
+         K_MODES |
+         K_D => true
     case _ => false
   }
 }
 */
 
-RULE_DECIMAL_VALUE: '0'..'9' '0'..'9'*;
+RULE_STRING_VALUE: '"' (RULE_ESC_SEQ | ~('\\' | '"'))* '"';
 
-RULE_EXP_VALUE: RULE_DECIMAL_VALUE ('e' | 'E') ('+' | '-')? RULE_DECIMAL_VALUE;
+RULE_MSTRING: '"""' (~'"' | '"' ~'"' | '""' ~'"')* ('"""' | '""""' | '"""""');
 
-RULE_ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+RULE_MSP: RULE_IDF '"""' RULE_MSPI* ('"""' | '""""' | '"""""');
 
-RULE_UNRESTRICTED_NAME: '\'' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\'' | '\\') | ~('\\' | '\''))* '\'';
+RULE_SLI: RULE_IDF '"' (RULE_ESC_SEQ | ~('\\' | '"'))* '"';
 
-RULE_STRING_VALUE: '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\'' | '\\') | ~('\\' | '"'))* '"';
+RULE_MSPB: RULE_IDF '"""' RULE_MSPI* '$';
 
-RULE_REGULAR_COMMENT: '/*' .*? '*/';
+RULE_MSPM: '$' RULE_MSPI* '$';
 
-RULE_ML_NOTE: '//*' .*? '*/' -> channel(HIDDEN);
+RULE_MSPE: '$' RULE_MSPI* ('"""' | '""""' | '"""""');
 
-RULE_SL_NOTE: '//' ~'*' (~('\n' | '\r') ~('\n' | '\r')*)? ('\r'? '\n')? -> channel(HIDDEN);
+RULE_DEFOP: ':' RULE_OPSYM* '=';
+
+RULE_IMPLIES: ('-' | '~') '>' ':';
+
+RULE_SIMPLIES: '~' '~' '>' ':';
+
+RULE_OP:
+  RULE_OPSYM+ 
+  | '\\' RULE_IDF ;
+
+RULE_HEX: '0x' RULE_EXTENDED_DIGIT+ ('.' RULE_IDF)?;
+
+RULE_BIN: '0b' ('0' | '1' | '_')+ ('.' RULE_IDF)?;
+
+RULE_INT_IDF: RULE_INTEGER_LIT RULE_IDF;
+
+RULE_IDF: (RULE_LETTER | '_') (RULE_LETTER | RULE_DIGIT)*;
+
+RULE_MSPI:
+  ~('"' | '$') 
+  | '$$' 
+  | '"' ~'"' 
+  | '""' ~'"' ;
+
+RULE_LETTER:
+  'a'..'z' 
+  | 'A'..'Z' ;
+
+RULE_OPSYM:
+  '/' 
+  | '%' 
+  | '=' 
+  | '<' 
+  | '>' 
+  | '!' 
+  | '&' 
+  | '^' 
+  | '|' 
+  | '~' 
+  | '\u2200'..'\u22FF' 
+  | '\u2A00'..'\u2AFF' 
+  | '\u27C0'..'\u27EF' 
+  | '\u2980'..'\u29FF' ;
+
+RULE_ESC_SEQ:
+  '\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\'' | '\\') 
+  | RULE_UNICODE_ESC ;
+
+RULE_UNICODE_ESC: '\\' 'u' RULE_EXTENDED_DIGIT RULE_EXTENDED_DIGIT RULE_EXTENDED_DIGIT RULE_EXTENDED_DIGIT;
+
+RULE_SL_COMMENT: '--' ~('\n' | '\r')* ('\r'? '\n')?;
+
+RULE_EXPONENT: ('e' | 'E') ('+' | '-')? RULE_DIGIT+;
+
+RULE_INT_EXPONENT: ('e' | 'E') '+'? RULE_DIGIT+;
+
+RULE_REAL_LIT: RULE_DIGIT+ ('_' RULE_DIGIT+)* '.' RULE_DIGIT+ ('_' RULE_DIGIT+)* RULE_EXPONENT?;
+
+RULE_INTEGER_LIT: RULE_DIGIT+ ('_' RULE_DIGIT+)* ('#' RULE_BASED_INTEGER '#' RULE_INT_EXPONENT? | RULE_INT_EXPONENT?);
+
+RULE_DIGIT: '0'..'9';
+
+RULE_EXTENDED_DIGIT:
+  '0'..'9' 
+  | 'a'..'f' 
+  | 'A'..'F' ;
+
+RULE_BASED_INTEGER: RULE_EXTENDED_DIGIT ('_'? RULE_EXTENDED_DIGIT)*;
+
+RULE_STRING:
+  '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | '\'' | '\\') | ~('\\' | '"'))* '"' 
+  | '\'' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | '\'' | '\\') | ~('\\' | '\''))* '\'' ;
+
+RULE_ID: ('a'..'z' | 'A'..'Z') ('_'? ('a'..'z' | 'A'..'Z' | '0'..'9'))*;
 
 RULE_WS: (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);

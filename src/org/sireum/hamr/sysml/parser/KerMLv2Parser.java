@@ -1,4 +1,4 @@
-// Generated from /Users/belt/devel/sireum/hamr-sysml-parser/src/org/sireum/hamr/sysml/parser/KerMLv2.g4 by ANTLR 4.13.1
+// Generated from /Users/belt/devel/sireum/hamr-sysml-parser-X/src/org/sireum/hamr/sysml/parser/KerMLv2.g4 by ANTLR 4.13.1
 package org.sireum.hamr.sysml.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
