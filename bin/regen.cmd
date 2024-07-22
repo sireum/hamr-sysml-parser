@@ -55,7 +55,7 @@ def regenAntrl(grammarFile: Os.Path, outDir: Os.Path): Unit = {
 
 val sysmlLg: Os.Path = fetch(parserDir, "SysMLv2.g4", sysmlVersion, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g")
 val kermlg = fetch(parserDir, "KerMLv2.g4", sysmlVersion, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g")
-val gumbog = fetch(parserDir, "GUMBO.g4", gumboVersion, "https://raw.githubusercontent.com/sireum/aadl-gumbo/sysmlv2/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g")
+val gumbog = fetch(parserDir, "GUMBO.g4", gumboVersion, "https://raw.githubusercontent.com/sireum/aadl-gumbo/%version/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g")
 
 val so = ops.StringOps(sysmlLg.read)
 

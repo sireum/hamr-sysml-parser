@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/sireum/aadl-gumbo/sysmlv2/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+// Auto-generated from https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240722.03f0261/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 grammar GUMBO;
 
 entryRuleAnnexLibrary: ruleAnnexLibrary EOF;
