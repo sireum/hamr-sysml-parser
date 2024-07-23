@@ -9,7 +9,7 @@ exec ${SIREUM_HOME}/bin/sireum slang run "$0" "$@"  #
 setlocal
 if not defined SIREUM_HOME (
   echo Please set SIREUM_HOME env var
- afasdfasdfwetweegagvm;kasnfg;lwkf'wkl';flwg exit /B -1
+  exit /B -1
 )
 %SIREUM_HOME%\bin\sireum.bat slang run "%0" %*
 exit /B %errorlevel%
