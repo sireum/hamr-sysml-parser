@@ -331,6 +331,112 @@ public class KerMLv2Parser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
+
+	  public static boolean isKeyword(int tokenType) {
+	    switch (tokenType) {
+	      case KerMLv2Lexer.K_DEPENDENCY |
+	           KerMLv2Lexer.K_FROM |
+	           KerMLv2Lexer.K_TO |
+	           KerMLv2Lexer.K_COMMENT |
+	           KerMLv2Lexer.K_ABOUT |
+	           KerMLv2Lexer.K_LOCALE |
+	           KerMLv2Lexer.K_DOC |
+	           KerMLv2Lexer.K_REP |
+	           KerMLv2Lexer.K_LANGUAGE |
+	           KerMLv2Lexer.K_NAMESPACE |
+	           KerMLv2Lexer.K_ALIAS |
+	           KerMLv2Lexer.K_FOR |
+	           KerMLv2Lexer.K_IMPORT |
+	           KerMLv2Lexer.K_ALL |
+	           KerMLv2Lexer.K_STANDARD |
+	           KerMLv2Lexer.K_LIBRARY |
+	           KerMLv2Lexer.K_PACKAGE |
+	           KerMLv2Lexer.K_FILTER |
+	           KerMLv2Lexer.K_ABSTRACT |
+	           KerMLv2Lexer.K_TYPE |
+	           KerMLv2Lexer.K_SPECIALIZES |
+	           KerMLv2Lexer.K_CONJUGATES |
+	           KerMLv2Lexer.K_DISJOINT |
+	           KerMLv2Lexer.K_UNIONS |
+	           KerMLv2Lexer.K_INTERSECTS |
+	           KerMLv2Lexer.K_DIFFERENCES |
+	           KerMLv2Lexer.K_MEMBER |
+	           KerMLv2Lexer.K_SPECIALIZATION |
+	           KerMLv2Lexer.K_SUBTYPE |
+	           KerMLv2Lexer.K_CONJUGATION |
+	           KerMLv2Lexer.K_CONJUGATE |
+	           KerMLv2Lexer.K_DISJOINING |
+	           KerMLv2Lexer.K_CLASSIFIER |
+	           KerMLv2Lexer.K_SUBCLASSIFIER |
+	           KerMLv2Lexer.K_COMPOSITE |
+	           KerMLv2Lexer.K_PORTION |
+	           KerMLv2Lexer.K_READONLY |
+	           KerMLv2Lexer.K_DERIVED |
+	           KerMLv2Lexer.K_END |
+	           KerMLv2Lexer.K_FEATURE |
+	           KerMLv2Lexer.K_CHAINS |
+	           KerMLv2Lexer.K_INVERSE |
+	           KerMLv2Lexer.K_OF |
+	           KerMLv2Lexer.K_FEATURED |
+	           KerMLv2Lexer.K_BY |
+	           KerMLv2Lexer.K_ORDERED |
+	           KerMLv2Lexer.K_NONUNIQUE |
+	           KerMLv2Lexer.K_TYPED |
+	           KerMLv2Lexer.K_SUBSETS |
+	           KerMLv2Lexer.K_REFERENCES |
+	           KerMLv2Lexer.K_REDEFINES |
+	           KerMLv2Lexer.K_INVERTING |
+	           KerMLv2Lexer.K_FEATURING |
+	           KerMLv2Lexer.K_TYPING |
+	           KerMLv2Lexer.K_SUBSET |
+	           KerMLv2Lexer.K_REDEFINITION |
+	           KerMLv2Lexer.K_DEFAULT |
+	           KerMLv2Lexer.K_MULTIPLICITY |
+	           KerMLv2Lexer.K_DATATYPE |
+	           KerMLv2Lexer.K_CLASS |
+	           KerMLv2Lexer.K_STRUCT |
+	           KerMLv2Lexer.K_ASSOC |
+	           KerMLv2Lexer.K_CONNECTOR |
+	           KerMLv2Lexer.K_BINDING |
+	           KerMLv2Lexer.K_SUCCESSION |
+	           KerMLv2Lexer.K_FIRST |
+	           KerMLv2Lexer.K_THEN |
+	           KerMLv2Lexer.K_BEHAVIOR |
+	           KerMLv2Lexer.K_STEP |
+	           KerMLv2Lexer.K_FUNCTION |
+	           KerMLv2Lexer.K_RETURN |
+	           KerMLv2Lexer.K_EXPR |
+	           KerMLv2Lexer.K_PREDICATE |
+	           KerMLv2Lexer.K_BOOL |
+	           KerMLv2Lexer.K_INV |
+	           KerMLv2Lexer.K_TRUE |
+	           KerMLv2Lexer.K_FALSE |
+	           KerMLv2Lexer.K_INTERACTION |
+	           KerMLv2Lexer.K_FLOW |
+	           KerMLv2Lexer.K_METACLASS |
+	           KerMLv2Lexer.K_METADATA |
+	           KerMLv2Lexer.K_ELSE |
+	           KerMLv2Lexer.K_IF |
+	           KerMLv2Lexer.K_IMPLIES |
+	           KerMLv2Lexer.K_OR |
+	           KerMLv2Lexer.K_XOR |
+	           KerMLv2Lexer.K_AND |
+	           KerMLv2Lexer.K_HASTYPE |
+	           KerMLv2Lexer.K_ISTYPE |
+	           KerMLv2Lexer.K_AS |
+	           KerMLv2Lexer.K_META |
+	           KerMLv2Lexer.K_NOT |
+	           KerMLv2Lexer.K_NULL |
+	           KerMLv2Lexer.K_PUBLIC |
+	           KerMLv2Lexer.K_PRIVATE |
+	           KerMLv2Lexer.K_PROTECTED |
+	           KerMLv2Lexer.K_IN |
+	           KerMLv2Lexer.K_OUT |
+	           KerMLv2Lexer.K_INOUT: return true;
+	      default: return false;
+	    }
+	  }
+
 	public KerMLv2Parser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);

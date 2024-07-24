@@ -571,6 +571,156 @@ public class SysMLv2Parser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
+
+	  public static boolean isKeyword(int tokenType) {
+	    switch (tokenType) {
+	      case SysMLv2Lexer.K_DEPENDENCY |
+	           SysMLv2Lexer.K_FROM |
+	           SysMLv2Lexer.K_TO |
+	           SysMLv2Lexer.K_COMMENT |
+	           SysMLv2Lexer.K_ABOUT |
+	           SysMLv2Lexer.K_LOCALE |
+	           SysMLv2Lexer.K_DOC |
+	           SysMLv2Lexer.K_REP |
+	           SysMLv2Lexer.K_LANGUAGE |
+	           SysMLv2Lexer.K__GUMBO_ |
+	           SysMLv2Lexer.K_LIBRARY |
+	           SysMLv2Lexer.K_METADATA |
+	           SysMLv2Lexer.K_DEF |
+	           SysMLv2Lexer.K_ABSTRACT |
+	           SysMLv2Lexer.K_REF |
+	           SysMLv2Lexer.K_REDEFINES |
+	           SysMLv2Lexer.K_STANDARD |
+	           SysMLv2Lexer.K_PACKAGE |
+	           SysMLv2Lexer.K_FILTER |
+	           SysMLv2Lexer.K_ALIAS |
+	           SysMLv2Lexer.K_FOR |
+	           SysMLv2Lexer.K_IMPORT |
+	           SysMLv2Lexer.K_ALL |
+	           SysMLv2Lexer.K_SPECIALIZES |
+	           SysMLv2Lexer.K_ORDERED |
+	           SysMLv2Lexer.K_NONUNIQUE |
+	           SysMLv2Lexer.K_DEFINED |
+	           SysMLv2Lexer.K_BY |
+	           SysMLv2Lexer.K_SUBSETS |
+	           SysMLv2Lexer.K_REFERENCES |
+	           SysMLv2Lexer.K_VARIATION |
+	           SysMLv2Lexer.K_VARIANT |
+	           SysMLv2Lexer.K_READONLY |
+	           SysMLv2Lexer.K_DERIVED |
+	           SysMLv2Lexer.K_END |
+	           SysMLv2Lexer.K_DEFAULT |
+	           SysMLv2Lexer.K_ATTRIBUTE |
+	           SysMLv2Lexer.K_ENUM |
+	           SysMLv2Lexer.K_OCCURRENCE |
+	           SysMLv2Lexer.K_INDIVIDUAL |
+	           SysMLv2Lexer.K_EVENT |
+	           SysMLv2Lexer.K_THEN |
+	           SysMLv2Lexer.K_ITEM |
+	           SysMLv2Lexer.K_PART |
+	           SysMLv2Lexer.K_PORT |
+	           SysMLv2Lexer.K_BINDING |
+	           SysMLv2Lexer.K_BIND |
+	           SysMLv2Lexer.K_SUCCESSION |
+	           SysMLv2Lexer.K_FIRST |
+	           SysMLv2Lexer.K_CONNECTION |
+	           SysMLv2Lexer.K_CONNECT |
+	           SysMLv2Lexer.K_FLOW |
+	           SysMLv2Lexer.K_MESSAGE |
+	           SysMLv2Lexer.K_OF |
+	           SysMLv2Lexer.K_INTERFACE |
+	           SysMLv2Lexer.K_ALLOCATION |
+	           SysMLv2Lexer.K_ALLOCATE |
+	           SysMLv2Lexer.K_ACTION |
+	           SysMLv2Lexer.K_PERFORM |
+	           SysMLv2Lexer.K_ACCEPT |
+	           SysMLv2Lexer.K_VIA |
+	           SysMLv2Lexer.K_AT |
+	           SysMLv2Lexer.K_AFTER |
+	           SysMLv2Lexer.K_WHEN |
+	           SysMLv2Lexer.K_SEND |
+	           SysMLv2Lexer.K_ASSIGN |
+	           SysMLv2Lexer.K_IF |
+	           SysMLv2Lexer.K_ELSE |
+	           SysMLv2Lexer.K_WHILE |
+	           SysMLv2Lexer.K_LOOP |
+	           SysMLv2Lexer.K_UNTIL |
+	           SysMLv2Lexer.K_IN |
+	           SysMLv2Lexer.K_MERGE |
+	           SysMLv2Lexer.K_DECIDE |
+	           SysMLv2Lexer.K_JOIN |
+	           SysMLv2Lexer.K_FORK |
+	           SysMLv2Lexer.K_STATE |
+	           SysMLv2Lexer.K_PARALLEL |
+	           SysMLv2Lexer.K_ENTRY |
+	           SysMLv2Lexer.K_DO |
+	           SysMLv2Lexer.K_EXIT |
+	           SysMLv2Lexer.K_EXHIBIT |
+	           SysMLv2Lexer.K_TRANSITION |
+	           SysMLv2Lexer.K_CALC |
+	           SysMLv2Lexer.K_RETURN |
+	           SysMLv2Lexer.K_CONSTRAINT |
+	           SysMLv2Lexer.K_ASSERT |
+	           SysMLv2Lexer.K_NOT |
+	           SysMLv2Lexer.K_REQUIREMENT |
+	           SysMLv2Lexer.K_SUBJECT |
+	           SysMLv2Lexer.K_ACTOR |
+	           SysMLv2Lexer.K_STAKEHOLDER |
+	           SysMLv2Lexer.K_SATISFY |
+	           SysMLv2Lexer.K_CONCERN |
+	           SysMLv2Lexer.K_CASE |
+	           SysMLv2Lexer.K_OBJECTIVE |
+	           SysMLv2Lexer.K_ANALYSIS |
+	           SysMLv2Lexer.K_VERIFICATION |
+	           SysMLv2Lexer.K_USE |
+	           SysMLv2Lexer.K_INCLUDE |
+	           SysMLv2Lexer.K_VIEW |
+	           SysMLv2Lexer.K_RENDER |
+	           SysMLv2Lexer.K_RENDERING |
+	           SysMLv2Lexer.K_EXPOSE |
+	           SysMLv2Lexer.K_VIEWPOINT |
+	           SysMLv2Lexer.K_IMPLIES |
+	           SysMLv2Lexer.K_OR |
+	           SysMLv2Lexer.K_XOR |
+	           SysMLv2Lexer.K_AND |
+	           SysMLv2Lexer.K_HASTYPE |
+	           SysMLv2Lexer.K_ISTYPE |
+	           SysMLv2Lexer.K_AS |
+	           SysMLv2Lexer.K_META |
+	           SysMLv2Lexer.K_NULL |
+	           SysMLv2Lexer.K_TRUE |
+	           SysMLv2Lexer.K_FALSE |
+	           SysMLv2Lexer.K_PUBLIC |
+	           SysMLv2Lexer.K_PRIVATE |
+	           SysMLv2Lexer.K_PROTECTED |
+	           SysMLv2Lexer.K_OUT |
+	           SysMLv2Lexer.K_INOUT |
+	           SysMLv2Lexer.K_SNAPSHOT |
+	           SysMLv2Lexer.K_TIMESLICE |
+	           SysMLv2Lexer.K_ASSUME |
+	           SysMLv2Lexer.K_REQUIRE |
+	           SysMLv2Lexer.K_FRAME |
+	           SysMLv2Lexer.K_VERIFY |
+	           SysMLv2Lexer.K_INVARIANTS |
+	           SysMLv2Lexer.K_INV |
+	           SysMLv2Lexer.K_INTEGRATION |
+	           SysMLv2Lexer.K_INITIALIZE |
+	           SysMLv2Lexer.K_COMPUTE |
+	           SysMLv2Lexer.K_COMPUTE_CASES |
+	           SysMLv2Lexer.K_INFOFLOW |
+	           SysMLv2Lexer.K_HANDLE |
+	           SysMLv2Lexer.K_GUARANTEE |
+	           SysMLv2Lexer.K_FUNCTIONS |
+	           SysMLv2Lexer.K__STRICTPURE |
+	           SysMLv2Lexer.K__PURE |
+	           SysMLv2Lexer.K_MUT |
+	           SysMLv2Lexer.K_INVARIANT |
+	           SysMLv2Lexer.K_READS |
+	           SysMLv2Lexer.K_MODIFIES: return true;
+	      default: return false;
+	    }
+	  }
+
 	public SysMLv2Parser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);

@@ -7,6 +7,157 @@
 
 grammar SysMLv2;
 
+@parser::members {
+  public static boolean isKeyword(int tokenType) {
+    switch (tokenType) {
+      case SysMLv2Lexer.K_DEPENDENCY |
+           SysMLv2Lexer.K_FROM |
+           SysMLv2Lexer.K_TO |
+           SysMLv2Lexer.K_COMMENT |
+           SysMLv2Lexer.K_ABOUT |
+           SysMLv2Lexer.K_LOCALE |
+           SysMLv2Lexer.K_DOC |
+           SysMLv2Lexer.K_REP |
+           SysMLv2Lexer.K_LANGUAGE |
+           SysMLv2Lexer.K__GUMBO_ |
+           SysMLv2Lexer.K_LIBRARY |
+           SysMLv2Lexer.K_METADATA |
+           SysMLv2Lexer.K_DEF |
+           SysMLv2Lexer.K_ABSTRACT |
+           SysMLv2Lexer.K_REF |
+           SysMLv2Lexer.K_REDEFINES |
+           SysMLv2Lexer.K_STANDARD |
+           SysMLv2Lexer.K_PACKAGE |
+           SysMLv2Lexer.K_FILTER |
+           SysMLv2Lexer.K_ALIAS |
+           SysMLv2Lexer.K_FOR |
+           SysMLv2Lexer.K_IMPORT |
+           SysMLv2Lexer.K_ALL |
+           SysMLv2Lexer.K_SPECIALIZES |
+           SysMLv2Lexer.K_ORDERED |
+           SysMLv2Lexer.K_NONUNIQUE |
+           SysMLv2Lexer.K_DEFINED |
+           SysMLv2Lexer.K_BY |
+           SysMLv2Lexer.K_SUBSETS |
+           SysMLv2Lexer.K_REFERENCES |
+           SysMLv2Lexer.K_VARIATION |
+           SysMLv2Lexer.K_VARIANT |
+           SysMLv2Lexer.K_READONLY |
+           SysMLv2Lexer.K_DERIVED |
+           SysMLv2Lexer.K_END |
+           SysMLv2Lexer.K_DEFAULT |
+           SysMLv2Lexer.K_ATTRIBUTE |
+           SysMLv2Lexer.K_ENUM |
+           SysMLv2Lexer.K_OCCURRENCE |
+           SysMLv2Lexer.K_INDIVIDUAL |
+           SysMLv2Lexer.K_EVENT |
+           SysMLv2Lexer.K_THEN |
+           SysMLv2Lexer.K_ITEM |
+           SysMLv2Lexer.K_PART |
+           SysMLv2Lexer.K_PORT |
+           SysMLv2Lexer.K_BINDING |
+           SysMLv2Lexer.K_BIND |
+           SysMLv2Lexer.K_SUCCESSION |
+           SysMLv2Lexer.K_FIRST |
+           SysMLv2Lexer.K_CONNECTION |
+           SysMLv2Lexer.K_CONNECT |
+           SysMLv2Lexer.K_FLOW |
+           SysMLv2Lexer.K_MESSAGE |
+           SysMLv2Lexer.K_OF |
+           SysMLv2Lexer.K_INTERFACE |
+           SysMLv2Lexer.K_ALLOCATION |
+           SysMLv2Lexer.K_ALLOCATE |
+           SysMLv2Lexer.K_ACTION |
+           SysMLv2Lexer.K_PERFORM |
+           SysMLv2Lexer.K_ACCEPT |
+           SysMLv2Lexer.K_VIA |
+           SysMLv2Lexer.K_AT |
+           SysMLv2Lexer.K_AFTER |
+           SysMLv2Lexer.K_WHEN |
+           SysMLv2Lexer.K_SEND |
+           SysMLv2Lexer.K_ASSIGN |
+           SysMLv2Lexer.K_IF |
+           SysMLv2Lexer.K_ELSE |
+           SysMLv2Lexer.K_WHILE |
+           SysMLv2Lexer.K_LOOP |
+           SysMLv2Lexer.K_UNTIL |
+           SysMLv2Lexer.K_IN |
+           SysMLv2Lexer.K_MERGE |
+           SysMLv2Lexer.K_DECIDE |
+           SysMLv2Lexer.K_JOIN |
+           SysMLv2Lexer.K_FORK |
+           SysMLv2Lexer.K_STATE |
+           SysMLv2Lexer.K_PARALLEL |
+           SysMLv2Lexer.K_ENTRY |
+           SysMLv2Lexer.K_DO |
+           SysMLv2Lexer.K_EXIT |
+           SysMLv2Lexer.K_EXHIBIT |
+           SysMLv2Lexer.K_TRANSITION |
+           SysMLv2Lexer.K_CALC |
+           SysMLv2Lexer.K_RETURN |
+           SysMLv2Lexer.K_CONSTRAINT |
+           SysMLv2Lexer.K_ASSERT |
+           SysMLv2Lexer.K_NOT |
+           SysMLv2Lexer.K_REQUIREMENT |
+           SysMLv2Lexer.K_SUBJECT |
+           SysMLv2Lexer.K_ACTOR |
+           SysMLv2Lexer.K_STAKEHOLDER |
+           SysMLv2Lexer.K_SATISFY |
+           SysMLv2Lexer.K_CONCERN |
+           SysMLv2Lexer.K_CASE |
+           SysMLv2Lexer.K_OBJECTIVE |
+           SysMLv2Lexer.K_ANALYSIS |
+           SysMLv2Lexer.K_VERIFICATION |
+           SysMLv2Lexer.K_USE |
+           SysMLv2Lexer.K_INCLUDE |
+           SysMLv2Lexer.K_VIEW |
+           SysMLv2Lexer.K_RENDER |
+           SysMLv2Lexer.K_RENDERING |
+           SysMLv2Lexer.K_EXPOSE |
+           SysMLv2Lexer.K_VIEWPOINT |
+           SysMLv2Lexer.K_IMPLIES |
+           SysMLv2Lexer.K_OR |
+           SysMLv2Lexer.K_XOR |
+           SysMLv2Lexer.K_AND |
+           SysMLv2Lexer.K_HASTYPE |
+           SysMLv2Lexer.K_ISTYPE |
+           SysMLv2Lexer.K_AS |
+           SysMLv2Lexer.K_META |
+           SysMLv2Lexer.K_NULL |
+           SysMLv2Lexer.K_TRUE |
+           SysMLv2Lexer.K_FALSE |
+           SysMLv2Lexer.K_PUBLIC |
+           SysMLv2Lexer.K_PRIVATE |
+           SysMLv2Lexer.K_PROTECTED |
+           SysMLv2Lexer.K_OUT |
+           SysMLv2Lexer.K_INOUT |
+           SysMLv2Lexer.K_SNAPSHOT |
+           SysMLv2Lexer.K_TIMESLICE |
+           SysMLv2Lexer.K_ASSUME |
+           SysMLv2Lexer.K_REQUIRE |
+           SysMLv2Lexer.K_FRAME |
+           SysMLv2Lexer.K_VERIFY |
+           SysMLv2Lexer.K_INVARIANTS |
+           SysMLv2Lexer.K_INV |
+           SysMLv2Lexer.K_INTEGRATION |
+           SysMLv2Lexer.K_INITIALIZE |
+           SysMLv2Lexer.K_COMPUTE |
+           SysMLv2Lexer.K_COMPUTE_CASES |
+           SysMLv2Lexer.K_INFOFLOW |
+           SysMLv2Lexer.K_HANDLE |
+           SysMLv2Lexer.K_GUARANTEE |
+           SysMLv2Lexer.K_FUNCTIONS |
+           SysMLv2Lexer.K__STRICTPURE |
+           SysMLv2Lexer.K__PURE |
+           SysMLv2Lexer.K_MUT |
+           SysMLv2Lexer.K_INVARIANT |
+           SysMLv2Lexer.K_READS |
+           SysMLv2Lexer.K_MODIFIES: return true;
+      default: return false;
+    }
+  }
+}
+
 entryRuleRootNamespace: ruleRootNamespace EOF;
 
 ruleRootNamespace:  rulePackageBodyElement*;
@@ -1676,158 +1827,6 @@ OP_SLASH: '/';
 OP_PERCENT: '%';
 OP_HAT: '^';
 OP_EQ_RANGLE: '=>';
-
-/*
-def isKeyword(tokenType: Int): Boolean = {
-  import SysMLv2Lexer._
-  tokenType match {
-    case K_DEPENDENCY |
-         K_FROM |
-         K_TO |
-         K_COMMENT |
-         K_ABOUT |
-         K_LOCALE |
-         K_DOC |
-         K_REP |
-         K_LANGUAGE |
-         K__GUMBO_ |
-         K_LIBRARY |
-         K_METADATA |
-         K_DEF |
-         K_ABSTRACT |
-         K_REF |
-         K_REDEFINES |
-         K_STANDARD |
-         K_PACKAGE |
-         K_FILTER |
-         K_ALIAS |
-         K_FOR |
-         K_IMPORT |
-         K_ALL |
-         K_SPECIALIZES |
-         K_ORDERED |
-         K_NONUNIQUE |
-         K_DEFINED |
-         K_BY |
-         K_SUBSETS |
-         K_REFERENCES |
-         K_VARIATION |
-         K_VARIANT |
-         K_READONLY |
-         K_DERIVED |
-         K_END |
-         K_DEFAULT |
-         K_ATTRIBUTE |
-         K_ENUM |
-         K_OCCURRENCE |
-         K_INDIVIDUAL |
-         K_EVENT |
-         K_THEN |
-         K_ITEM |
-         K_PART |
-         K_PORT |
-         K_BINDING |
-         K_BIND |
-         K_SUCCESSION |
-         K_FIRST |
-         K_CONNECTION |
-         K_CONNECT |
-         K_FLOW |
-         K_MESSAGE |
-         K_OF |
-         K_INTERFACE |
-         K_ALLOCATION |
-         K_ALLOCATE |
-         K_ACTION |
-         K_PERFORM |
-         K_ACCEPT |
-         K_VIA |
-         K_AT |
-         K_AFTER |
-         K_WHEN |
-         K_SEND |
-         K_ASSIGN |
-         K_IF |
-         K_ELSE |
-         K_WHILE |
-         K_LOOP |
-         K_UNTIL |
-         K_IN |
-         K_MERGE |
-         K_DECIDE |
-         K_JOIN |
-         K_FORK |
-         K_STATE |
-         K_PARALLEL |
-         K_ENTRY |
-         K_DO |
-         K_EXIT |
-         K_EXHIBIT |
-         K_TRANSITION |
-         K_CALC |
-         K_RETURN |
-         K_CONSTRAINT |
-         K_ASSERT |
-         K_NOT |
-         K_REQUIREMENT |
-         K_SUBJECT |
-         K_ACTOR |
-         K_STAKEHOLDER |
-         K_SATISFY |
-         K_CONCERN |
-         K_CASE |
-         K_OBJECTIVE |
-         K_ANALYSIS |
-         K_VERIFICATION |
-         K_USE |
-         K_INCLUDE |
-         K_VIEW |
-         K_RENDER |
-         K_RENDERING |
-         K_EXPOSE |
-         K_VIEWPOINT |
-         K_IMPLIES |
-         K_OR |
-         K_XOR |
-         K_AND |
-         K_HASTYPE |
-         K_ISTYPE |
-         K_AS |
-         K_META |
-         K_NULL |
-         K_TRUE |
-         K_FALSE |
-         K_PUBLIC |
-         K_PRIVATE |
-         K_PROTECTED |
-         K_OUT |
-         K_INOUT |
-         K_SNAPSHOT |
-         K_TIMESLICE |
-         K_ASSUME |
-         K_REQUIRE |
-         K_FRAME |
-         K_VERIFY |
-         K_INVARIANTS |
-         K_INV |
-         K_INTEGRATION |
-         K_INITIALIZE |
-         K_COMPUTE |
-         K_COMPUTE_CASES |
-         K_INFOFLOW |
-         K_HANDLE |
-         K_GUARANTEE |
-         K_FUNCTIONS |
-         K__STRICTPURE |
-         K__PURE |
-         K_MUT |
-         K_INVARIANT |
-         K_READS |
-         K_MODIFIES => true
-    case _ => false
-  }
-}
-*/
 
 RULE_DECIMAL_VALUE: '0'..'9' '0'..'9'*;
 
