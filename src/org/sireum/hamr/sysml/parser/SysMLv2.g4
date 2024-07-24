@@ -1,4 +1,10 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-05/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+// Custom SysMLv2 grammar in which GUMBO (minus its expression language) has been injected and
+// with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
+//
+// Original grammars obtained from:
+//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-05/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240722.03f0261/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+
 grammar SysMLv2;
 
 entryRuleRootNamespace: ruleRootNamespace EOF;
@@ -31,7 +37,7 @@ ruleComment: ('comment' ruleIdentification? ('about' ruleAnnotation (',' ruleAnn
 
 ruleDocumentation: 'doc' ruleIdentification? ('locale' RULE_STRING_VALUE)? RULE_REGULAR_COMMENT;
 
-ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' RULE_STRING_VALUE RULE_REGULAR_COMMENT;
+ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' ('"GUMBO"' '/*{' ('library' ruleGumboLibrary | ruleGumboSubclause) '}*/' | RULE_STRING_VALUE RULE_REGULAR_COMMENT);
 
 ruleMetadataKeyword: 'metadata';
 
@@ -1392,6 +1398,94 @@ ruleFramedConcernKind: 'frame';
 
 ruleRequirementVerificationKind: 'verify';
 
+ruleGumboLibrary:  ruleFunctions?;
+
+ruleGumboSubclause:  ruleSpecSection;
+
+ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute?;
+
+ruleState: 'state' ruleStateVarDecl+;
+
+ruleStateVarDecl: RULE_ID ':' ruleQualifiedName ';';
+
+ruleInvariants: 'invariants' ruleInvSpec+;
+
+ruleInvSpec: 'inv' RULE_ID RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
+
+ruleIntegration: 'integration' ruleSpecStatement+;
+
+ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStatement* ruleInfoFlowClause*;
+
+ruleInitializeSpecStatement: ruleGuaranteeStatement;
+
+ruleCompute:  'compute' (ruleSlangModifies ';')? ruleSpecStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+
+ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
+
+ruleHandlerClause: 'handle' RULE_ID ':' (ruleSlangModifies ';')? ruleGuaranteeStatement+;
+
+ruleCaseStatementClause: 'case' RULE_ID RULE_STRING_VALUE? ':' ruleAnonAssumeStatement ruleAnonGuaranteeStatement;
+
+ruleSpecStatement:
+  ruleAssumeStatement #ruleSpecStatement1
+  | ruleGuaranteeStatement #ruleSpecStatement2;
+
+ruleAssumeStatement: 'assume' RULE_ID RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
+
+ruleAnonAssumeStatement: 'assume' ruleOwnedExpression ';';
+
+ruleGuaranteeStatement: 'guarantee' RULE_ID RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
+
+ruleAnonGuaranteeStatement: 'guarantee' ruleOwnedExpression ';';
+
+ruleDataElement: ruleQualifiedName;
+
+ruleFunctions: 'functions' ruleFuncSpec+;
+
+ruleFuncSpec: ruleSlangDefDef ';';
+
+ruleSlangDefDecl: 'def' ruleSlangDefMods? ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams? ':' ruleSlangType ruleSlangDefContract?;
+
+ruleSlangDefDef: 'def' ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
+
+ruleSlangDefMods:
+  '@strictpure' #ruleSlangDefMods1
+  | '@pure' #ruleSlangDefMods2;
+
+ruleSlangDefExt: '(' RULE_ID ':' ruleSlangType ')';
+
+ruleSlangDefID: RULE_ID;
+
+ruleSlangDefParams: '(' (ruleSlangDefParam (',' ruleSlangDefParam)*)? ')';
+
+ruleSlangDefParam: RULE_ID ':' '=>'? ruleSlangType '*'?;
+
+ruleSlangTypeParams: '[' ruleSlangTypeParam (',' ruleSlangTypeParam)* ']';
+
+ruleSlangTypeParam: 'mut'? RULE_ID;
+
+ruleSlangDefContract:  (ruleSlangReads ';')? (ruleSlangRequires ';')? (ruleSlangModifies ';')? (ruleSlangEnsures ';')?;
+
+ruleSlangSupr: ruleSlangName ruleSlangTypeArgs?;
+
+ruleSlangName: RULE_ID ('.' RULE_ID)*;
+
+ruleSlangInvariant: 'invariant' ruleOwnedExpression (',' ruleOwnedExpression)*;
+
+ruleSlangRequires: 'assume' ruleOwnedExpression (',' ruleOwnedExpression)*;
+
+ruleSlangReads: 'reads' ruleOwnedExpression (',' ruleOwnedExpression)*;
+
+ruleSlangModifies: 'modifies' ruleOwnedExpression (',' ruleOwnedExpression)*;
+
+ruleSlangEnsures: 'guarantee' ruleOwnedExpression (',' ruleOwnedExpression)*;
+
+ruleSlangType: ruleSlangBaseType;
+
+ruleSlangBaseType: ruleQualifiedName;
+
+ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
+
 K_DEPENDENCY: 'dependency';
 K_FROM: 'from';
 K_TO: 'to';
@@ -1401,13 +1495,14 @@ K_LOCALE: 'locale';
 K_DOC: 'doc';
 K_REP: 'rep';
 K_LANGUAGE: 'language';
+K__GUMBO_: '"GUMBO"';
+K_LIBRARY: 'library';
 K_METADATA: 'metadata';
 K_DEF: 'def';
 K_ABSTRACT: 'abstract';
 K_REF: 'ref';
 K_REDEFINES: 'redefines';
 K_STANDARD: 'standard';
-K_LIBRARY: 'library';
 K_PACKAGE: 'package';
 K_FILTER: 'filter';
 K_ALIAS: 'alias';
@@ -1518,6 +1613,22 @@ K_ASSUME: 'assume';
 K_REQUIRE: 'require';
 K_FRAME: 'frame';
 K_VERIFY: 'verify';
+K_INVARIANTS: 'invariants';
+K_INV: 'inv';
+K_INTEGRATION: 'integration';
+K_INITIALIZE: 'initialize';
+K_COMPUTE: 'compute';
+K_COMPUTE_CASES: 'compute_cases';
+K_INFOFLOW: 'infoflow';
+K_HANDLE: 'handle';
+K_GUARANTEE: 'guarantee';
+K_FUNCTIONS: 'functions';
+K__STRICTPURE: '@strictpure';
+K__PURE: '@pure';
+K_MUT: 'mut';
+K_INVARIANT: 'invariant';
+K_READS: 'reads';
+K_MODIFIES: 'modifies';
 
 LANGLE: '<';
 RANGLE: '>';
@@ -1530,6 +1641,8 @@ RPAREN: ')';
 
 OP_SEMI: ';';
 OP_COMMA: ',';
+OP_SLASH_STAR_LBRACE: '/*{';
+OP_RBRACE_STAR_SLASH: '}*/';
 OP_AT: '@';
 OP_HASH: '#';
 OP_COLON_RANGLE_RANGLE: ':>>';
@@ -1562,6 +1675,7 @@ OP_MINUS: '-';
 OP_SLASH: '/';
 OP_PERCENT: '%';
 OP_HAT: '^';
+OP_EQ_RANGLE: '=>';
 
 /*
 def isKeyword(tokenType: Int): Boolean = {
@@ -1576,13 +1690,14 @@ def isKeyword(tokenType: Int): Boolean = {
          K_DOC |
          K_REP |
          K_LANGUAGE |
+         K__GUMBO_ |
+         K_LIBRARY |
          K_METADATA |
          K_DEF |
          K_ABSTRACT |
          K_REF |
          K_REDEFINES |
          K_STANDARD |
-         K_LIBRARY |
          K_PACKAGE |
          K_FILTER |
          K_ALIAS |
@@ -1692,7 +1807,23 @@ def isKeyword(tokenType: Int): Boolean = {
          K_ASSUME |
          K_REQUIRE |
          K_FRAME |
-         K_VERIFY => true
+         K_VERIFY |
+         K_INVARIANTS |
+         K_INV |
+         K_INTEGRATION |
+         K_INITIALIZE |
+         K_COMPUTE |
+         K_COMPUTE_CASES |
+         K_INFOFLOW |
+         K_HANDLE |
+         K_GUARANTEE |
+         K_FUNCTIONS |
+         K__STRICTPURE |
+         K__PURE |
+         K_MUT |
+         K_INVARIANT |
+         K_READS |
+         K_MODIFIES => true
     case _ => false
   }
 }
@@ -1708,7 +1839,7 @@ RULE_UNRESTRICTED_NAME: '\'' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\'' | '
 
 RULE_STRING_VALUE: '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\'' | '\\') | ~('\\' | '"'))* '"';
 
-RULE_REGULAR_COMMENT: '/*' .*? '*/';
+RULE_REGULAR_COMMENT: '/*' ~'{' .*? '*/';
 
 RULE_ML_NOTE: '//*' .*? '*/' -> channel(HIDDEN);
 

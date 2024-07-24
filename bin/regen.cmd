@@ -17,10 +17,15 @@ exit /B %errorlevel%
 // #Sireum
 
 import org.sireum._
+import Util._
 
 val home: Os.Path = Os.slashDir.up.canon
 val sireum: Os.Path = Os.path(Os.env("SIREUM_HOME").get) / "bin" / (if (Os.isWin) "sireum.bat" else "sireum")
 val versions = home / "versions.properties"
+
+val cleanup: B = T
+
+val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure")
 
 val sysmlVersion: String = "2024-05"
 val gumboVersion: String = "4.20240722.03f0261"
@@ -31,15 +36,19 @@ val antlr4Version: String =
 
 assert(ops.StringOps(proc"$sireum hamr sysml translator --help".runCheck().out).contains(sysmlVersion), s"Translator isn't using version $sysmlVersion")
 
-val parserDir: Os.Path = home / "src" / "org" / "sireum" / "hamr" / "sysml" / "parser"
-parserDir.removeAll()
 
-def fetch(outDir: Os.Path, outFileName: String,version: String, url: String): Os.Path = {
+val sysmlUrl: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/${sysmlVersion}/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g"
+val gumboUrl: String = s"https://raw.githubusercontent.com/sireum/aadl-gumbo/${gumboVersion}/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g"
+val kermlUrl: String = "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g"
+
+def translate(outDir: Os.Path, outFileName: String,
+              isUrl: B,
+              version: Option[String], uri: String): Os.Path = {
   val fName = outDir / outFileName
-  val results = Sireum.procCheck(Os.proc(ISZ(sireum.string, "hamr", "sysml", "translator", "--version", version, "--url", url, s"${fName}")).echo.console,
-    message.Reporter.create)
+  val args = (ISZ[String](sireum.string, "hamr", "sysml", "translator", "--keywords", st"${(keywords, ",")}".render) ++ (if (isUrl) ISZ("--version", version.get, "--url", uri) else ISZ("--grammar", uri))) :+ fName.value
+  val results = Sireum.procCheck(Os.proc(args).echo.console, message.Reporter.create)
   if (!results.ok) {
-    halt(s"Failed to fetch: $url")
+    halt(s"Failed to translate: $uri")
   }
   return fName
 }
@@ -53,70 +62,229 @@ def regenAntrl(grammarFile: Os.Path, outDir: Os.Path): Unit = {
   println(s"Generated lexer/parser for $grammarFile")
 }
 
-val sysmlLg: Os.Path = fetch(parserDir, "SysMLv2.g4", sysmlVersion, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g")
-val kermlg = fetch(parserDir, "KerMLv2.g4", sysmlVersion, "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g")
-val gumbog = fetch(parserDir, "GUMBO.g4", gumboVersion, "https://raw.githubusercontent.com/sireum/aadl-gumbo/%version/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g")
+val parserDir: Os.Path = home / "src" / "org" / "sireum" / "hamr" / "sysml" / "parser"
+parserDir.removeAll()
 
-val so = ops.StringOps(sysmlLg.read)
+val sysmlOrig = parserDir / "InternalSysML_orig.g"
+sysmlOrig.downloadFrom(sysmlUrl)
+val gumboOrig = parserDir / "InternalGumbo.g"
+gumboOrig.downloadFrom(gumboUrl)
 
-val grammar: String = "grammar SysMLv2;"
-val grammarPos = so.stringIndexOf(grammar)
-val ver: String = "ruleRequirementVerificationKind: 'verify';"
-val dep: String = "K_DEPENDENCY: 'dependency';"
-val verPos = so.stringIndexOf(ver) + ver.size + 1
-val depPos = so.stringIndexOfFrom(dep, verPos)
+var sysmlMod = replace(sysmlOrig.read, searchTextRep, origTextRep, modTextRep)
 
-if (depPos - verPos != 1) {
-  halt(s"Expecting rule '$ver' to be immediately followed by $dep")
+val gumboo = ops.StringOps(gumboOrig.read)
+
+val gumboStartPos = gumboo.stringIndexOf("// Rule GumboLibrary")
+val gumboEndPos = gumboo.stringIndexOf("// Entry rule entryRuleSlangStmt")
+assert (gumboStartPos > 0 && gumboEndPos > 0 )
+
+val gumboSub =
+  st"""${lastSysmlRule}
+      |
+      |/***************************************
+      | * GUMBO START
+      | **************************************/
+      |
+      |${gumboo.substring(gumboStartPos, gumboEndPos - 1)}
+      |
+      |/***************************************
+      | * GUMBO END
+      | **************************************/""".render
+
+sysmlMod = replace(sysmlMod, searchLastSysmlRule, lastSysmlRule, gumboSub)
+
+val rgc    = "RULE_REGULAR_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';"
+val rgcMod = "RULE_REGULAR_COMMENT : '/*' ~('{') ( options {greedy=false;} : . )* '*/';"
+
+sysmlMod = replace(sysmlMod, rgc, rgc, rgcMod)
+
+val sysmlp = parserDir / "InternalSysML_mod.g"
+sysmlp.writeOver(sysmlMod)
+
+
+val sysmlg = translate(parserDir, "SysMLv2.g4", F, None(), sysmlp.value)
+fixSL_Note(sysmlg)
+changeComment(sysmlg, sysmlUrl, gumboUrl)
+regenAntrl(sysmlg, parserDir)
+
+
+val kermlg = translate(parserDir, "KerMLv2.g4", T, Some(sysmlVersion), kermlUrl)
+fixSL_Note(kermlg)
+regenAntrl(kermlg, parserDir)
+
+if (cleanup) {
+  sysmlp.removeOnExit()
+  sysmlOrig.removeOnExit()
+  gumboOrig.removeOnExit()
 }
 
-val textRep: String =    "ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' RULE_STRING_VALUE RULE_REGULAR_COMMENT;"
-val textRepSub: String = "ruleTextualRepresentation: ('rep' ruleIdentification?)? 'language' (('\"GUMBO\"' '/*{' (('library' ruleGumboLibrary) | ruleGumboSubclause) '}*/' ) | (RULE_STRING_VALUE RULE_REGULAR_COMMENT));"
-val textRepPos = so.stringIndexOf(textRep)
+object Util {
+  def replace(content: String, searchStr: String, from: String, to: String): String = {
+    val o = ops.StringOps(content)
+    val s = o.stringIndexOf(searchStr)
+    assert (s > 0, s"$s : $searchStr")
+    return (
+    st"""${o.substring(0, s - 1)}
+        |$to
+        |${o.substring(s + from.size + 1, o.size)}""".render)
+  }
 
-val regComment: String =    "RULE_REGULAR_COMMENT: '/*' .*? '*/';"
-val regCommentSub: String = "RULE_REGULAR_COMMENT: '/*' ~'{' .*? '*/';"
-val regCommentPos = so.stringIndexOf(regComment)
+  def fixSL_Note(path: Os.Path): Unit = {
+    val o = "RULE_SL_NOTE: '//' (~('\\n' | '\\r') ~('\\n' | '\\r')*)? ('\\r'? '\\n')? -> channel(HIDDEN);"
+    val m = "RULE_SL_NOTE: '//' ~'*' (~('\\n' | '\\r') ~('\\n' | '\\r')*)? ('\\r'? '\\n')? -> channel(HIDDEN);"
+    path.writeOver(replace(path.read, o, o, m))
+  }
 
-val go = ops.StringOps(gumbog.read)
+  def changeComment(p: Os.Path, sysmlUrl: String, gumboUrl: String): Unit = {
+    val c = ops.StringOps(p.read)
+    val pos = c.stringIndexOf("grammar ")
+    p.writeOver(
+      st"""// Custom SysMLv2 grammar in which GUMBO (minus its expression language) has been injected and
+          |// with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
+          |//
+          |// Original grammars obtained from:
+          |//   $sysmlUrl
+          |//   $gumboUrl
+          |
+          |${c.substring(pos, c.size)}""".render)
+  }
 
-val glib: String = "ruleAnnexLibrary: ruleGumboLibrary;"
-val gstmt: String = "ruleSlangStmt:"
-val glibPos = go.stringIndexOf(glib)
-val gstmtPos = go.stringIndexOf(gstmt)
+  val searchTextRep: String = st"""		(
+                                  |			(
+                                  |				lv_language_3_0=RULE_STRING_VALUE""".render
 
-val gumbo: ST = st"""/****************************************
-                    | * BEGIN GUMBO
-                    | ***************************************/
-                    |${go.substring(glibPos, gstmtPos - 1)}
-                    |/****************************************
-                    | * END GUMBO
-                    | ***************************************/
-                    |"""
+  val origTextRep: String = st"""		(
+                                |			(
+                                |				lv_language_3_0=RULE_STRING_VALUE
+                                |				{
+                                |					newLeafNode(lv_language_3_0, grammarAccess.getTextualRepresentationAccess().getLanguageSTRING_VALUETerminalRuleCall_2_0());
+                                |				}
+                                |				{
+                                |					if ($$current==null) {
+                                |						$$current = createModelElement(grammarAccess.getTextualRepresentationRule());
+                                |					}
+                                |					setWithLastConsumed(
+                                |						$$current,
+                                |						"language",
+                                |						lv_language_3_0,
+                                |						"org.omg.kerml.expressions.xtext.KerMLExpressions.STRING_VALUE");
+                                |				}
+                                |			)
+                                |		)
+                                |		(
+                                |			(
+                                |				lv_body_4_0=RULE_REGULAR_COMMENT
+                                |				{
+                                |					newLeafNode(lv_body_4_0, grammarAccess.getTextualRepresentationAccess().getBodyREGULAR_COMMENTTerminalRuleCall_3_0());
+                                |				}
+                                |				{
+                                |					if ($$current==null) {
+                                |						$$current = createModelElement(grammarAccess.getTextualRepresentationRule());
+                                |					}
+                                |					setWithLastConsumed(
+                                |						$$current,
+                                |						"body",
+                                |						lv_body_4_0,
+                                |						"org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
+                                |				}
+                                |			)
+                                |		)""".render
 
-val sysmlGumbog: String = "SysMLv2_GUMBO"
+  val modTextRep: String = st"""		(
+                               |			(
+                               |				otherlv_3='"GUMBO"'
+                               |				{
+                               |					newLeafNode(otherlv_3, grammarAccess.getTextualRepresentationAccess().getGUMBOKeyword_2_0_0());
+                               |				}
+                               |				otherlv_4='/*{'
+                               |				{
+                               |					newLeafNode(otherlv_4, grammarAccess.getTextualRepresentationAccess().getSolidusAsteriskLeftCurlyBracketKeyword_2_0_1());
+                               |				}
+                               |				(
+                               |					(
+                               |						otherlv_5='library'
+                               |						{
+                               |							newLeafNode(otherlv_5, grammarAccess.getTextualRepresentationAccess().getLibraryKeyword_2_0_2_0_0());
+                               |						}
+                               |						{
+                               |							newCompositeNode(grammarAccess.getTextualRepresentationAccess().getGumboLibraryParserRuleCall_2_0_2_0_1());
+                               |						}
+                               |						ruleGumboLibrary
+                               |						{
+                               |							afterParserOrEnumRuleCall();
+                               |						}
+                               |					)
+                               |					    |
+                               |					{
+                               |						newCompositeNode(grammarAccess.getTextualRepresentationAccess().getGumboSubclauseParserRuleCall_2_0_2_1());
+                               |					}
+                               |					ruleGumboSubclause
+                               |					{
+                               |						afterParserOrEnumRuleCall();
+                               |					}
+                               |				)
+                               |				otherlv_8='}*/'
+                               |				{
+                               |					newLeafNode(otherlv_8, grammarAccess.getTextualRepresentationAccess().getRightCurlyBracketAsteriskSolidusKeyword_2_0_3());
+                               |				}
+                               |			)
+                               |			    |
+                               |			(
+                               |				(
+                               |					(
+                               |						lv_language_9_0=RULE_STRING_VALUE
+                               |						{
+                               |							newLeafNode(lv_language_9_0, grammarAccess.getTextualRepresentationAccess().getLanguageSTRING_VALUETerminalRuleCall_2_1_0_0());
+                               |						}
+                               |						{
+                               |							if ($$current==null) {
+                               |								$$current = createModelElement(grammarAccess.getTextualRepresentationRule());
+                               |							}
+                               |							setWithLastConsumed(
+                               |								$$current,
+                               |								"language",
+                               |								lv_language_9_0,
+                               |								"org.omg.kerml.expressions.xtext.KerMLExpressions.STRING_VALUE");
+                               |						}
+                               |					)
+                               |				)
+                               |				(
+                               |					(
+                               |						lv_body_10_0=RULE_REGULAR_COMMENT
+                               |						{
+                               |							newLeafNode(lv_body_10_0, grammarAccess.getTextualRepresentationAccess().getBodyREGULAR_COMMENTTerminalRuleCall_2_1_1_0());
+                               |						}
+                               |						{
+                               |							if ($$current==null) {
+                               |								$$current = createModelElement(grammarAccess.getTextualRepresentationRule());
+                               |							}
+                               |							setWithLastConsumed(
+                               |								$$current,
+                               |								"body",
+                               |								lv_body_10_0,
+                               |								"org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
+                               |						}
+                               |					)
+                               |				)
+                               |			)
+                               |		)""".render
 
-val modSysml: ST =
-  st"""${so.substring(0, grammarPos - 1)}
-      |${go.substring(0, go.indexOf('\n'))}
-      |grammar $sysmlGumbog;
-      |${so.substring(grammarPos + grammar.size + 1, textRepPos - 1)}
-      |// Original Version
-      |// $textRep
-      |// GUMBO Version
-      |$textRepSub
-      |${so.substring(textRepPos + textRep.size + 1, depPos)}
-      |${gumbo}
-      |${so.substring(depPos, regCommentPos - 1)}
-      |// Original Version
-      |// $regComment
-      |// GUMBO Version
-      |$regCommentSub
-      |${so.substring(regCommentPos + regComment.size + 1, so.size)}"""
+  val searchLastSysmlRule: String = "// Rule RequirementVerificationKind"
 
-val sysmlGumbogFile = parserDir / s"${sysmlGumbog}.g4"
-sysmlGumbogFile.writeOver(modSysml.render)
-println(s"Wrote: $sysmlGumbogFile")
-
-regenAntrl(sysmlGumbogFile, parserDir)
-regenAntrl(kermlg, parserDir)
+  val lastSysmlRule: String = st"""// Rule RequirementVerificationKind
+                                  |ruleRequirementVerificationKind returns [Enumerator current=null]
+                                  |@init {
+                                  |	enterRule();
+                                  |}
+                                  |@after {
+                                  |	leaveRule();
+                                  |}:
+                                  |	(
+                                  |		enumLiteral_0='verify'
+                                  |		{
+                                  |			$$current = grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration().getEnumLiteral().getInstance();
+                                  |			newLeafNode(enumLiteral_0, grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration());
+                                  |		}
+                                  |	)
+                                  |;"""render
+}
