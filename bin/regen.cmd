@@ -28,7 +28,7 @@ val cleanup: B = T
 val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure")
 
 val sysmlVersion: String = "2024-07"
-val gumboVersion: String = "4.20240722.03f0261"
+val gumboVersion: String = "4.20240826.9e8a74c"
 
 val antlr4Version: String =
   if (versions.exists) versions.properties.get("org.antlr%antlr4-runtime%").get
@@ -40,6 +40,7 @@ assert(ops.StringOps(proc"$sireum hamr sysml translator --help".runCheck().out).
 val sysmlUrl: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/${sysmlVersion}/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g"
 val gumboUrl: String = s"https://raw.githubusercontent.com/sireum/aadl-gumbo/${gumboVersion}/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g"
 val kermlUrl: String = "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g"
+val kermlExpUrl: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/${sysmlVersion}/org.omg.kerml.expressions.xtext/src-gen/org/omg/kerml/expressions/xtext/parser/antlr/internal/InternalKerMLExpressions.g"
 
 def translate(outDir: Os.Path, outFileName: String,
               isUrl: B,
@@ -72,11 +73,13 @@ gumboOrig.downloadFrom(gumboUrl)
 
 var sysmlMod = replace(sysmlOrig.read, searchTextRep, origTextRep, modTextRep)
 
-val gumboo = ops.StringOps(gumboOrig.read)
+val gumbo = ops.StringOps(gumboOrig.read)
 
-val gumboStartPos = gumboo.stringIndexOf("// Rule GumboLibrary")
-val gumboEndPos = gumboo.stringIndexOf("// Entry rule entryRuleSlangStmt")
+val gumboStartPos = gumbo.stringIndexOf("// Rule GumboLibrary")
+val gumboEndPos = gumbo.stringIndexOf("// Entry rule entryRuleSlangStmt")
 assert (gumboStartPos > 0 && gumboEndPos > 0 )
+
+val gumboMinusSlangExp = gumbo.substring(gumboStartPos, gumboEndPos - 1)
 
 val gumboSub =
   st"""${lastSysmlRule}
@@ -85,7 +88,7 @@ val gumboSub =
       | * GUMBO START
       | **************************************/
       |
-      |${gumboo.substring(gumboStartPos, gumboEndPos - 1)}
+      |$gumboMinusSlangExp
       |
       |/***************************************
       | * GUMBO END
@@ -111,6 +114,34 @@ regenAntrl(sysmlg, parserDir)
 val kermlg = translate(parserDir, "KerMLv2.g4", T, Some(sysmlVersion), kermlUrl)
 fixSL_Note(kermlg)
 regenAntrl(kermlg, parserDir)
+
+{ // just gumbo with the Slang expression lang replaced by KerML's
+  val kermlExpOrig = parserDir / "KermlExp_orig.g"
+  kermlExpOrig.downloadFrom(kermlExpUrl)
+  val opsKermlExpOrig = ops.StringOps(kermlExpOrig.read)
+  val kermlExpressionLang = opsKermlExpOrig.substring(opsKermlExpOrig.stringIndexOf("// Entry rule entryRuleOwnedExpressionMember"), opsKermlExpOrig.size)
+
+  val gumboMinusSlang = gumbo.substring(0, gumboEndPos - 1)
+  val gumbop = parserDir / "Internal_Gumbo_mod.g"
+  val gumboContents =
+    st"""$gumboMinusSlang
+        |
+        | // KerML's expression language
+        |
+        |$kermlExpressionLang"""
+  gumbop.writeOver(gumboContents.render)
+  val justGumbo = translate(parserDir, "GUMBO.g4", F, Some(gumboVersion), gumbop.value)
+  regenAntrl(justGumbo, parserDir)
+
+  if (cleanup) {
+    kermlExpOrig.removeOnExit()
+    gumbop.removeOnExit()
+    val dels = Os.Path.walk(parserDir, T, T, p => ops.StringOps(p.name).startsWith("GUMBO")  && p.name != "GUMBO.g4" && p.name != "GUMBO.tokens")
+    for(d <- dels) {
+      d.removeOnExit()
+    }
+  }
+}
 
 if (cleanup) {
   sysmlp.removeOnExit()
