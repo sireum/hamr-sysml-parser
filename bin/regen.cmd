@@ -38,6 +38,7 @@ assert(ops.StringOps(proc"$sireum hamr sysml translator --help".runCheck().out).
 
 
 val sysmlUrl: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/${sysmlVersion}/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g"
+val sysmlUrlH: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g"
 val gumboUrl: String = s"https://raw.githubusercontent.com/sireum/aadl-gumbo/${gumboVersion}/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g"
 val kermlUrl: String = "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/%version/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g"
 val kermlExpUrl: String = s"https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/${sysmlVersion}/org.omg.kerml.expressions.xtext/src-gen/org/omg/kerml/expressions/xtext/parser/antlr/internal/InternalKerMLExpressions.g"
@@ -114,6 +115,17 @@ regenAntrl(sysmlg, parserDir)
 val kermlg = translate(parserDir, "KerMLv2.g4", T, Some(sysmlVersion), kermlUrl)
 fixSL_Note(kermlg)
 regenAntrl(kermlg, parserDir)
+
+{ // just sysmlv2 + kerml exp
+  val sysmlorigg = translate(parserDir, "SysMLv2_SansGumbo.g4", T, Some(sysmlVersion), sysmlUrlH)
+  fixSL_Note(sysmlorigg)
+  regenAntrl(sysmlorigg, parserDir)
+  if (cleanup) {
+    for (f <- Os.Path.walk(parserDir, T, T, p => ops.StringOps(p.name).startsWith("SysMLv2_SansGumbo") && p.name != "SysMLv2_SansGumbo.g4")) {
+      f.removeOnExit()
+    }
+  }
+}
 
 { // just gumbo with the Slang expression lang replaced by KerML's
   val kermlExpOrig = parserDir / "KermlExp_orig.g"
