@@ -56,7 +56,7 @@ def translate(outDir: Os.Path, outFileName: String,
 }
 
 def regenAntrl(grammarFile: Os.Path, outDir: Os.Path): Unit = {
-  val deps = Coursier.fetch(Sireum.scalaVer, ISZ(s"org.antlr:antlr4:$antlr4Version"))
+  val deps = Coursier.fetch(Sireum.scalaVer, ISZ(s"org.antlr:antlr4:$antlr4Version"), Coursier.Proxy.empty)
   val classpath: ISZ[String] = for (dep <- deps) yield dep.path.string
   val java = Os.path(Sireum.javaHomePathString) / "bin" / (if (Os.isWin) "java.exe" else "java")
   Os.proc(ISZ(java.string, "-cp", st"${(classpath, Os.pathSep)}".render, "org.antlr.v4.Tool", "-o",
