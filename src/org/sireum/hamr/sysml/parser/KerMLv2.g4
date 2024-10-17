@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-07/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-09/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
 grammar KerMLv2;
 
 @parser::members {
@@ -172,7 +172,7 @@ ruleNamespaceFeatureMember: ruleMemberPrefix ruleFeatureElement;
 
 ruleAliasMember: ruleMemberPrefix 'alias' ('<' ruleName '>')? ruleName? 'for' ruleQualifiedName ruleRelationshipBody;
 
-ruleImportPrefix: ruleVisibilityIndicator? 'import' 'all'?;
+ruleImportPrefix: ruleVisibilityIndicator 'import' 'all'?;
 
 ruleImport: (ruleMembershipImport | ruleNamespaceImport) ruleRelationshipBody;
 

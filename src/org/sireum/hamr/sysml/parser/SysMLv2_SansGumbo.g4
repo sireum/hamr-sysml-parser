@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-07/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-09/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 grammar SysMLv2_SansGumbo;
 
 @parser::members {
@@ -106,7 +106,6 @@ grammar SysMLv2_SansGumbo;
       case SysMLv2_SansGumboLexer.K_VIEW:
       case SysMLv2_SansGumboLexer.K_RENDER:
       case SysMLv2_SansGumboLexer.K_RENDERING:
-      case SysMLv2_SansGumboLexer.K_EXPOSE:
       case SysMLv2_SansGumboLexer.K_VIEWPOINT:
       case SysMLv2_SansGumboLexer.K_IMPLIES:
       case SysMLv2_SansGumboLexer.K_OR:
@@ -130,6 +129,7 @@ grammar SysMLv2_SansGumbo;
       case SysMLv2_SansGumboLexer.K_REQUIRE:
       case SysMLv2_SansGumboLexer.K_FRAME:
       case SysMLv2_SansGumboLexer.K_VERIFY:
+      case SysMLv2_SansGumboLexer.K_EXPOSE:
         return true;
       default: return false;
     }
@@ -222,7 +222,7 @@ ruleElementFilterMember: ruleMemberPrefix 'filter' ruleOwnedExpression ';';
 
 ruleAliasMember: ruleMemberPrefix 'alias' ('<' ruleName '>')? ruleName? 'for' ruleQualifiedName ruleRelationshipBody;
 
-ruleImportPrefix: ruleVisibilityIndicator? 'import' 'all'?;
+ruleImportPrefix: ruleVisibilityIndicator 'import' 'all'?;
 
 ruleImport: (ruleMembershipImport | ruleNamespaceImport) ruleRelationshipBody;
 
@@ -1230,7 +1230,7 @@ ruleViewBodyItem:
   | ruleExpose #ruleViewBodyItem3
   | ruleViewRenderingMember #ruleViewBodyItem4;
 
-ruleExposePrefix: ruleVisibilityIndicator? 'expose';
+ruleExposePrefix: ruleExposeVisibilityKind;
 
 ruleExpose: (ruleMembershipExpose | ruleNamespaceExpose) ruleRelationshipBody;
 
@@ -1527,6 +1527,8 @@ ruleFramedConcernKind: 'frame';
 
 ruleRequirementVerificationKind: 'verify';
 
+ruleExposeVisibilityKind: 'expose';
+
 K_DEPENDENCY: 'dependency';
 K_FROM: 'from';
 K_TO: 'to';
@@ -1629,7 +1631,6 @@ K_INCLUDE: 'include';
 K_VIEW: 'view';
 K_RENDER: 'render';
 K_RENDERING: 'rendering';
-K_EXPOSE: 'expose';
 K_VIEWPOINT: 'viewpoint';
 K_IMPLIES: 'implies';
 K_OR: 'or';
@@ -1653,6 +1654,7 @@ K_ASSUME: 'assume';
 K_REQUIRE: 'require';
 K_FRAME: 'frame';
 K_VERIFY: 'verify';
+K_EXPOSE: 'expose';
 
 LANGLE: '<';
 RANGLE: '>';

@@ -1,4 +1,4 @@
-// Generated from /Users/robby/Repositories/Sireum/hamr-sysml-parser/src/org/sireum/hamr/sysml/parser/SysMLv2.g4 by ANTLR 4.13.2
+// Generated from /Users/belt/devel/sireum/hamr-sysml-parser/src/org/sireum/hamr/sysml/parser/SysMLv2.g4 by ANTLR 4.13.2
 package org.sireum.hamr.sysml.parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8879,4 +8879,14 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleSlangTypeArgs(SysMLv2Parser.RuleSlangTypeArgsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleExposeVisibilityKind}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleExposeVisibilityKind(SysMLv2Parser.RuleExposeVisibilityKindContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleExposeVisibilityKind}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleExposeVisibilityKind(SysMLv2Parser.RuleExposeVisibilityKindContext ctx);
 }

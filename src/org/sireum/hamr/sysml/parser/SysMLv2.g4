@@ -2,7 +2,7 @@
 // with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
 //
 // Original grammars obtained from:
-//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-07/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-09/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 //   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240826.9e8a74c/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
@@ -113,7 +113,6 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_VIEW:
       case SysMLv2Lexer.K_RENDER:
       case SysMLv2Lexer.K_RENDERING:
-      case SysMLv2Lexer.K_EXPOSE:
       case SysMLv2Lexer.K_VIEWPOINT:
       case SysMLv2Lexer.K_IMPLIES:
       case SysMLv2Lexer.K_OR:
@@ -153,6 +152,7 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_INVARIANT:
       case SysMLv2Lexer.K_READS:
       case SysMLv2Lexer.K_MODIFIES:
+      case SysMLv2Lexer.K_EXPOSE:
         return true;
       default: return false;
     }
@@ -245,7 +245,7 @@ ruleElementFilterMember: ruleMemberPrefix 'filter' ruleOwnedExpression ';';
 
 ruleAliasMember: ruleMemberPrefix 'alias' ('<' ruleName '>')? ruleName? 'for' ruleQualifiedName ruleRelationshipBody;
 
-ruleImportPrefix: ruleVisibilityIndicator? 'import' 'all'?;
+ruleImportPrefix: ruleVisibilityIndicator 'import' 'all'?;
 
 ruleImport: (ruleMembershipImport | ruleNamespaceImport) ruleRelationshipBody;
 
@@ -1253,7 +1253,7 @@ ruleViewBodyItem:
   | ruleExpose #ruleViewBodyItem3
   | ruleViewRenderingMember #ruleViewBodyItem4;
 
-ruleExposePrefix: ruleVisibilityIndicator? 'expose';
+ruleExposePrefix: ruleExposeVisibilityKind;
 
 ruleExpose: (ruleMembershipExpose | ruleNamespaceExpose) ruleRelationshipBody;
 
@@ -1638,6 +1638,8 @@ ruleSlangBaseType: ruleQualifiedName;
 
 ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
 
+ruleExposeVisibilityKind: 'expose';
+
 K_DEPENDENCY: 'dependency';
 K_FROM: 'from';
 K_TO: 'to';
@@ -1741,7 +1743,6 @@ K_INCLUDE: 'include';
 K_VIEW: 'view';
 K_RENDER: 'render';
 K_RENDERING: 'rendering';
-K_EXPOSE: 'expose';
 K_VIEWPOINT: 'viewpoint';
 K_IMPLIES: 'implies';
 K_OR: 'or';
@@ -1781,6 +1782,7 @@ K_MUT: 'mut';
 K_INVARIANT: 'invariant';
 K_READS: 'reads';
 K_MODIFIES: 'modifies';
+K_EXPOSE: 'expose';
 
 LANGLE: '<';
 RANGLE: '>';
