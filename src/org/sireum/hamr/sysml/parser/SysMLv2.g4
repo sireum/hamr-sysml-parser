@@ -2,7 +2,7 @@
 // with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
 //
 // Original grammars obtained from:
-//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-09/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-11/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 //   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240826.9e8a74c/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
@@ -82,6 +82,7 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_LOOP:
       case SysMLv2Lexer.K_UNTIL:
       case SysMLv2Lexer.K_IN:
+      case SysMLv2Lexer.K_TERMINATE:
       case SysMLv2Lexer.K_MERGE:
       case SysMLv2Lexer.K_DECIDE:
       case SysMLv2Lexer.K_JOIN:
@@ -842,7 +843,8 @@ ruleActionNode:
   | ruleIfNode #ruleActionNode4
   | ruleWhileLoopNode #ruleActionNode5
   | ruleForLoopNode #ruleActionNode6
-  | ruleControlNode #ruleActionNode7;
+  | ruleTerminateNode #ruleActionNode7
+  | ruleControlNode #ruleActionNode8;
 
 ruleActionNodeUsageDeclaration: ruleActionUsageKeyword ruleUsageDeclaration?;
 
@@ -925,6 +927,8 @@ ruleForLoopNode: ruleActionNodePrefix 'for' ruleForVariableDeclarationMember 'in
 ruleForVariableDeclarationMember: ruleForVariableDeclaration;
 
 ruleForVariableDeclaration: ruleUsageDeclaration;
+
+ruleTerminateNode: ruleOccurrenceUsagePrefix ruleActionNodeUsageDeclaration? 'terminate' (ruleActionBody | ruleNodeParameterMember ruleActionBody);
 
 ruleControlNode:
   ruleMergeNode #ruleControlNode1
@@ -1712,6 +1716,7 @@ K_WHILE: 'while';
 K_LOOP: 'loop';
 K_UNTIL: 'until';
 K_IN: 'in';
+K_TERMINATE: 'terminate';
 K_MERGE: 'merge';
 K_DECIDE: 'decide';
 K_JOIN: 'join';

@@ -4793,6 +4793,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleActionNode8(SysMLv2Parser.RuleActionNode8Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleActionNode8(SysMLv2Parser.RuleActionNode8Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleActionNodeUsageDeclaration(SysMLv2Parser.RuleActionNodeUsageDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -5280,6 +5292,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleForVariableDeclaration(SysMLv2Parser.RuleForVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleTerminateNode(SysMLv2Parser.RuleTerminateNodeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleTerminateNode(SysMLv2Parser.RuleTerminateNodeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

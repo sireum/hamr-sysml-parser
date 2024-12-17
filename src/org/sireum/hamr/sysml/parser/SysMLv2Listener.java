@@ -4402,6 +4402,18 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleActionNode7(SysMLv2Parser.RuleActionNode7Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleActionNode8}
+	 * labeled alternative in {@link SysMLv2Parser#ruleActionNode}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleActionNode8(SysMLv2Parser.RuleActionNode8Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleActionNode8}
+	 * labeled alternative in {@link SysMLv2Parser#ruleActionNode}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleActionNode8(SysMLv2Parser.RuleActionNode8Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleActionNodeUsageDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -4823,6 +4835,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleForVariableDeclaration(SysMLv2Parser.RuleForVariableDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleTerminateNode}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleTerminateNode(SysMLv2Parser.RuleTerminateNodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleTerminateNode}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleTerminateNode(SysMLv2Parser.RuleTerminateNodeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ruleControlNode1}
 	 * labeled alternative in {@link SysMLv2Parser#ruleControlNode}.

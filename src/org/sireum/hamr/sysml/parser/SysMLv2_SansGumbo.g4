@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-09/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-11/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 grammar SysMLv2_SansGumbo;
 
 @parser::members {
@@ -75,6 +75,7 @@ grammar SysMLv2_SansGumbo;
       case SysMLv2_SansGumboLexer.K_LOOP:
       case SysMLv2_SansGumboLexer.K_UNTIL:
       case SysMLv2_SansGumboLexer.K_IN:
+      case SysMLv2_SansGumboLexer.K_TERMINATE:
       case SysMLv2_SansGumboLexer.K_MERGE:
       case SysMLv2_SansGumboLexer.K_DECIDE:
       case SysMLv2_SansGumboLexer.K_JOIN:
@@ -819,7 +820,8 @@ ruleActionNode:
   | ruleIfNode #ruleActionNode4
   | ruleWhileLoopNode #ruleActionNode5
   | ruleForLoopNode #ruleActionNode6
-  | ruleControlNode #ruleActionNode7;
+  | ruleTerminateNode #ruleActionNode7
+  | ruleControlNode #ruleActionNode8;
 
 ruleActionNodeUsageDeclaration: ruleActionUsageKeyword ruleUsageDeclaration?;
 
@@ -902,6 +904,8 @@ ruleForLoopNode: ruleActionNodePrefix 'for' ruleForVariableDeclarationMember 'in
 ruleForVariableDeclarationMember: ruleForVariableDeclaration;
 
 ruleForVariableDeclaration: ruleUsageDeclaration;
+
+ruleTerminateNode: ruleOccurrenceUsagePrefix ruleActionNodeUsageDeclaration? 'terminate' (ruleActionBody | ruleNodeParameterMember ruleActionBody);
 
 ruleControlNode:
   ruleMergeNode #ruleControlNode1
@@ -1600,6 +1604,7 @@ K_WHILE: 'while';
 K_LOOP: 'loop';
 K_UNTIL: 'until';
 K_IN: 'in';
+K_TERMINATE: 'terminate';
 K_MERGE: 'merge';
 K_DECIDE: 'decide';
 K_JOIN: 'join';
