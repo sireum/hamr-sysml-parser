@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-11/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-12/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
 grammar KerMLv2;
 
 @parser::members {
@@ -54,6 +54,7 @@ grammar KerMLv2;
       case KerMLv2Lexer.K_TYPED:
       case KerMLv2Lexer.K_SUBSETS:
       case KerMLv2Lexer.K_REFERENCES:
+      case KerMLv2Lexer.K_CROSSES:
       case KerMLv2Lexer.K_REDEFINES:
       case KerMLv2Lexer.K_INVERTING:
       case KerMLv2Lexer.K_FEATURING:
@@ -332,9 +333,15 @@ ruleOwnedsubclassification: ruleQualifiedName;
 
 ruleClassifierConjugation: ruleQualifiedName;
 
-ruleFeaturePrefix: ruleFeatureDirection? 'abstract'? ('composite' | 'portion')? 'readonly'? 'derived'? 'end'? rulePrefixMetadataMember*;
+ruleBasicFeaturePrefix: ruleFeatureDirection? 'abstract'? ('composite' | 'portion')? 'readonly'? 'derived'?;
 
-ruleFeature: ruleFeaturePrefix ('feature'? ruleFeatureDeclaration | rulePrefixMetadataMember | 'feature') ruleValuePart? ruleTypeBody;
+ruleFeaturePrefix: ('end' ruleOwnedCrossingFeatureMember? | ruleBasicFeaturePrefix) rulePrefixMetadataMember*;
+
+ruleOwnedCrossingFeatureMember: ruleOwnedCrossingFeature;
+
+ruleOwnedCrossingFeature: ruleBasicFeaturePrefix ruleFeatureDeclaration;
+
+ruleFeature: (ruleFeaturePrefix ('feature' | rulePrefixMetadataMember) ruleFeatureDeclaration? | ('end' | ruleBasicFeaturePrefix) ruleFeatureDeclaration) ruleValuePart? ruleTypeBody;
 
 ruleFeatureDeclaration: 'all'? (ruleIdentification (ruleFeatureSpecializationPart | ruleFeatureConjugationPart)? | ruleFeatureSpecializationPart | ruleFeatureConjugationPart) ruleFeatureRelationshipPart*;
 
@@ -362,7 +369,8 @@ ruleFeatureSpecialization:
   ruleTypings #ruleFeatureSpecialization1
   | ruleSubsettings #ruleFeatureSpecialization2
   | ruleReferences #ruleFeatureSpecialization3
-  | ruleRedefinitions #ruleFeatureSpecialization4;
+  | ruleCrossings #ruleFeatureSpecialization4
+  | ruleRedefinitions #ruleFeatureSpecialization5;
 
 ruleTypings: ruleTypedBy (',' ruleOwnedFeatureTyping)*;
 
@@ -377,6 +385,8 @@ ruleReferences: ruleReferencesKeyword ruleOwnedReferenceSubsetting;
 ruleReferencesKeyword:
   '::>' #ruleReferencesKeyword1
   | 'references' #ruleReferencesKeyword2;
+
+ruleCrossings: ('=>' | 'crosses') ruleOwnedCrossSubsetting;
 
 ruleRedefinitions: ruleRedefines (',' ruleOwnedRedefinition)*;
 
@@ -409,6 +419,10 @@ ruleOwnedSubsetting:
 ruleOwnedReferenceSubsetting:
   ruleQualifiedName #ruleOwnedReferenceSubsetting1
   | ruleOwnedFeatureChain #ruleOwnedReferenceSubsetting2;
+
+ruleOwnedCrossSubsetting:
+  ruleQualifiedName #ruleOwnedCrossSubsetting1
+  | ruleOwnedFeatureChain #ruleOwnedCrossSubsetting2;
 
 ruleRedefinition: ('specialization' ruleIdentification?)? 'redefinition' (ruleQualifiedName | ruleOwnedFeatureChain) (':>>' | 'redefines') (ruleQualifiedName | ruleOwnedFeatureChain) ruleRelationshipBody;
 
@@ -462,7 +476,11 @@ ruleNaryConnectorDeclaration: ruleFeatureDeclaration? '(' ruleConnectorEndMember
 
 ruleConnectorEndMember: ruleConnectorEnd;
 
-ruleConnectorEnd: (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting ruleOwnedMultiplicity?;
+ruleConnectorEnd: ruleOwnedCrossingMultiplicityMember? (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting;
+
+ruleOwnedCrossingMultiplicityMember: ruleOwnedCrossingMultiplicity;
+
+ruleOwnedCrossingMultiplicity: ruleOwnedMultiplicity;
 
 ruleBindingConnector: ruleFeaturePrefix 'binding' ruleBindingConnectorDeclaration ruleTypeBody;
 
@@ -861,6 +879,7 @@ K_NONUNIQUE: 'nonunique';
 K_TYPED: 'typed';
 K_SUBSETS: 'subsets';
 K_REFERENCES: 'references';
+K_CROSSES: 'crosses';
 K_REDEFINES: 'redefines';
 K_INVERTING: 'inverting';
 K_FEATURING: 'featuring';
@@ -929,6 +948,7 @@ OP_COLON_RANGLE: ':>';
 OP_TILDE: '~';
 OP_COLON: ':';
 OP_COLON_COLON_RANGLE: '::>';
+OP_EQ_RANGLE: '=>';
 OP_COLON_RANGLE_RANGLE: ':>>';
 OP_EQ: '=';
 OP_COLON_EQ: ':=';

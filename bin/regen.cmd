@@ -27,7 +27,7 @@ val cleanup: B = T
 
 val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure")
 
-val sysmlVersion: String = "2024-11"
+val sysmlVersion: String = "2024-12"
 val gumboVersion: String = "4.20240826.9e8a74c" // https://github.com/sireum/aadl-gumbo/tags
 
 val antlr4Version: String =

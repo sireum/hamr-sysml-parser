@@ -2,7 +2,7 @@
 // with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
 //
 // Original grammars obtained from:
-//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-11/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-12/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 //   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240826.9e8a74c/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
@@ -40,6 +40,7 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_BY:
       case SysMLv2Lexer.K_SUBSETS:
       case SysMLv2Lexer.K_REFERENCES:
+      case SysMLv2Lexer.K_CROSSES:
       case SysMLv2Lexer.K_VARIATION:
       case SysMLv2Lexer.K_VARIANT:
       case SysMLv2Lexer.K_READONLY:
@@ -61,12 +62,12 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_FIRST:
       case SysMLv2Lexer.K_CONNECTION:
       case SysMLv2Lexer.K_CONNECT:
-      case SysMLv2Lexer.K_FLOW:
-      case SysMLv2Lexer.K_MESSAGE:
-      case SysMLv2Lexer.K_OF:
       case SysMLv2Lexer.K_INTERFACE:
       case SysMLv2Lexer.K_ALLOCATION:
       case SysMLv2Lexer.K_ALLOCATE:
+      case SysMLv2Lexer.K_FLOW:
+      case SysMLv2Lexer.K_MESSAGE:
+      case SysMLv2Lexer.K_OF:
       case SysMLv2Lexer.K_ACTION:
       case SysMLv2Lexer.K_PERFORM:
       case SysMLv2Lexer.K_ACCEPT:
@@ -330,7 +331,8 @@ ruleFeatureSpecialization:
   ruleTypings #ruleFeatureSpecialization1
   | ruleSubsettings #ruleFeatureSpecialization2
   | ruleReferences #ruleFeatureSpecialization3
-  | ruleRedefinitions #ruleFeatureSpecialization4;
+  | ruleCrosses #ruleFeatureSpecialization4
+  | ruleRedefinitions #ruleFeatureSpecialization5;
 
 ruleTypings: ruleTypedBy (',' ruleFeatureTyping)*;
 
@@ -354,7 +356,11 @@ ruleReferencesKeyword:
   '::>' #ruleReferencesKeyword1
   | 'references' #ruleReferencesKeyword2;
 
-ruleRedefinitions: ruleRedefines (',' ruleOwnedRedefinition)*;
+ruleCrosses: ruleCrossesKeyword ruleOwnedCrossSubsetting;
+
+ruleCrossesKeyword:
+  '=>' #ruleCrossesKeyword1
+  | 'crosses' #ruleCrossesKeyword2;
 
 ruleRedefines: ruleRedefinesKeyword ruleOwnedRedefinition;
 
@@ -373,6 +379,12 @@ ruleOwnedSubsetting:
 ruleOwnedReferenceSubsetting:
   ruleQualifiedName #ruleOwnedReferenceSubsetting1
   | ruleOwnedFeatureChain #ruleOwnedReferenceSubsetting2;
+
+ruleOwnedCrossSubsetting:
+  ruleQualifiedName #ruleOwnedCrossSubsetting1
+  | ruleOwnedFeatureChain #ruleOwnedCrossSubsetting2;
+
+ruleRedefinitions: ruleRedefines (',' ruleOwnedRedefinition)*;
 
 ruleOwnedRedefinition:
   ruleQualifiedName #ruleOwnedRedefinition1
@@ -420,13 +432,23 @@ ruleStructureUsageMember: ruleMemberPrefix ruleStructureUsageElement;
 
 ruleBehaviorUsageMember: ruleMemberPrefix ruleBehaviorUsageElement;
 
-ruleRefPrefix: ruleFeatureDirection? ('abstract' | 'variation')? 'readonly'? 'derived'? 'end'?;
+ruleRefPrefix: ruleFeatureDirection? ('abstract' | 'variation')? 'readonly'? 'derived'?;
 
 ruleBasicUsagePrefix: ruleRefPrefix 'ref'?;
 
+ruleEndUsagePrefix: 'end' ruleOwnedCrossFeatureMember?;
+
+ruleUnextendedUsagePrefix:
+  ruleEndUsagePrefix #ruleUnextendedUsagePrefix1
+  | ruleBasicUsagePrefix #ruleUnextendedUsagePrefix2;
+
 ruleUsageExtensionKeyword: rulePrefixMetadataMember;
 
-ruleUsagePrefix: ruleBasicUsagePrefix ruleUsageExtensionKeyword*;
+ruleUsagePrefix: ruleUnextendedUsagePrefix ruleUsageExtensionKeyword*;
+
+ruleOwnedCrossFeatureMember: ruleOwnedCrossFeature;
+
+ruleOwnedCrossFeature: ruleBasicUsagePrefix ruleUsageDeclaration;
 
 ruleUsage: ruleUsageDeclaration? ruleUsageCompletion;
 
@@ -444,9 +466,9 @@ ruleReferenceKeyword: 'ref';
 
 ruleReferenceUsageKeyword: ruleReferenceKeyword;
 
-ruleDefaultReferenceUsage: ruleRefPrefix ruleUsageDeclaration ruleValuePart? ruleUsageBody;
+ruleDefaultReferenceUsage: 'end'? ruleRefPrefix ruleUsageDeclaration ruleValuePart? ruleUsageBody;
 
-ruleReferenceUsage: ruleRefPrefix ruleReferenceUsageKeyword ruleUsage;
+ruleReferenceUsage: (ruleEndUsagePrefix | ruleRefPrefix) ruleReferenceUsageKeyword ruleUsage;
 
 ruleVariantReference: ruleOwnedReferenceSubsetting ruleFeatureSpecialization* ruleUsageBody;
 
@@ -523,7 +545,7 @@ ruleVariantUsageElement:
 
 ruleExtendedDefinition: ruleBasicDefinitionPrefix? ruleDefinitionExtensionKeyword+ 'def' ruleDefinition;
 
-ruleExtendedUsage: ruleBasicUsagePrefix ruleUsageExtensionKeyword+ ruleUsage;
+ruleExtendedUsage: ruleUnextendedUsagePrefix ruleUsageExtensionKeyword+ ruleUsage;
 
 ruleAttributeKeyword: 'attribute';
 
@@ -569,7 +591,7 @@ ruleLifeClass: ;
 
 ruleOccurrenceUsageKeyword: ruleOccurrenceKeyword;
 
-ruleOccurrenceUsagePrefix: ruleBasicUsagePrefix 'individual'? rulePortionKind? ruleUsageExtensionKeyword*;
+ruleOccurrenceUsagePrefix: (ruleEndUsagePrefix | ruleBasicUsagePrefix 'individual'? rulePortionKind?) ruleUsageExtensionKeyword*;
 
 ruleOccurrenceUsage: ruleOccurrenceUsagePrefix ruleOccurrenceUsageKeyword ruleUsage;
 
@@ -633,7 +655,11 @@ rulePortUsage: ruleOccurrenceUsagePrefix rulePortUsageKeyword ruleUsage;
 
 ruleConnectorEndMember: ruleConnectorEnd;
 
-ruleConnectorEnd: (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting ruleOwnedMultiplicity?;
+ruleConnectorEnd: ruleOwnedCrossMultiplicityMember? (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting;
+
+ruleOwnedCrossMultiplicityMember: ruleOwnedCrossMultiplicity;
+
+ruleOwnedCrossMultiplicity: ruleOwnedMultiplicity;
 
 ruleBindingKeyword: 'binding';
 
@@ -666,6 +692,78 @@ ruleNaryConnectorPart: '(' ruleConnectorEndMember ',' ruleConnectorEndMember (',
 ruleEmptySourceEndMember: ruleEmptySourceEnd;
 
 ruleEmptySourceEnd: ;
+
+ruleInterfaceKeyword: 'interface';
+
+ruleInterfaceDefKeyword: ruleInterfaceKeyword 'def';
+
+ruleInterfaceDefinition: ruleOccurrenceDefinitionPrefix ruleInterfaceDefKeyword ruleDefinitionDeclaration ruleInterfaceBody;
+
+ruleInterfaceBody:
+  ';' #ruleInterfaceBody1
+  | '{' ruleInterfaceBodyItem* '}' #ruleInterfaceBody2;
+
+ruleInterfaceBodyItem:
+  ruleDefinitionMember #ruleInterfaceBodyItem1
+  | ruleVariantUsageMember #ruleInterfaceBodyItem2
+  | ruleInterfaceNonOccurrenceUsageMember #ruleInterfaceBodyItem3
+  | ruleEmptySuccessionMember? ruleInterfaceOccurrenceUsageMember #ruleInterfaceBodyItem4
+  | ruleAliasMember #ruleInterfaceBodyItem5
+  | ruleImport #ruleInterfaceBodyItem6;
+
+ruleInterfaceNonOccurrenceUsageMember: ruleMemberPrefix ruleInterfaceNonOccurrenceUsageElement;
+
+ruleInterfaceNonOccurrenceUsageElement:
+  ruleReferenceUsage #ruleInterfaceNonOccurrenceUsageElement1
+  | ruleAttributeUsage #ruleInterfaceNonOccurrenceUsageElement2
+  | ruleEnumerationUsage #ruleInterfaceNonOccurrenceUsageElement3
+  | ruleBindingConnectorAsUsage #ruleInterfaceNonOccurrenceUsageElement4
+  | ruleSuccessionAsUsage #ruleInterfaceNonOccurrenceUsageElement5;
+
+ruleInterfaceOccurrenceUsageMember: ruleMemberPrefix ruleInterfaceOccurrenceUsageElement;
+
+ruleInterfaceOccurrenceUsageElement:
+  ruleDefaultInterfaceEnd #ruleInterfaceOccurrenceUsageElement1
+  | ruleStructureUsageElement #ruleInterfaceOccurrenceUsageElement2
+  | ruleBehaviorUsageElement #ruleInterfaceOccurrenceUsageElement3;
+
+ruleDefaultInterfaceEnd: 'end' ruleUsage;
+
+ruleInterfaceUsageKeyword: ruleInterfaceKeyword;
+
+ruleInterfaceUsage: ruleOccurrenceUsagePrefix ruleInterfaceUsageKeyword ruleInterfaceUsageDeclaration ruleInterfaceBody;
+
+ruleInterfaceUsageDeclaration:
+  ruleUsageDeclaration? (ruleConnectorKeyword ruleInterfacePart)? #ruleInterfaceUsageDeclaration1
+  | ruleInterfacePart #ruleInterfaceUsageDeclaration2;
+
+ruleInterfacePart:
+  ruleBinaryInterfacePart #ruleInterfacePart1
+  | ruleNaryInterfacePart #ruleInterfacePart2;
+
+ruleBinaryInterfacePart: ruleInterfaceEndMember 'to' ruleInterfaceEndMember;
+
+ruleNaryInterfacePart: '(' ruleInterfaceEndMember ',' ruleInterfaceEndMember (',' ruleInterfaceEndMember)* ')';
+
+ruleInterfaceEndMember: ruleInterfaceEnd;
+
+ruleInterfaceEnd: ruleOwnedCrossMultiplicityMember? (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting;
+
+ruleAllocationKeyword: 'allocation';
+
+ruleAllocationDefKeyword: ruleAllocationKeyword 'def';
+
+ruleAllocationDefinition: ruleOccurrenceDefinitionPrefix ruleAllocationDefKeyword ruleDefinition;
+
+ruleAllocationUsageKeyword: ruleAllocationKeyword;
+
+ruleAllocateKeyword: 'allocate';
+
+ruleAllocationUsage: ruleOccurrenceUsagePrefix ruleAllocationUsageDeclaration ruleUsageBody;
+
+ruleAllocationUsageDeclaration:
+  ruleAllocationUsageKeyword ruleUsageDeclaration? (ruleAllocateKeyword ruleConnectorPart)? #ruleAllocationUsageDeclaration1
+  | ruleAllocateKeyword ruleConnectorPart #ruleAllocationUsageDeclaration2;
 
 ruleFlowConnectionKeyword: 'flow';
 
@@ -724,78 +822,6 @@ ruleFlowFeatureMember: ruleFlowFeature;
 ruleFlowFeature: ruleFlowRedefinition;
 
 ruleFlowRedefinition: ruleQualifiedName;
-
-ruleInterfaceKeyword: 'interface';
-
-ruleInterfaceDefKeyword: ruleInterfaceKeyword 'def';
-
-ruleInterfaceDefinition: ruleOccurrenceDefinitionPrefix ruleInterfaceDefKeyword ruleDefinitionDeclaration ruleInterfaceBody;
-
-ruleInterfaceBody:
-  ';' #ruleInterfaceBody1
-  | '{' ruleInterfaceBodyItem* '}' #ruleInterfaceBody2;
-
-ruleInterfaceBodyItem:
-  ruleDefinitionMember #ruleInterfaceBodyItem1
-  | ruleVariantUsageMember #ruleInterfaceBodyItem2
-  | ruleInterfaceNonOccurrenceUsageMember #ruleInterfaceBodyItem3
-  | ruleEmptySuccessionMember? ruleInterfaceOccurrenceUsageMember #ruleInterfaceBodyItem4
-  | ruleAliasMember #ruleInterfaceBodyItem5
-  | ruleImport #ruleInterfaceBodyItem6;
-
-ruleInterfaceNonOccurrenceUsageMember: ruleMemberPrefix ruleInterfaceNonOccurrenceUsageElement;
-
-ruleInterfaceNonOccurrenceUsageElement:
-  ruleReferenceUsage #ruleInterfaceNonOccurrenceUsageElement1
-  | ruleAttributeUsage #ruleInterfaceNonOccurrenceUsageElement2
-  | ruleEnumerationUsage #ruleInterfaceNonOccurrenceUsageElement3
-  | ruleBindingConnectorAsUsage #ruleInterfaceNonOccurrenceUsageElement4
-  | ruleSuccessionAsUsage #ruleInterfaceNonOccurrenceUsageElement5;
-
-ruleInterfaceOccurrenceUsageMember: ruleMemberPrefix ruleInterfaceOccurrenceUsageElement;
-
-ruleInterfaceOccurrenceUsageElement:
-  ruleDefaultInterfaceEnd #ruleInterfaceOccurrenceUsageElement1
-  | ruleStructureUsageElement #ruleInterfaceOccurrenceUsageElement2
-  | ruleBehaviorUsageElement #ruleInterfaceOccurrenceUsageElement3;
-
-ruleDefaultInterfaceEnd: ruleFeatureDirection? ('abstract' | 'variation')? 'end' ruleUsage;
-
-ruleInterfaceUsageKeyword: ruleInterfaceKeyword;
-
-ruleInterfaceUsage: ruleOccurrenceUsagePrefix ruleInterfaceUsageKeyword ruleInterfaceUsageDeclaration ruleInterfaceBody;
-
-ruleInterfaceUsageDeclaration:
-  ruleUsageDeclaration? (ruleConnectorKeyword ruleInterfacePart)? #ruleInterfaceUsageDeclaration1
-  | ruleInterfacePart #ruleInterfaceUsageDeclaration2;
-
-ruleInterfacePart:
-  ruleBinaryInterfacePart #ruleInterfacePart1
-  | ruleNaryInterfacePart #ruleInterfacePart2;
-
-ruleBinaryInterfacePart: ruleInterfaceEndMember 'to' ruleInterfaceEndMember;
-
-ruleNaryInterfacePart: '(' ruleInterfaceEndMember ',' ruleInterfaceEndMember (',' ruleInterfaceEndMember)* ')';
-
-ruleInterfaceEndMember: ruleInterfaceEnd;
-
-ruleInterfaceEnd: (ruleName ruleReferencesKeyword)? ruleOwnedReferenceSubsetting ruleOwnedMultiplicity?;
-
-ruleAllocationKeyword: 'allocation';
-
-ruleAllocationDefKeyword: ruleAllocationKeyword 'def';
-
-ruleAllocationDefinition: ruleOccurrenceDefinitionPrefix ruleAllocationDefKeyword ruleDefinition;
-
-ruleAllocationUsageKeyword: ruleAllocationKeyword;
-
-ruleAllocateKeyword: 'allocate';
-
-ruleAllocationUsage: ruleOccurrenceUsagePrefix ruleAllocationUsageDeclaration ruleUsageBody;
-
-ruleAllocationUsageDeclaration:
-  ruleAllocationUsageKeyword ruleUsageDeclaration? (ruleAllocateKeyword ruleConnectorPart)? #ruleAllocationUsageDeclaration1
-  | ruleAllocateKeyword ruleConnectorPart #ruleAllocationUsageDeclaration2;
 
 ruleActionKeyword: 'action';
 
@@ -956,7 +982,7 @@ ruleEmptyUsage: ;
 
 ruleActionTargetSuccession: (ruleTargetSuccession | ruleGuardedTargetSuccession | ruleDefaultTargetSuccession) ruleUsageBody;
 
-ruleTargetSuccession: 'then' ruleMultiplicitySourceEndMember ruleConnectorEndMember;
+ruleTargetSuccession: ruleMultiplicitySourceEndMember 'then' ruleConnectorEndMember;
 
 ruleGuardedTargetSuccession: ruleEmptyParameterMember ruleGuardExpressionMember 'then' ruleTransitionSuccessionMember;
 
@@ -1674,6 +1700,7 @@ K_DEFINED: 'defined';
 K_BY: 'by';
 K_SUBSETS: 'subsets';
 K_REFERENCES: 'references';
+K_CROSSES: 'crosses';
 K_VARIATION: 'variation';
 K_VARIANT: 'variant';
 K_READONLY: 'readonly';
@@ -1695,12 +1722,12 @@ K_SUCCESSION: 'succession';
 K_FIRST: 'first';
 K_CONNECTION: 'connection';
 K_CONNECT: 'connect';
-K_FLOW: 'flow';
-K_MESSAGE: 'message';
-K_OF: 'of';
 K_INTERFACE: 'interface';
 K_ALLOCATION: 'allocation';
 K_ALLOCATE: 'allocate';
+K_FLOW: 'flow';
+K_MESSAGE: 'message';
+K_OF: 'of';
 K_ACTION: 'action';
 K_PERFORM: 'perform';
 K_ACCEPT: 'accept';
@@ -1811,6 +1838,7 @@ OP_STAR: '*';
 OP_COLON_RANGLE: ':>';
 OP_COLON: ':';
 OP_COLON_COLON_RANGLE: '::>';
+OP_EQ_RANGLE: '=>';
 OP_DOT_DOT: '..';
 OP_EQ: '=';
 OP_COLON_EQ: ':=';
@@ -1834,7 +1862,6 @@ OP_MINUS: '-';
 OP_SLASH: '/';
 OP_PERCENT: '%';
 OP_HAT: '^';
-OP_EQ_RANGLE: '=>';
 
 RULE_DECIMAL_VALUE: '0'..'9' '0'..'9'*;
 

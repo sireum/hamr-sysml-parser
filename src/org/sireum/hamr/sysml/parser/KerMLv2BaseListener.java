@@ -1577,6 +1577,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleBasicFeaturePrefix(KerMLv2Parser.RuleBasicFeaturePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleBasicFeaturePrefix(KerMLv2Parser.RuleBasicFeaturePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleFeaturePrefix(KerMLv2Parser.RuleFeaturePrefixContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1584,6 +1596,30 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleFeaturePrefix(KerMLv2Parser.RuleFeaturePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossingFeatureMember(KerMLv2Parser.RuleOwnedCrossingFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossingFeatureMember(KerMLv2Parser.RuleOwnedCrossingFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossingFeature(KerMLv2Parser.RuleOwnedCrossingFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossingFeature(KerMLv2Parser.RuleOwnedCrossingFeatureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1793,6 +1829,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleFeatureSpecialization5(KerMLv2Parser.RuleFeatureSpecialization5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFeatureSpecialization5(KerMLv2Parser.RuleFeatureSpecialization5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleTypings(KerMLv2Parser.RuleTypingsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1872,6 +1920,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleReferencesKeyword2(KerMLv2Parser.RuleReferencesKeyword2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleCrossings(KerMLv2Parser.RuleCrossingsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleCrossings(KerMLv2Parser.RuleCrossingsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2064,6 +2124,30 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleOwnedReferenceSubsetting2(KerMLv2Parser.RuleOwnedReferenceSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossSubsetting1(KerMLv2Parser.RuleOwnedCrossSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossSubsetting1(KerMLv2Parser.RuleOwnedCrossSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossSubsetting2(KerMLv2Parser.RuleOwnedCrossSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossSubsetting2(KerMLv2Parser.RuleOwnedCrossSubsetting2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2388,6 +2472,30 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleConnectorEnd(KerMLv2Parser.RuleConnectorEndContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossingMultiplicityMember(KerMLv2Parser.RuleOwnedCrossingMultiplicityMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossingMultiplicityMember(KerMLv2Parser.RuleOwnedCrossingMultiplicityMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossingMultiplicity(KerMLv2Parser.RuleOwnedCrossingMultiplicityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossingMultiplicity(KerMLv2Parser.RuleOwnedCrossingMultiplicityContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1253,6 +1253,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleFeatureSpecialization5(SysMLv2Parser.RuleFeatureSpecialization5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFeatureSpecialization5(SysMLv2Parser.RuleFeatureSpecialization5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleTypings(SysMLv2Parser.RuleTypingsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1385,13 +1397,37 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleRedefinitions(SysMLv2Parser.RuleRedefinitionsContext ctx) { }
+	@Override public void enterRuleCrosses(SysMLv2Parser.RuleCrossesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleRedefinitions(SysMLv2Parser.RuleRedefinitionsContext ctx) { }
+	@Override public void exitRuleCrosses(SysMLv2Parser.RuleCrossesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleCrossesKeyword1(SysMLv2Parser.RuleCrossesKeyword1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleCrossesKeyword1(SysMLv2Parser.RuleCrossesKeyword1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleCrossesKeyword2(SysMLv2Parser.RuleCrossesKeyword2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleCrossesKeyword2(SysMLv2Parser.RuleCrossesKeyword2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1500,6 +1536,42 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleOwnedReferenceSubsetting2(SysMLv2Parser.RuleOwnedReferenceSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossSubsetting1(SysMLv2Parser.RuleOwnedCrossSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossSubsetting1(SysMLv2Parser.RuleOwnedCrossSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossSubsetting2(SysMLv2Parser.RuleOwnedCrossSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossSubsetting2(SysMLv2Parser.RuleOwnedCrossSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleRedefinitions(SysMLv2Parser.RuleRedefinitionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleRedefinitions(SysMLv2Parser.RuleRedefinitionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1829,6 +1901,42 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleEndUsagePrefix(SysMLv2Parser.RuleEndUsagePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleEndUsagePrefix(SysMLv2Parser.RuleEndUsagePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleUnextendedUsagePrefix1(SysMLv2Parser.RuleUnextendedUsagePrefix1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleUnextendedUsagePrefix1(SysMLv2Parser.RuleUnextendedUsagePrefix1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleUnextendedUsagePrefix2(SysMLv2Parser.RuleUnextendedUsagePrefix2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleUnextendedUsagePrefix2(SysMLv2Parser.RuleUnextendedUsagePrefix2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleUsageExtensionKeyword(SysMLv2Parser.RuleUsageExtensionKeywordContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1848,6 +1956,30 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleUsagePrefix(SysMLv2Parser.RuleUsagePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossFeatureMember(SysMLv2Parser.RuleOwnedCrossFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossFeatureMember(SysMLv2Parser.RuleOwnedCrossFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossFeature(SysMLv2Parser.RuleOwnedCrossFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossFeature(SysMLv2Parser.RuleOwnedCrossFeatureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -3401,6 +3533,30 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleOwnedCrossMultiplicityMember(SysMLv2Parser.RuleOwnedCrossMultiplicityMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossMultiplicityMember(SysMLv2Parser.RuleOwnedCrossMultiplicityMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleOwnedCrossMultiplicity(SysMLv2Parser.RuleOwnedCrossMultiplicityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedCrossMultiplicity(SysMLv2Parser.RuleOwnedCrossMultiplicityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleBindingKeyword(SysMLv2Parser.RuleBindingKeywordContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -3588,366 +3744,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleEmptySourceEnd(SysMLv2Parser.RuleEmptySourceEndContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessageKeyword(SysMLv2Parser.RuleMessageKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessageKeyword(SysMLv2Parser.RuleMessageKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessage(SysMLv2Parser.RuleMessageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessage(SysMLv2Parser.RuleMessageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessageDeclaration1(SysMLv2Parser.RuleMessageDeclaration1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessageDeclaration1(SysMLv2Parser.RuleMessageDeclaration1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessageDeclaration2(SysMLv2Parser.RuleMessageDeclaration2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessageDeclaration2(SysMLv2Parser.RuleMessageDeclaration2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessageEventMember(SysMLv2Parser.RuleMessageEventMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessageEventMember(SysMLv2Parser.RuleMessageEventMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleMessageEvent(SysMLv2Parser.RuleMessageEventContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleMessageEvent(SysMLv2Parser.RuleMessageEventContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeatureSpecializationPart1(SysMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeatureSpecializationPart1(SysMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRulePayloadFeatureSpecializationPart2(SysMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRulePayloadFeatureSpecializationPart2(SysMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowEndMember(SysMLv2Parser.RuleFlowEndMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowEndMember(SysMLv2Parser.RuleFlowEndMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowEnd(SysMLv2Parser.RuleFlowEndContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowEnd(SysMLv2Parser.RuleFlowEndContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowEndSubsetting1(SysMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowEndSubsetting1(SysMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowEndSubsetting2(SysMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowEndSubsetting2(SysMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFeatureChainPrefix(SysMLv2Parser.RuleFeatureChainPrefixContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFeatureChainPrefix(SysMLv2Parser.RuleFeatureChainPrefixContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowFeatureMember(SysMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowFeatureMember(SysMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowFeature(SysMLv2Parser.RuleFlowFeatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowFeature(SysMLv2Parser.RuleFlowFeatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleFlowRedefinition(SysMLv2Parser.RuleFlowRedefinitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleFlowRedefinition(SysMLv2Parser.RuleFlowRedefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -4428,6 +4224,366 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleAllocationUsageDeclaration2(SysMLv2Parser.RuleAllocationUsageDeclaration2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessageKeyword(SysMLv2Parser.RuleMessageKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessageKeyword(SysMLv2Parser.RuleMessageKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessage(SysMLv2Parser.RuleMessageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessage(SysMLv2Parser.RuleMessageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessageDeclaration1(SysMLv2Parser.RuleMessageDeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessageDeclaration1(SysMLv2Parser.RuleMessageDeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessageDeclaration2(SysMLv2Parser.RuleMessageDeclaration2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessageDeclaration2(SysMLv2Parser.RuleMessageDeclaration2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessageEventMember(SysMLv2Parser.RuleMessageEventMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessageEventMember(SysMLv2Parser.RuleMessageEventMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleMessageEvent(SysMLv2Parser.RuleMessageEventContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleMessageEvent(SysMLv2Parser.RuleMessageEventContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeatureSpecializationPart1(SysMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeatureSpecializationPart1(SysMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRulePayloadFeatureSpecializationPart2(SysMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRulePayloadFeatureSpecializationPart2(SysMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowEndMember(SysMLv2Parser.RuleFlowEndMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowEndMember(SysMLv2Parser.RuleFlowEndMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowEnd(SysMLv2Parser.RuleFlowEndContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowEnd(SysMLv2Parser.RuleFlowEndContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowEndSubsetting1(SysMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowEndSubsetting1(SysMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowEndSubsetting2(SysMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowEndSubsetting2(SysMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFeatureChainPrefix(SysMLv2Parser.RuleFeatureChainPrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFeatureChainPrefix(SysMLv2Parser.RuleFeatureChainPrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowFeatureMember(SysMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowFeatureMember(SysMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowFeature(SysMLv2Parser.RuleFlowFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowFeature(SysMLv2Parser.RuleFlowFeatureContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleFlowRedefinition(SysMLv2Parser.RuleFlowRedefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleFlowRedefinition(SysMLv2Parser.RuleFlowRedefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1470,6 +1470,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleClassifierConjugation(KerMLv2Parser.RuleClassifierConjugationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleBasicFeaturePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleBasicFeaturePrefix(KerMLv2Parser.RuleBasicFeaturePrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleBasicFeaturePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleBasicFeaturePrefix(KerMLv2Parser.RuleBasicFeaturePrefixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFeaturePrefix}.
 	 * @param ctx the parse tree
 	 */
@@ -1479,6 +1489,26 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleFeaturePrefix(KerMLv2Parser.RuleFeaturePrefixContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingFeatureMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossingFeatureMember(KerMLv2Parser.RuleOwnedCrossingFeatureMemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingFeatureMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossingFeatureMember(KerMLv2Parser.RuleOwnedCrossingFeatureMemberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingFeature}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossingFeature(KerMLv2Parser.RuleOwnedCrossingFeatureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingFeature}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossingFeature(KerMLv2Parser.RuleOwnedCrossingFeatureContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFeature}.
 	 * @param ctx the parse tree
@@ -1674,6 +1704,18 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFeatureSpecialization4(KerMLv2Parser.RuleFeatureSpecialization4Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleFeatureSpecialization5}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFeatureSpecialization}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleFeatureSpecialization5(KerMLv2Parser.RuleFeatureSpecialization5Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleFeatureSpecialization5}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFeatureSpecialization}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleFeatureSpecialization5(KerMLv2Parser.RuleFeatureSpecialization5Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleTypings}.
 	 * @param ctx the parse tree
 	 */
@@ -1747,6 +1789,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleReferencesKeyword2(KerMLv2Parser.RuleReferencesKeyword2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleCrossings}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleCrossings(KerMLv2Parser.RuleCrossingsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleCrossings}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleCrossings(KerMLv2Parser.RuleCrossingsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleRedefinitions}.
 	 * @param ctx the parse tree
@@ -1923,6 +1975,30 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleOwnedReferenceSubsetting2(KerMLv2Parser.RuleOwnedReferenceSubsetting2Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleOwnedCrossSubsetting1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleOwnedCrossSubsetting}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossSubsetting1(KerMLv2Parser.RuleOwnedCrossSubsetting1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleOwnedCrossSubsetting1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleOwnedCrossSubsetting}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossSubsetting1(KerMLv2Parser.RuleOwnedCrossSubsetting1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleOwnedCrossSubsetting2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleOwnedCrossSubsetting}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossSubsetting2(KerMLv2Parser.RuleOwnedCrossSubsetting2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleOwnedCrossSubsetting2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleOwnedCrossSubsetting}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossSubsetting2(KerMLv2Parser.RuleOwnedCrossSubsetting2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleRedefinition}.
 	 * @param ctx the parse tree
@@ -2205,6 +2281,26 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleConnectorEnd(KerMLv2Parser.RuleConnectorEndContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingMultiplicityMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossingMultiplicityMember(KerMLv2Parser.RuleOwnedCrossingMultiplicityMemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingMultiplicityMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossingMultiplicityMember(KerMLv2Parser.RuleOwnedCrossingMultiplicityMemberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingMultiplicity}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedCrossingMultiplicity(KerMLv2Parser.RuleOwnedCrossingMultiplicityContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedCrossingMultiplicity}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedCrossingMultiplicity(KerMLv2Parser.RuleOwnedCrossingMultiplicityContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleBindingConnector}.
 	 * @param ctx the parse tree
