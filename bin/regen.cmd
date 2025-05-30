@@ -28,7 +28,7 @@ val cleanup: B = T
 val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure")
 
 val sysmlVersion: String = "2024-12"
-val gumboVersion: String = "4.20240826.9e8a74c" // https://github.com/sireum/aadl-gumbo/tags
+val gumboVersion: String = "4.20250530.c06cb34" // https://github.com/sireum/aadl-gumbo/tags
 
 val antlr4Version: String =
   if (versions.exists) versions.properties.get("org.antlr%antlr4-runtime%").get
@@ -78,7 +78,7 @@ val gumbo = ops.StringOps(gumboOrig.read)
 
 val gumboStartPos = gumbo.stringIndexOf("// Rule GumboLibrary")
 val gumboEndPos = gumbo.stringIndexOf("// Entry rule entryRuleSlangStmt")
-assert (gumboStartPos > 0 && gumboEndPos > 0 )
+assert (gumboStartPos > 0 && gumboEndPos > 0, s"${gumboStartPos} .. ${gumboEndPos}" )
 
 val gumboMinusSlangExp = gumbo.substring(gumboStartPos, gumboEndPos - 1)
 

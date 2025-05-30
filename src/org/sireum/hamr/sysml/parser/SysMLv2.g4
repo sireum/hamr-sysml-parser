@@ -3,7 +3,7 @@
 //
 // Original grammars obtained from:
 //   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-12/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
-//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20240826.9e8a74c/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20250530.c06cb34/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
 
@@ -148,8 +148,6 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_HANDLE:
       case SysMLv2Lexer.K_GUARANTEE:
       case SysMLv2Lexer.K_FUNCTIONS:
-      case SysMLv2Lexer.K__STRICTPURE:
-      case SysMLv2Lexer.K__PURE:
       case SysMLv2Lexer.K_MUT:
       case SysMLv2Lexer.K_INVARIANT:
       case SysMLv2Lexer.K_READS:
@@ -1600,13 +1598,13 @@ ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStateme
 
 ruleInitializeSpecStatement: ruleGuaranteeStatement;
 
-ruleCompute:  'compute' (ruleSlangModifies ';')? ruleSpecStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+ruleCompute:  'compute' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
 
 ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
 
-ruleHandlerClause: 'handle' RULE_ID ':' (ruleSlangModifies ';')? ruleGuaranteeStatement+;
+ruleHandlerClause: 'handle' RULE_ID ':' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)*;
 
-ruleCaseStatementClause: 'case' RULE_ID RULE_STRING_VALUE? ':' ruleAnonAssumeStatement ruleAnonGuaranteeStatement;
+ruleCaseStatementClause: 'case' RULE_ID RULE_STRING_VALUE? ':' ruleAnonAssumeStatement? ruleAnonGuaranteeStatement;
 
 ruleSpecStatement:
   ruleAssumeStatement #ruleSpecStatement1
@@ -1626,15 +1624,7 @@ ruleFunctions: 'functions' ruleFuncSpec+;
 
 ruleFuncSpec: ruleSlangDefDef ';';
 
-ruleSlangDefDecl: 'def' ruleSlangDefMods? ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams? ':' ruleSlangType ruleSlangDefContract?;
-
-ruleSlangDefDef: 'def' ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
-
-ruleSlangDefMods:
-  '@strictpure' #ruleSlangDefMods1
-  | '@pure' #ruleSlangDefMods2;
-
-ruleSlangDefExt: '(' RULE_ID ':' ruleSlangType ')';
+ruleSlangDefDef: 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
 
 ruleSlangDefID: RULE_ID;
 
@@ -1647,10 +1637,6 @@ ruleSlangTypeParams: '[' ruleSlangTypeParam (',' ruleSlangTypeParam)* ']';
 ruleSlangTypeParam: 'mut'? RULE_ID;
 
 ruleSlangDefContract:  (ruleSlangReads ';')? (ruleSlangRequires ';')? (ruleSlangModifies ';')? (ruleSlangEnsures ';')?;
-
-ruleSlangSupr: ruleSlangName ruleSlangTypeArgs?;
-
-ruleSlangName: RULE_ID ('.' RULE_ID)*;
 
 ruleSlangInvariant: 'invariant' ruleOwnedExpression (',' ruleOwnedExpression)*;
 
@@ -1665,8 +1651,6 @@ ruleSlangEnsures: 'guarantee' ruleOwnedExpression (',' ruleOwnedExpression)*;
 ruleSlangType: ruleSlangBaseType;
 
 ruleSlangBaseType: ruleQualifiedName;
-
-ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
 
 ruleExposeVisibilityKind: 'expose';
 
@@ -1808,8 +1792,6 @@ K_INFOFLOW: 'infoflow';
 K_HANDLE: 'handle';
 K_GUARANTEE: 'guarantee';
 K_FUNCTIONS: 'functions';
-K__STRICTPURE: '@strictpure';
-K__PURE: '@pure';
 K_MUT: 'mut';
 K_INVARIANT: 'invariant';
 K_READS: 'reads';

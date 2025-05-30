@@ -8832,16 +8832,6 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFuncSpec(SysMLv2Parser.RuleFuncSpecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangDefDecl}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangDefDecl(SysMLv2Parser.RuleSlangDefDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSlangDefDecl}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangDefDecl(SysMLv2Parser.RuleSlangDefDeclContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangDefDef}.
 	 * @param ctx the parse tree
 	 */
@@ -8851,40 +8841,6 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleSlangDefDef(SysMLv2Parser.RuleSlangDefDefContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ruleSlangDefMods1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleSlangDefMods}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ruleSlangDefMods1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleSlangDefMods}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ruleSlangDefMods2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleSlangDefMods}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ruleSlangDefMods2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleSlangDefMods}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangDefExt}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangDefExt(SysMLv2Parser.RuleSlangDefExtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSlangDefExt}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangDefExt(SysMLv2Parser.RuleSlangDefExtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangDefID}.
 	 * @param ctx the parse tree
@@ -8945,26 +8901,6 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleSlangDefContract(SysMLv2Parser.RuleSlangDefContractContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangSupr}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangSupr(SysMLv2Parser.RuleSlangSuprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSlangSupr}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangSupr(SysMLv2Parser.RuleSlangSuprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangName}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangName(SysMLv2Parser.RuleSlangNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSlangName}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangName(SysMLv2Parser.RuleSlangNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangInvariant}.
 	 * @param ctx the parse tree
@@ -9035,16 +8971,6 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleSlangBaseType(SysMLv2Parser.RuleSlangBaseTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSlangTypeArgs}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleSlangTypeArgs(SysMLv2Parser.RuleSlangTypeArgsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSlangTypeArgs}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleSlangTypeArgs(SysMLv2Parser.RuleSlangTypeArgsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleExposeVisibilityKind}.
 	 * @param ctx the parse tree

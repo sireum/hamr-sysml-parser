@@ -20,8 +20,6 @@ grammar GUMBO;
       case GUMBOLexer.K_GUARANTEE:
       case GUMBOLexer.K_FUNCTIONS:
       case GUMBOLexer.K_DEF:
-      case GUMBOLexer.K__STRICTPURE:
-      case GUMBOLexer.K__PURE:
       case GUMBOLexer.K_MUT:
       case GUMBOLexer.K_INVARIANT:
       case GUMBOLexer.K_READS:
@@ -73,13 +71,13 @@ ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStateme
 
 ruleInitializeSpecStatement: ruleGuaranteeStatement;
 
-ruleCompute:  'compute' (ruleSlangModifies ';')? ruleSpecStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+ruleCompute:  'compute' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
 
 ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
 
-ruleHandlerClause: 'handle' RULE_ID ':' (ruleSlangModifies ';')? ruleGuaranteeStatement+;
+ruleHandlerClause: 'handle' RULE_ID ':' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)*;
 
-ruleCaseStatementClause: 'case' RULE_ID RULE_STRING_VALUE? ':' ruleAnonAssumeStatement ruleAnonGuaranteeStatement;
+ruleCaseStatementClause: 'case' RULE_ID RULE_STRING_VALUE? ':' ruleAnonAssumeStatement? ruleAnonGuaranteeStatement;
 
 ruleSpecStatement:
   ruleAssumeStatement #ruleSpecStatement1
@@ -99,15 +97,7 @@ ruleFunctions: 'functions' ruleFuncSpec+;
 
 ruleFuncSpec: ruleSlangDefDef ';';
 
-ruleSlangDefDecl: 'def' ruleSlangDefMods? ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams? ':' ruleSlangType ruleSlangDefContract?;
-
-ruleSlangDefDef: 'def' ruleSlangDefExt? ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
-
-ruleSlangDefMods:
-  '@strictpure' #ruleSlangDefMods1
-  | '@pure' #ruleSlangDefMods2;
-
-ruleSlangDefExt: '(' RULE_ID ':' ruleSlangType ')';
+ruleSlangDefDef: 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
 
 ruleSlangDefID: RULE_ID;
 
@@ -120,10 +110,6 @@ ruleSlangTypeParams: '[' ruleSlangTypeParam (',' ruleSlangTypeParam)* ']';
 ruleSlangTypeParam: 'mut'? RULE_ID;
 
 ruleSlangDefContract:  (ruleSlangReads ';')? (ruleSlangRequires ';')? (ruleSlangModifies ';')? (ruleSlangEnsures ';')?;
-
-ruleSlangSupr: ruleSlangName ruleSlangTypeArgs?;
-
-ruleSlangName: RULE_ID ('.' RULE_ID)*;
 
 ruleSlangInvariant: 'invariant' ruleOwnedExpression (',' ruleOwnedExpression)*;
 
@@ -138,8 +124,6 @@ ruleSlangEnsures: 'guarantee' ruleOwnedExpression (',' ruleOwnedExpression)*;
 ruleSlangType: ruleSlangBaseType;
 
 ruleSlangBaseType: ruleQualifiedName;
-
-ruleSlangTypeArgs: '[' ruleSlangType (',' ruleSlangType)* ']';
 
 ruleOwnedExpressionMember: ruleOwnedExpression;
 
@@ -400,8 +384,6 @@ K_ASSUME: 'assume';
 K_GUARANTEE: 'guarantee';
 K_FUNCTIONS: 'functions';
 K_DEF: 'def';
-K__STRICTPURE: '@strictpure';
-K__PURE: '@pure';
 K_MUT: 'mut';
 K_INVARIANT: 'invariant';
 K_READS: 'reads';
@@ -439,7 +421,6 @@ OP_COMMA: ',';
 OP_COLON_EQ: ':=';
 OP_EQ_RANGLE: '=>';
 OP_STAR: '*';
-OP_DOT: '.';
 OP_QMARK: '?';
 OP_QMARK_QMARK: '??';
 OP_BAR: '|';
@@ -460,6 +441,7 @@ OP_PERCENT: '%';
 OP_STAR_STAR: '**';
 OP_HAT: '^';
 OP_TILDE: '~';
+OP_DOT: '.';
 OP_HASH: '#';
 OP_MINUS_RANGLE: '->';
 OP_DOT_QMARK: '.?';

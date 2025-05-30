@@ -9749,18 +9749,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleSlangDefDecl(SysMLv2Parser.RuleSlangDefDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangDefDecl(SysMLv2Parser.RuleSlangDefDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterRuleSlangDefDef(SysMLv2Parser.RuleSlangDefDefContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -9768,42 +9756,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleSlangDefDef(SysMLv2Parser.RuleSlangDefDefContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangDefExt(SysMLv2Parser.RuleSlangDefExtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangDefExt(SysMLv2Parser.RuleSlangDefExtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -9876,30 +9828,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleSlangDefContract(SysMLv2Parser.RuleSlangDefContractContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangSupr(SysMLv2Parser.RuleSlangSuprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangSupr(SysMLv2Parser.RuleSlangSuprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangName(SysMLv2Parser.RuleSlangNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangName(SysMLv2Parser.RuleSlangNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -9984,18 +9912,6 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleSlangBaseType(SysMLv2Parser.RuleSlangBaseTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRuleSlangTypeArgs(SysMLv2Parser.RuleSlangTypeArgsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRuleSlangTypeArgs(SysMLv2Parser.RuleSlangTypeArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
