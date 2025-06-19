@@ -2524,175 +2524,175 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleInteraction(KerMLv2Parser.RuleInteractionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlow}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlow}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlow(KerMLv2Parser.RuleItemFlowContext ctx);
+	void enterRuleFlow(KerMLv2Parser.RuleFlowContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlow}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlow}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlow(KerMLv2Parser.RuleItemFlowContext ctx);
+	void exitRuleFlow(KerMLv2Parser.RuleFlowContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleSuccessionItemFlow}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleSuccessionFlow}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleSuccessionItemFlow(KerMLv2Parser.RuleSuccessionItemFlowContext ctx);
+	void enterRuleSuccessionFlow(KerMLv2Parser.RuleSuccessionFlowContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleSuccessionItemFlow}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleSuccessionFlow}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleSuccessionItemFlow(KerMLv2Parser.RuleSuccessionItemFlowContext ctx);
+	void exitRuleSuccessionFlow(KerMLv2Parser.RuleSuccessionFlowContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFlowDeclaration1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowDeclaration}.
+	 * Enter a parse tree produced by the {@code ruleFlowDeclaration1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowDeclaration1(KerMLv2Parser.RuleItemFlowDeclaration1Context ctx);
+	void enterRuleFlowDeclaration1(KerMLv2Parser.RuleFlowDeclaration1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFlowDeclaration1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowDeclaration}.
+	 * Exit a parse tree produced by the {@code ruleFlowDeclaration1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowDeclaration1(KerMLv2Parser.RuleItemFlowDeclaration1Context ctx);
+	void exitRuleFlowDeclaration1(KerMLv2Parser.RuleFlowDeclaration1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFlowDeclaration2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowDeclaration}.
+	 * Enter a parse tree produced by the {@code ruleFlowDeclaration2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowDeclaration2(KerMLv2Parser.RuleItemFlowDeclaration2Context ctx);
+	void enterRuleFlowDeclaration2(KerMLv2Parser.RuleFlowDeclaration2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFlowDeclaration2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowDeclaration}.
+	 * Exit a parse tree produced by the {@code ruleFlowDeclaration2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowDeclaration2(KerMLv2Parser.RuleItemFlowDeclaration2Context ctx);
+	void exitRuleFlowDeclaration2(KerMLv2Parser.RuleFlowDeclaration2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFeatureMember}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#rulePayloadFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeatureMember(KerMLv2Parser.RuleItemFeatureMemberContext ctx);
+	void enterRulePayloadFeatureMember(KerMLv2Parser.RulePayloadFeatureMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFeatureMember}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#rulePayloadFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeatureMember(KerMLv2Parser.RuleItemFeatureMemberContext ctx);
+	void exitRulePayloadFeatureMember(KerMLv2Parser.RulePayloadFeatureMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeature1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeature1}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeature1(KerMLv2Parser.RuleItemFeature1Context ctx);
+	void enterRulePayloadFeature1(KerMLv2Parser.RulePayloadFeature1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeature1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeature1}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeature1(KerMLv2Parser.RuleItemFeature1Context ctx);
+	void exitRulePayloadFeature1(KerMLv2Parser.RulePayloadFeature1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeature2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeature2}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeature2(KerMLv2Parser.RuleItemFeature2Context ctx);
+	void enterRulePayloadFeature2(KerMLv2Parser.RulePayloadFeature2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeature2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeature2}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeature2(KerMLv2Parser.RuleItemFeature2Context ctx);
+	void exitRulePayloadFeature2(KerMLv2Parser.RulePayloadFeature2Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeature3}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeature3}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeature3(KerMLv2Parser.RuleItemFeature3Context ctx);
+	void enterRulePayloadFeature3(KerMLv2Parser.RulePayloadFeature3Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeature3}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeature3}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeature3(KerMLv2Parser.RuleItemFeature3Context ctx);
+	void exitRulePayloadFeature3(KerMLv2Parser.RulePayloadFeature3Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeature4}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeature4}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeature4(KerMLv2Parser.RuleItemFeature4Context ctx);
+	void enterRulePayloadFeature4(KerMLv2Parser.RulePayloadFeature4Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeature4}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeature}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeature4}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeature4(KerMLv2Parser.RuleItemFeature4Context ctx);
+	void exitRulePayloadFeature4(KerMLv2Parser.RulePayloadFeature4Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeatureSpecializationPart1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeatureSpecializationPart}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeatureSpecializationPart1}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeatureSpecializationPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeatureSpecializationPart1(KerMLv2Parser.RuleItemFeatureSpecializationPart1Context ctx);
+	void enterRulePayloadFeatureSpecializationPart1(KerMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeatureSpecializationPart1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeatureSpecializationPart}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeatureSpecializationPart1}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeatureSpecializationPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeatureSpecializationPart1(KerMLv2Parser.RuleItemFeatureSpecializationPart1Context ctx);
+	void exitRulePayloadFeatureSpecializationPart1(KerMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFeatureSpecializationPart2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeatureSpecializationPart}.
+	 * Enter a parse tree produced by the {@code rulePayloadFeatureSpecializationPart2}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeatureSpecializationPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeatureSpecializationPart2(KerMLv2Parser.RuleItemFeatureSpecializationPart2Context ctx);
+	void enterRulePayloadFeatureSpecializationPart2(KerMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFeatureSpecializationPart2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFeatureSpecializationPart}.
+	 * Exit a parse tree produced by the {@code rulePayloadFeatureSpecializationPart2}
+	 * labeled alternative in {@link KerMLv2Parser#rulePayloadFeatureSpecializationPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeatureSpecializationPart2(KerMLv2Parser.RuleItemFeatureSpecializationPart2Context ctx);
+	void exitRulePayloadFeatureSpecializationPart2(KerMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlowEndMember}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlowEndMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowEndMember(KerMLv2Parser.RuleItemFlowEndMemberContext ctx);
+	void enterRuleFlowEndMember(KerMLv2Parser.RuleFlowEndMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlowEndMember}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlowEndMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowEndMember(KerMLv2Parser.RuleItemFlowEndMemberContext ctx);
+	void exitRuleFlowEndMember(KerMLv2Parser.RuleFlowEndMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlowEnd}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlowEnd}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowEnd(KerMLv2Parser.RuleItemFlowEndContext ctx);
+	void enterRuleFlowEnd(KerMLv2Parser.RuleFlowEndContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlowEnd}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlowEnd}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowEnd(KerMLv2Parser.RuleItemFlowEndContext ctx);
+	void exitRuleFlowEnd(KerMLv2Parser.RuleFlowEndContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFlowEndSubsetting1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowEndSubsetting}.
+	 * Enter a parse tree produced by the {@code ruleFlowEndSubsetting1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowEndSubsetting}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowEndSubsetting1(KerMLv2Parser.RuleItemFlowEndSubsetting1Context ctx);
+	void enterRuleFlowEndSubsetting1(KerMLv2Parser.RuleFlowEndSubsetting1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFlowEndSubsetting1}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowEndSubsetting}.
+	 * Exit a parse tree produced by the {@code ruleFlowEndSubsetting1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowEndSubsetting}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowEndSubsetting1(KerMLv2Parser.RuleItemFlowEndSubsetting1Context ctx);
+	void exitRuleFlowEndSubsetting1(KerMLv2Parser.RuleFlowEndSubsetting1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleItemFlowEndSubsetting2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowEndSubsetting}.
+	 * Enter a parse tree produced by the {@code ruleFlowEndSubsetting2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowEndSubsetting}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowEndSubsetting2(KerMLv2Parser.RuleItemFlowEndSubsetting2Context ctx);
+	void enterRuleFlowEndSubsetting2(KerMLv2Parser.RuleFlowEndSubsetting2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleItemFlowEndSubsetting2}
-	 * labeled alternative in {@link KerMLv2Parser#ruleItemFlowEndSubsetting}.
+	 * Exit a parse tree produced by the {@code ruleFlowEndSubsetting2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleFlowEndSubsetting}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowEndSubsetting2(KerMLv2Parser.RuleItemFlowEndSubsetting2Context ctx);
+	void exitRuleFlowEndSubsetting2(KerMLv2Parser.RuleFlowEndSubsetting2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFeatureChainPrefix}.
 	 * @param ctx the parse tree
@@ -2704,35 +2704,35 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFeatureChainPrefix(KerMLv2Parser.RuleFeatureChainPrefixContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlowFeatureMember}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlowFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowFeatureMember(KerMLv2Parser.RuleItemFlowFeatureMemberContext ctx);
+	void enterRuleFlowFeatureMember(KerMLv2Parser.RuleFlowFeatureMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlowFeatureMember}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlowFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowFeatureMember(KerMLv2Parser.RuleItemFlowFeatureMemberContext ctx);
+	void exitRuleFlowFeatureMember(KerMLv2Parser.RuleFlowFeatureMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlowFeature}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlowFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowFeature(KerMLv2Parser.RuleItemFlowFeatureContext ctx);
+	void enterRuleFlowFeature(KerMLv2Parser.RuleFlowFeatureContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlowFeature}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlowFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowFeature(KerMLv2Parser.RuleItemFlowFeatureContext ctx);
+	void exitRuleFlowFeature(KerMLv2Parser.RuleFlowFeatureContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleItemFlowRedefinition}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFlowRedefinition}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFlowRedefinition(KerMLv2Parser.RuleItemFlowRedefinitionContext ctx);
+	void enterRuleFlowRedefinition(KerMLv2Parser.RuleFlowRedefinitionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleItemFlowRedefinition}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleFlowRedefinition}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFlowRedefinition(KerMLv2Parser.RuleItemFlowRedefinitionContext ctx);
+	void exitRuleFlowRedefinition(KerMLv2Parser.RuleFlowRedefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleMetaclass}.
 	 * @param ctx the parse tree
@@ -3728,6 +3728,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFeatureChainMember2(KerMLv2Parser.RuleFeatureChainMember2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedFeatureChain}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedFeatureChain}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ruleBaseExpression1}
 	 * labeled alternative in {@link KerMLv2Parser#ruleBaseExpression}.
 	 * @param ctx the parse tree
@@ -3812,6 +3822,18 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleBaseExpression7(KerMLv2Parser.RuleBaseExpression7Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleBaseExpression8}
+	 * labeled alternative in {@link KerMLv2Parser#ruleBaseExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleBaseExpression8(KerMLv2Parser.RuleBaseExpression8Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleBaseExpression8}
+	 * labeled alternative in {@link KerMLv2Parser#ruleBaseExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleBaseExpression8(KerMLv2Parser.RuleBaseExpression8Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleBodyExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -3882,6 +3904,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleMetadataAccessExpression(KerMLv2Parser.RuleMetadataAccessExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleElementReferenceMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleElementReferenceMember(KerMLv2Parser.RuleElementReferenceMemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleElementReferenceMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleElementReferenceMember(KerMLv2Parser.RuleElementReferenceMemberContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleInvocationExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -3892,15 +3924,59 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleInvocationExpression(KerMLv2Parser.RuleInvocationExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleOwnedFeatureChain}.
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleConstructorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	void enterRuleConstructorExpression(KerMLv2Parser.RuleConstructorExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleOwnedFeatureChain}.
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleConstructorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	void exitRuleConstructorExpression(KerMLv2Parser.RuleConstructorExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleConstructorResultMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleConstructorResultMember(KerMLv2Parser.RuleConstructorResultMemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleConstructorResultMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleConstructorResultMember(KerMLv2Parser.RuleConstructorResultMemberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleConstructorResult}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleConstructorResult(KerMLv2Parser.RuleConstructorResultContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleConstructorResult}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleConstructorResult(KerMLv2Parser.RuleConstructorResultContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleInstantiatedTypeMember1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleInstantiatedTypeMember1(KerMLv2Parser.RuleInstantiatedTypeMember1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleInstantiatedTypeMember1}
+	 * labeled alternative in {@link KerMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleInstantiatedTypeMember1(KerMLv2Parser.RuleInstantiatedTypeMember1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleInstantiatedTypeMember2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleInstantiatedTypeMember2(KerMLv2Parser.RuleInstantiatedTypeMember2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleInstantiatedTypeMember2}
+	 * labeled alternative in {@link KerMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleInstantiatedTypeMember2(KerMLv2Parser.RuleInstantiatedTypeMember2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleFeatureChain}.
 	 * @param ctx the parse tree
@@ -4203,6 +4279,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleName2(KerMLv2Parser.RuleName2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleGlobalQualification}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleGlobalQualification(KerMLv2Parser.RuleGlobalQualificationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleGlobalQualification}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleGlobalQualification(KerMLv2Parser.RuleGlobalQualificationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleQualification}.
 	 * @param ctx the parse tree

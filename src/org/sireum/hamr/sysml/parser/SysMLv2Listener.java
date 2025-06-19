@@ -1392,6 +1392,30 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFeatureTyping2(SysMLv2Parser.RuleFeatureTyping2Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleOwnedFeatureTyping1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedFeatureTyping1(SysMLv2Parser.RuleOwnedFeatureTyping1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleOwnedFeatureTyping1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedFeatureTyping1(SysMLv2Parser.RuleOwnedFeatureTyping1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleOwnedFeatureTyping2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedFeatureTyping2(SysMLv2Parser.RuleOwnedFeatureTyping2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleOwnedFeatureTyping2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedFeatureTyping2(SysMLv2Parser.RuleOwnedFeatureTyping2Context ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ruleOwnedSubsetting1}
 	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedSubsetting}.
 	 * @param ctx the parse tree
@@ -2898,25 +2922,25 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleIndividualDefinition(SysMLv2Parser.RuleIndividualDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleLifeClassMembership}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleEmptyMultiplicityMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleLifeClassMembership(SysMLv2Parser.RuleLifeClassMembershipContext ctx);
+	void enterRuleEmptyMultiplicityMember(SysMLv2Parser.RuleEmptyMultiplicityMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleLifeClassMembership}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleEmptyMultiplicityMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleLifeClassMembership(SysMLv2Parser.RuleLifeClassMembershipContext ctx);
+	void exitRuleEmptyMultiplicityMember(SysMLv2Parser.RuleEmptyMultiplicityMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleLifeClass}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleEmptyMultiplicity}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleLifeClass(SysMLv2Parser.RuleLifeClassContext ctx);
+	void enterRuleEmptyMultiplicity(SysMLv2Parser.RuleEmptyMultiplicityContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleLifeClass}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleEmptyMultiplicity}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleLifeClass(SysMLv2Parser.RuleLifeClassContext ctx);
+	void exitRuleEmptyMultiplicity(SysMLv2Parser.RuleEmptyMultiplicityContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleOccurrenceUsageKeyword}.
 	 * @param ctx the parse tree
@@ -3886,35 +3910,35 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleAllocationUsageDeclaration2(SysMLv2Parser.RuleAllocationUsageDeclaration2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionKeyword}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx);
+	void enterRuleFlowKeyword(SysMLv2Parser.RuleFlowKeywordContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionKeyword}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionKeyword(SysMLv2Parser.RuleFlowConnectionKeywordContext ctx);
+	void exitRuleFlowKeyword(SysMLv2Parser.RuleFlowKeywordContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionDefKeyword}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowDefKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx);
+	void enterRuleFlowDefKeyword(SysMLv2Parser.RuleFlowDefKeywordContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionDefKeyword}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowDefKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionDefKeyword(SysMLv2Parser.RuleFlowConnectionDefKeywordContext ctx);
+	void exitRuleFlowDefKeyword(SysMLv2Parser.RuleFlowDefKeywordContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionDefinition}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowDefinition}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx);
+	void enterRuleFlowDefinition(SysMLv2Parser.RuleFlowDefinitionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionDefinition}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowDefinition}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionDefinition(SysMLv2Parser.RuleFlowConnectionDefinitionContext ctx);
+	void exitRuleFlowDefinition(SysMLv2Parser.RuleFlowDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleMessageKeyword}.
 	 * @param ctx the parse tree
@@ -3980,127 +4004,127 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleMessageEvent(SysMLv2Parser.RuleMessageEventContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionUsage}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFlowUsage}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx);
+	void enterRuleFlowUsage(SysMLv2Parser.RuleFlowUsageContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowConnectionUsage}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleFlowUsage}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionUsage(SysMLv2Parser.RuleFlowConnectionUsageContext ctx);
+	void exitRuleFlowUsage(SysMLv2Parser.RuleFlowUsageContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowConnectionKeyword}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx);
+	void enterRuleSuccessionFlowKeyword(SysMLv2Parser.RuleSuccessionFlowKeywordContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowConnectionKeyword}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowKeyword}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleSuccessionFlowConnectionKeyword(SysMLv2Parser.RuleSuccessionFlowConnectionKeywordContext ctx);
+	void exitRuleSuccessionFlowKeyword(SysMLv2Parser.RuleSuccessionFlowKeywordContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowConnectionUsage}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowUsage}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx);
+	void enterRuleSuccessionFlowUsage(SysMLv2Parser.RuleSuccessionFlowUsageContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowConnectionUsage}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSuccessionFlowUsage}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleSuccessionFlowConnectionUsage(SysMLv2Parser.RuleSuccessionFlowConnectionUsageContext ctx);
+	void exitRuleSuccessionFlowUsage(SysMLv2Parser.RuleSuccessionFlowUsageContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleFlowConnectionDeclaration1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleFlowConnectionDeclaration}.
+	 * Enter a parse tree produced by the {@code ruleFlowDeclaration1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx);
+	void enterRuleFlowDeclaration1(SysMLv2Parser.RuleFlowDeclaration1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleFlowConnectionDeclaration1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleFlowConnectionDeclaration}.
+	 * Exit a parse tree produced by the {@code ruleFlowDeclaration1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionDeclaration1(SysMLv2Parser.RuleFlowConnectionDeclaration1Context ctx);
+	void exitRuleFlowDeclaration1(SysMLv2Parser.RuleFlowDeclaration1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleFlowConnectionDeclaration2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleFlowConnectionDeclaration}.
+	 * Enter a parse tree produced by the {@code ruleFlowDeclaration2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx);
+	void enterRuleFlowDeclaration2(SysMLv2Parser.RuleFlowDeclaration2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleFlowConnectionDeclaration2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleFlowConnectionDeclaration}.
+	 * Exit a parse tree produced by the {@code ruleFlowDeclaration2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleFlowDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleFlowConnectionDeclaration2(SysMLv2Parser.RuleFlowConnectionDeclaration2Context ctx);
+	void exitRuleFlowDeclaration2(SysMLv2Parser.RuleFlowDeclaration2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleItemFeatureMember}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#rulePayloadFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx);
+	void enterRulePayloadFeatureMember(SysMLv2Parser.RulePayloadFeatureMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleItemFeatureMember}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#rulePayloadFeatureMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeatureMember(SysMLv2Parser.RuleItemFeatureMemberContext ctx);
+	void exitRulePayloadFeatureMember(SysMLv2Parser.RulePayloadFeatureMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleItemFeature}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx);
+	void enterRulePayloadFeature(SysMLv2Parser.RulePayloadFeatureContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleItemFeature}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#rulePayloadFeature}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleItemFeature(SysMLv2Parser.RuleItemFeatureContext ctx);
+	void exitRulePayloadFeature(SysMLv2Parser.RulePayloadFeatureContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code rulePayloadFeature1}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Enter a parse tree produced by the {@code rulePayload1}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void enterRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx);
+	void enterRulePayload1(SysMLv2Parser.RulePayload1Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code rulePayloadFeature1}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Exit a parse tree produced by the {@code rulePayload1}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void exitRulePayloadFeature1(SysMLv2Parser.RulePayloadFeature1Context ctx);
+	void exitRulePayload1(SysMLv2Parser.RulePayload1Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code rulePayloadFeature2}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Enter a parse tree produced by the {@code rulePayload2}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void enterRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx);
+	void enterRulePayload2(SysMLv2Parser.RulePayload2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code rulePayloadFeature2}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Exit a parse tree produced by the {@code rulePayload2}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void exitRulePayloadFeature2(SysMLv2Parser.RulePayloadFeature2Context ctx);
+	void exitRulePayload2(SysMLv2Parser.RulePayload2Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code rulePayloadFeature3}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Enter a parse tree produced by the {@code rulePayload3}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void enterRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx);
+	void enterRulePayload3(SysMLv2Parser.RulePayload3Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code rulePayloadFeature3}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Exit a parse tree produced by the {@code rulePayload3}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void exitRulePayloadFeature3(SysMLv2Parser.RulePayloadFeature3Context ctx);
+	void exitRulePayload3(SysMLv2Parser.RulePayload3Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code rulePayloadFeature4}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Enter a parse tree produced by the {@code rulePayload4}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void enterRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx);
+	void enterRulePayload4(SysMLv2Parser.RulePayload4Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code rulePayloadFeature4}
-	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeature}.
+	 * Exit a parse tree produced by the {@code rulePayload4}
+	 * labeled alternative in {@link SysMLv2Parser#rulePayload}.
 	 * @param ctx the parse tree
 	 */
-	void exitRulePayloadFeature4(SysMLv2Parser.RulePayloadFeature4Context ctx);
+	void exitRulePayload4(SysMLv2Parser.RulePayload4Context ctx);
 	/**
 	 * Enter a parse tree produced by the {@code rulePayloadFeatureSpecializationPart1}
 	 * labeled alternative in {@link SysMLv2Parser#rulePayloadFeatureSpecializationPart}.
@@ -4770,6 +4794,30 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleSendNodeDeclaration(SysMLv2Parser.RuleSendNodeDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleSenderReceiverPart1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSenderReceiverPart}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSenderReceiverPart1(SysMLv2Parser.RuleSenderReceiverPart1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSenderReceiverPart1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSenderReceiverPart}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSenderReceiverPart1(SysMLv2Parser.RuleSenderReceiverPart1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSenderReceiverPart2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSenderReceiverPart}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSenderReceiverPart2(SysMLv2Parser.RuleSenderReceiverPart2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSenderReceiverPart2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSenderReceiverPart}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSenderReceiverPart2(SysMLv2Parser.RuleSenderReceiverPart2Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleNodeParameterMember}.
 	 * @param ctx the parse tree
 	 */
@@ -5087,30 +5135,6 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleForkNode(SysMLv2Parser.RuleForkNodeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ruleActionNodeBody1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleActionNodeBody}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleActionNodeBody1(SysMLv2Parser.RuleActionNodeBody1Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ruleActionNodeBody1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleActionNodeBody}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleActionNodeBody1(SysMLv2Parser.RuleActionNodeBody1Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ruleActionNodeBody2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleActionNodeBody}.
-	 * @param ctx the parse tree
-	 */
-	void enterRuleActionNodeBody2(SysMLv2Parser.RuleActionNodeBody2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ruleActionNodeBody2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleActionNodeBody}.
-	 * @param ctx the parse tree
-	 */
-	void exitRuleActionNodeBody2(SysMLv2Parser.RuleActionNodeBody2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleEmptyParameterMember}.
 	 * @param ctx the parse tree
@@ -7898,6 +7922,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleFeatureChainMember2(SysMLv2Parser.RuleFeatureChainMember2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleOwnedFeatureChain}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleOwnedFeatureChain(SysMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleOwnedFeatureChain}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleOwnedFeatureChain(SysMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ruleBaseExpression1}
 	 * labeled alternative in {@link SysMLv2Parser#ruleBaseExpression}.
 	 * @param ctx the parse tree
@@ -7982,6 +8016,18 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleBaseExpression7(SysMLv2Parser.RuleBaseExpression7Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ruleBaseExpression8}
+	 * labeled alternative in {@link SysMLv2Parser#ruleBaseExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleBaseExpression8(SysMLv2Parser.RuleBaseExpression8Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleBaseExpression8}
+	 * labeled alternative in {@link SysMLv2Parser#ruleBaseExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleBaseExpression8(SysMLv2Parser.RuleBaseExpression8Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleBodyExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -8052,6 +8098,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleMetadataAccessExpression(SysMLv2Parser.RuleMetadataAccessExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleElementReferenceMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleElementReferenceMember(SysMLv2Parser.RuleElementReferenceMemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleElementReferenceMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleElementReferenceMember(SysMLv2Parser.RuleElementReferenceMemberContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleInvocationExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -8062,39 +8118,59 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleInvocationExpression(SysMLv2Parser.RuleInvocationExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleOwnedFeatureTyping1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleConstructorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleOwnedFeatureTyping1(SysMLv2Parser.RuleOwnedFeatureTyping1Context ctx);
+	void enterRuleConstructorExpression(SysMLv2Parser.RuleConstructorExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleOwnedFeatureTyping1}
-	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleConstructorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleOwnedFeatureTyping1(SysMLv2Parser.RuleOwnedFeatureTyping1Context ctx);
+	void exitRuleConstructorExpression(SysMLv2Parser.RuleConstructorExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ruleOwnedFeatureTyping2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleConstructorResultMember}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleOwnedFeatureTyping2(SysMLv2Parser.RuleOwnedFeatureTyping2Context ctx);
+	void enterRuleConstructorResultMember(SysMLv2Parser.RuleConstructorResultMemberContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ruleOwnedFeatureTyping2}
-	 * labeled alternative in {@link SysMLv2Parser#ruleOwnedFeatureTyping}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleConstructorResultMember}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleOwnedFeatureTyping2(SysMLv2Parser.RuleOwnedFeatureTyping2Context ctx);
+	void exitRuleConstructorResultMember(SysMLv2Parser.RuleConstructorResultMemberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleOwnedFeatureChain}.
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleConstructorResult}.
 	 * @param ctx the parse tree
 	 */
-	void enterRuleOwnedFeatureChain(SysMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	void enterRuleConstructorResult(SysMLv2Parser.RuleConstructorResultContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleOwnedFeatureChain}.
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleConstructorResult}.
 	 * @param ctx the parse tree
 	 */
-	void exitRuleOwnedFeatureChain(SysMLv2Parser.RuleOwnedFeatureChainContext ctx);
+	void exitRuleConstructorResult(SysMLv2Parser.RuleConstructorResultContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleInstantiatedTypeMember1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleInstantiatedTypeMember1(SysMLv2Parser.RuleInstantiatedTypeMember1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleInstantiatedTypeMember1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleInstantiatedTypeMember1(SysMLv2Parser.RuleInstantiatedTypeMember1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleInstantiatedTypeMember2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleInstantiatedTypeMember2(SysMLv2Parser.RuleInstantiatedTypeMember2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleInstantiatedTypeMember2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleInstantiatedTypeMember}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleInstantiatedTypeMember2(SysMLv2Parser.RuleInstantiatedTypeMember2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleFeatureChain}.
 	 * @param ctx the parse tree
@@ -8397,6 +8473,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRuleName2(SysMLv2Parser.RuleName2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleGlobalQualification}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleGlobalQualification(SysMLv2Parser.RuleGlobalQualificationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleGlobalQualification}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleGlobalQualification(SysMLv2Parser.RuleGlobalQualificationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleQualification}.
 	 * @param ctx the parse tree

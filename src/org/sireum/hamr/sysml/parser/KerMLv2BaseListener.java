@@ -2753,181 +2753,181 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlow(KerMLv2Parser.RuleItemFlowContext ctx) { }
+	@Override public void enterRuleFlow(KerMLv2Parser.RuleFlowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlow(KerMLv2Parser.RuleItemFlowContext ctx) { }
+	@Override public void exitRuleFlow(KerMLv2Parser.RuleFlowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleSuccessionItemFlow(KerMLv2Parser.RuleSuccessionItemFlowContext ctx) { }
+	@Override public void enterRuleSuccessionFlow(KerMLv2Parser.RuleSuccessionFlowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleSuccessionItemFlow(KerMLv2Parser.RuleSuccessionItemFlowContext ctx) { }
+	@Override public void exitRuleSuccessionFlow(KerMLv2Parser.RuleSuccessionFlowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowDeclaration1(KerMLv2Parser.RuleItemFlowDeclaration1Context ctx) { }
+	@Override public void enterRuleFlowDeclaration1(KerMLv2Parser.RuleFlowDeclaration1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowDeclaration1(KerMLv2Parser.RuleItemFlowDeclaration1Context ctx) { }
+	@Override public void exitRuleFlowDeclaration1(KerMLv2Parser.RuleFlowDeclaration1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowDeclaration2(KerMLv2Parser.RuleItemFlowDeclaration2Context ctx) { }
+	@Override public void enterRuleFlowDeclaration2(KerMLv2Parser.RuleFlowDeclaration2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowDeclaration2(KerMLv2Parser.RuleItemFlowDeclaration2Context ctx) { }
+	@Override public void exitRuleFlowDeclaration2(KerMLv2Parser.RuleFlowDeclaration2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeatureMember(KerMLv2Parser.RuleItemFeatureMemberContext ctx) { }
+	@Override public void enterRulePayloadFeatureMember(KerMLv2Parser.RulePayloadFeatureMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeatureMember(KerMLv2Parser.RuleItemFeatureMemberContext ctx) { }
+	@Override public void exitRulePayloadFeatureMember(KerMLv2Parser.RulePayloadFeatureMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeature1(KerMLv2Parser.RuleItemFeature1Context ctx) { }
+	@Override public void enterRulePayloadFeature1(KerMLv2Parser.RulePayloadFeature1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeature1(KerMLv2Parser.RuleItemFeature1Context ctx) { }
+	@Override public void exitRulePayloadFeature1(KerMLv2Parser.RulePayloadFeature1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeature2(KerMLv2Parser.RuleItemFeature2Context ctx) { }
+	@Override public void enterRulePayloadFeature2(KerMLv2Parser.RulePayloadFeature2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeature2(KerMLv2Parser.RuleItemFeature2Context ctx) { }
+	@Override public void exitRulePayloadFeature2(KerMLv2Parser.RulePayloadFeature2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeature3(KerMLv2Parser.RuleItemFeature3Context ctx) { }
+	@Override public void enterRulePayloadFeature3(KerMLv2Parser.RulePayloadFeature3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeature3(KerMLv2Parser.RuleItemFeature3Context ctx) { }
+	@Override public void exitRulePayloadFeature3(KerMLv2Parser.RulePayloadFeature3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeature4(KerMLv2Parser.RuleItemFeature4Context ctx) { }
+	@Override public void enterRulePayloadFeature4(KerMLv2Parser.RulePayloadFeature4Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeature4(KerMLv2Parser.RuleItemFeature4Context ctx) { }
+	@Override public void exitRulePayloadFeature4(KerMLv2Parser.RulePayloadFeature4Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeatureSpecializationPart1(KerMLv2Parser.RuleItemFeatureSpecializationPart1Context ctx) { }
+	@Override public void enterRulePayloadFeatureSpecializationPart1(KerMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeatureSpecializationPart1(KerMLv2Parser.RuleItemFeatureSpecializationPart1Context ctx) { }
+	@Override public void exitRulePayloadFeatureSpecializationPart1(KerMLv2Parser.RulePayloadFeatureSpecializationPart1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFeatureSpecializationPart2(KerMLv2Parser.RuleItemFeatureSpecializationPart2Context ctx) { }
+	@Override public void enterRulePayloadFeatureSpecializationPart2(KerMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFeatureSpecializationPart2(KerMLv2Parser.RuleItemFeatureSpecializationPart2Context ctx) { }
+	@Override public void exitRulePayloadFeatureSpecializationPart2(KerMLv2Parser.RulePayloadFeatureSpecializationPart2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowEndMember(KerMLv2Parser.RuleItemFlowEndMemberContext ctx) { }
+	@Override public void enterRuleFlowEndMember(KerMLv2Parser.RuleFlowEndMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowEndMember(KerMLv2Parser.RuleItemFlowEndMemberContext ctx) { }
+	@Override public void exitRuleFlowEndMember(KerMLv2Parser.RuleFlowEndMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowEnd(KerMLv2Parser.RuleItemFlowEndContext ctx) { }
+	@Override public void enterRuleFlowEnd(KerMLv2Parser.RuleFlowEndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowEnd(KerMLv2Parser.RuleItemFlowEndContext ctx) { }
+	@Override public void exitRuleFlowEnd(KerMLv2Parser.RuleFlowEndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowEndSubsetting1(KerMLv2Parser.RuleItemFlowEndSubsetting1Context ctx) { }
+	@Override public void enterRuleFlowEndSubsetting1(KerMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowEndSubsetting1(KerMLv2Parser.RuleItemFlowEndSubsetting1Context ctx) { }
+	@Override public void exitRuleFlowEndSubsetting1(KerMLv2Parser.RuleFlowEndSubsetting1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowEndSubsetting2(KerMLv2Parser.RuleItemFlowEndSubsetting2Context ctx) { }
+	@Override public void enterRuleFlowEndSubsetting2(KerMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowEndSubsetting2(KerMLv2Parser.RuleItemFlowEndSubsetting2Context ctx) { }
+	@Override public void exitRuleFlowEndSubsetting2(KerMLv2Parser.RuleFlowEndSubsetting2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2945,37 +2945,37 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowFeatureMember(KerMLv2Parser.RuleItemFlowFeatureMemberContext ctx) { }
+	@Override public void enterRuleFlowFeatureMember(KerMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowFeatureMember(KerMLv2Parser.RuleItemFlowFeatureMemberContext ctx) { }
+	@Override public void exitRuleFlowFeatureMember(KerMLv2Parser.RuleFlowFeatureMemberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowFeature(KerMLv2Parser.RuleItemFlowFeatureContext ctx) { }
+	@Override public void enterRuleFlowFeature(KerMLv2Parser.RuleFlowFeatureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowFeature(KerMLv2Parser.RuleItemFlowFeatureContext ctx) { }
+	@Override public void exitRuleFlowFeature(KerMLv2Parser.RuleFlowFeatureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleItemFlowRedefinition(KerMLv2Parser.RuleItemFlowRedefinitionContext ctx) { }
+	@Override public void enterRuleFlowRedefinition(KerMLv2Parser.RuleFlowRedefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleItemFlowRedefinition(KerMLv2Parser.RuleItemFlowRedefinitionContext ctx) { }
+	@Override public void exitRuleFlowRedefinition(KerMLv2Parser.RuleFlowRedefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -4085,6 +4085,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleBaseExpression1(KerMLv2Parser.RuleBaseExpression1Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -4164,6 +4176,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleBaseExpression7(KerMLv2Parser.RuleBaseExpression7Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleBaseExpression8(KerMLv2Parser.RuleBaseExpression8Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleBaseExpression8(KerMLv2Parser.RuleBaseExpression8Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -4253,6 +4277,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleElementReferenceMember(KerMLv2Parser.RuleElementReferenceMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleElementReferenceMember(KerMLv2Parser.RuleElementReferenceMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleInvocationExpression(KerMLv2Parser.RuleInvocationExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -4265,13 +4301,61 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx) { }
+	@Override public void enterRuleConstructorExpression(KerMLv2Parser.RuleConstructorExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRuleOwnedFeatureChain(KerMLv2Parser.RuleOwnedFeatureChainContext ctx) { }
+	@Override public void exitRuleConstructorExpression(KerMLv2Parser.RuleConstructorExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleConstructorResultMember(KerMLv2Parser.RuleConstructorResultMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleConstructorResultMember(KerMLv2Parser.RuleConstructorResultMemberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleConstructorResult(KerMLv2Parser.RuleConstructorResultContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleConstructorResult(KerMLv2Parser.RuleConstructorResultContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleInstantiatedTypeMember1(KerMLv2Parser.RuleInstantiatedTypeMember1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleInstantiatedTypeMember1(KerMLv2Parser.RuleInstantiatedTypeMember1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleInstantiatedTypeMember2(KerMLv2Parser.RuleInstantiatedTypeMember2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleInstantiatedTypeMember2(KerMLv2Parser.RuleInstantiatedTypeMember2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -4608,6 +4692,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRuleName2(KerMLv2Parser.RuleName2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleGlobalQualification(KerMLv2Parser.RuleGlobalQualificationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleGlobalQualification(KerMLv2Parser.RuleGlobalQualificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -38,6 +38,7 @@ grammar GUMBO;
       case GUMBOLexer.K_ALL:
       case GUMBOLexer.K_IN:
       case GUMBOLexer.K_METADATA:
+      case GUMBOLexer.K_NEW:
       case GUMBOLexer.K_NULL:
       case GUMBOLexer.K_TRUE:
       case GUMBOLexer.K_FALSE:
@@ -203,7 +204,7 @@ ruleCastOperator: 'as';
 
 ruleMetaCastOperator: 'meta';
 
-ruleMetadataReference: ruleQualifiedName;
+ruleMetadataReference: ruleElementReferenceMember;
 
 ruleTypeReferenceMember: ruleTypeReference;
 
@@ -262,7 +263,7 @@ ruleExtentExpression:
    'all' ruleTypeResultMember #ruleExtentExpression1
   | rulePrimaryExpression #ruleExtentExpression2;
 
-rulePrimaryExpression: ruleBaseExpression ( '.' ruleFeatureChainMember)? (( '#' '(' ruleSequenceExpression ')' |  '[' ruleSequenceExpression ']' |  '->' ruleReferenceTyping (ruleBodyExpression | ruleFunctionReferenceExpression | ruleArgumentList) |  '.' ruleBodyExpression |  '.?' ruleBodyExpression) ( '.' ruleFeatureChainMember)?)*;
+rulePrimaryExpression: ruleBaseExpression ( '.' ruleFeatureChainMember)? (( '#' '(' ruleSequenceExpression ')' |  '[' ruleSequenceExpression ']' |  '->' ruleInstantiatedTypeMember (ruleBodyExpression | ruleFunctionReferenceExpression | ruleArgumentList) |  '.' ruleBodyExpression |  '.?' ruleBodyExpression) ( '.' ruleFeatureChainMember)?)*;
 
 ruleFunctionReferenceExpression: ruleFunctionReferenceMember;
 
@@ -274,14 +275,17 @@ ruleFeatureChainMember:
   ruleQualifiedName #ruleFeatureChainMember1
   |  ruleOwnedFeatureChain #ruleFeatureChainMember2;
 
+ruleOwnedFeatureChain: ruleFeatureChain;
+
 ruleBaseExpression:
   ruleNullExpression #ruleBaseExpression1
   | ruleLiteralExpression #ruleBaseExpression2
   | ruleFeatureReferenceExpression #ruleBaseExpression3
   | ruleMetadataAccessExpression #ruleBaseExpression4
   | ruleInvocationExpression #ruleBaseExpression5
-  | ruleBodyExpression #ruleBaseExpression6
-  | '(' ruleSequenceExpression ')' #ruleBaseExpression7;
+  | ruleConstructorExpression #ruleBaseExpression6
+  | ruleBodyExpression #ruleBaseExpression7
+  | '(' ruleSequenceExpression ')' #ruleBaseExpression8;
 
 ruleBodyExpression: ruleExpressionBodyMember;
 
@@ -301,15 +305,21 @@ ruleFeatureReferenceExpression: ruleFeatureReferenceMember;
 
 ruleFeatureReferenceMember: ruleQualifiedName;
 
-ruleMetadataAccessExpression: ruleQualifiedName '.' 'metadata';
+ruleMetadataAccessExpression: ruleElementReferenceMember '.' 'metadata';
 
-ruleInvocationExpression: ruleOwnedFeatureTyping ruleArgumentList;
+ruleElementReferenceMember: ruleQualifiedName;
 
-ruleOwnedFeatureTyping:
-  ruleQualifiedName #ruleOwnedFeatureTyping1
-  | ruleOwnedFeatureChain #ruleOwnedFeatureTyping2;
+ruleInvocationExpression: ruleInstantiatedTypeMember ruleArgumentList;
 
-ruleOwnedFeatureChain: ruleFeatureChain;
+ruleConstructorExpression: 'new' ruleInstantiatedTypeMember ruleConstructorResultMember;
+
+ruleConstructorResultMember: ruleConstructorResult;
+
+ruleConstructorResult: ruleArgumentList;
+
+ruleInstantiatedTypeMember:
+  ruleQualifiedName #ruleInstantiatedTypeMember1
+  |  ruleOwnedFeatureChain #ruleInstantiatedTypeMember2;
 
 ruleFeatureChain: ruleOwnedFeatureChaining ('.' ruleOwnedFeatureChaining)+;
 
@@ -364,9 +374,11 @@ ruleName:
   RULE_ID #ruleName1
   | RULE_UNRESTRICTED_NAME #ruleName2;
 
+ruleGlobalQualification: '$' '::';
+
 ruleQualification: (ruleName '::')+;
 
-ruleQualifiedName: ruleQualification? ruleName;
+ruleQualifiedName: ruleGlobalQualification? ruleQualification? ruleName;
 
 K_STATE: 'state';
 K_INVARIANTS: 'invariants';
@@ -402,6 +414,7 @@ K_NOT: 'not';
 K_ALL: 'all';
 K_IN: 'in';
 K_METADATA: 'metadata';
+K_NEW: 'new';
 K_NULL: 'null';
 K_TRUE: 'true';
 K_FALSE: 'false';
@@ -446,6 +459,7 @@ OP_HASH: '#';
 OP_MINUS_RANGLE: '->';
 OP_DOT_QMARK: '.?';
 OP_EQ: '=';
+OP_DOLLAR: '$';
 OP_COLON_COLON: '::';
 
 RULE_DECIMAL_VALUE: '0'..'9' '0'..'9'*;

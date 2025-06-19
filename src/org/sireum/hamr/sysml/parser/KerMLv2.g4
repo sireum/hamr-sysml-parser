@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2024-12/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-04/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
 grammar KerMLv2;
 
 @parser::members {
@@ -38,10 +38,11 @@ grammar KerMLv2;
       case KerMLv2Lexer.K_DISJOINING:
       case KerMLv2Lexer.K_CLASSIFIER:
       case KerMLv2Lexer.K_SUBCLASSIFIER:
+      case KerMLv2Lexer.K_DERIVED:
       case KerMLv2Lexer.K_COMPOSITE:
       case KerMLv2Lexer.K_PORTION:
-      case KerMLv2Lexer.K_READONLY:
-      case KerMLv2Lexer.K_DERIVED:
+      case KerMLv2Lexer.K_VAR:
+      case KerMLv2Lexer.K_CONST:
       case KerMLv2Lexer.K_END:
       case KerMLv2Lexer.K_FEATURE:
       case KerMLv2Lexer.K_CHAINS:
@@ -97,6 +98,7 @@ grammar KerMLv2;
       case KerMLv2Lexer.K_AS:
       case KerMLv2Lexer.K_META:
       case KerMLv2Lexer.K_NOT:
+      case KerMLv2Lexer.K_NEW:
       case KerMLv2Lexer.K_NULL:
       case KerMLv2Lexer.K_PUBLIC:
       case KerMLv2Lexer.K_PRIVATE:
@@ -238,8 +240,8 @@ ruleFeatureElement:
   | ruleConnector #ruleFeatureElement6
   | ruleBindingConnector #ruleFeatureElement7
   | ruleSuccession #ruleFeatureElement8
-  | ruleItemFlow #ruleFeatureElement9
-  | ruleSuccessionItemFlow #ruleFeatureElement10;
+  | ruleFlow #ruleFeatureElement9
+  | ruleSuccessionFlow #ruleFeatureElement10;
 
 rulePackage: rulePrefixMetadataMember* rulePackageDeclaration rulePackageBody;
 
@@ -333,7 +335,7 @@ ruleOwnedsubclassification: ruleQualifiedName;
 
 ruleClassifierConjugation: ruleQualifiedName;
 
-ruleBasicFeaturePrefix: ruleFeatureDirection? 'abstract'? ('composite' | 'portion')? 'readonly'? 'derived'?;
+ruleBasicFeaturePrefix: ruleFeatureDirection? 'derived'? 'abstract'? ('composite' | 'portion')? ('var' | 'const')?;
 
 ruleFeaturePrefix: ('end' ruleOwnedCrossingFeatureMember? | ruleBasicFeaturePrefix) rulePrefixMetadataMember*;
 
@@ -524,41 +526,41 @@ ruleInvariant: ruleFeaturePrefix 'inv' ('true' | 'false')? ruleExpressionDeclara
 
 ruleInteraction: ruleTypePrefix 'interaction' ruleClassifierDeclaration ruleTypeBody;
 
-ruleItemFlow: ruleFeaturePrefix 'flow' ruleItemFlowDeclaration ruleTypeBody;
+ruleFlow: ruleFeaturePrefix 'flow' ruleFlowDeclaration ruleTypeBody;
 
-ruleSuccessionItemFlow: ruleFeaturePrefix 'succession' 'flow' ruleItemFlowDeclaration ruleTypeBody;
+ruleSuccessionFlow: ruleFeaturePrefix 'succession' 'flow' ruleFlowDeclaration ruleTypeBody;
 
-ruleItemFlowDeclaration:
-  ruleFeatureDeclaration? ruleValuePart? ('of' ruleItemFeatureMember)? ('from' ruleItemFlowEndMember 'to' ruleItemFlowEndMember)? #ruleItemFlowDeclaration1
-  | 'all'? ruleItemFlowEndMember 'to' ruleItemFlowEndMember #ruleItemFlowDeclaration2;
+ruleFlowDeclaration:
+  ruleFeatureDeclaration? ruleValuePart? ('of' rulePayloadFeatureMember)? ('from' ruleFlowEndMember 'to' ruleFlowEndMember)? #ruleFlowDeclaration1
+  | 'all'? ruleFlowEndMember 'to' ruleFlowEndMember #ruleFlowDeclaration2;
 
-ruleItemFeatureMember: ruleItemFeature;
+rulePayloadFeatureMember: rulePayloadFeature;
 
-ruleItemFeature:
-  ruleIdentification? ruleItemFeatureSpecializationPart ruleValuePart? #ruleItemFeature1
-  | ruleIdentification? ruleValuePart #ruleItemFeature2
-  | ruleOwnedFeatureTyping ruleOwnedMultiplicity? #ruleItemFeature3
-  | ruleOwnedMultiplicity ruleOwnedFeatureTyping #ruleItemFeature4;
+rulePayloadFeature:
+  ruleIdentification? rulePayloadFeatureSpecializationPart ruleValuePart? #rulePayloadFeature1
+  | ruleIdentification? ruleValuePart #rulePayloadFeature2
+  | ruleOwnedFeatureTyping ruleOwnedMultiplicity? #rulePayloadFeature3
+  | ruleOwnedMultiplicity ruleOwnedFeatureTyping #rulePayloadFeature4;
 
-ruleItemFeatureSpecializationPart:
-  ruleFeatureSpecialization+ ruleMultiplicityPart? ruleFeatureSpecialization* #ruleItemFeatureSpecializationPart1
-  | ruleMultiplicityPart ruleFeatureSpecialization+ #ruleItemFeatureSpecializationPart2;
+rulePayloadFeatureSpecializationPart:
+  ruleFeatureSpecialization+ ruleMultiplicityPart? ruleFeatureSpecialization* #rulePayloadFeatureSpecializationPart1
+  | ruleMultiplicityPart ruleFeatureSpecialization+ #rulePayloadFeatureSpecializationPart2;
 
-ruleItemFlowEndMember: ruleItemFlowEnd;
+ruleFlowEndMember: ruleFlowEnd;
 
-ruleItemFlowEnd: ruleItemFlowEndSubsetting? ruleItemFlowFeatureMember;
+ruleFlowEnd: ruleFlowEndSubsetting? ruleFlowFeatureMember;
 
-ruleItemFlowEndSubsetting:
-  ruleQualifiedName '.' #ruleItemFlowEndSubsetting1
-  | ruleFeatureChainPrefix #ruleItemFlowEndSubsetting2;
+ruleFlowEndSubsetting:
+  ruleQualifiedName '.' #ruleFlowEndSubsetting1
+  | ruleFeatureChainPrefix #ruleFlowEndSubsetting2;
 
 ruleFeatureChainPrefix: (ruleOwnedFeatureChaining '.')+ ruleOwnedFeatureChaining '.';
 
-ruleItemFlowFeatureMember: ruleItemFlowFeature;
+ruleFlowFeatureMember: ruleFlowFeature;
 
-ruleItemFlowFeature: ruleItemFlowRedefinition;
+ruleFlowFeature: ruleFlowRedefinition;
 
-ruleItemFlowRedefinition: ruleQualifiedName;
+ruleFlowRedefinition: ruleQualifiedName;
 
 ruleMetaclass: ruleTypePrefix 'metaclass' ruleClassifierDeclaration ruleTypeBody;
 
@@ -662,7 +664,7 @@ ruleCastOperator: 'as';
 
 ruleMetaCastOperator: 'meta';
 
-ruleMetadataReference: ruleQualifiedName;
+ruleMetadataReference: ruleElementReferenceMember;
 
 ruleTypeReferenceMember: ruleTypeReference;
 
@@ -721,7 +723,7 @@ ruleExtentExpression:
    'all' ruleTypeResultMember #ruleExtentExpression1
   | rulePrimaryExpression #ruleExtentExpression2;
 
-rulePrimaryExpression: ruleBaseExpression ( '.' ruleFeatureChainMember)? (( '#' '(' ruleSequenceExpression ')' |  '[' ruleSequenceExpression ']' |  '->' ruleReferenceTyping (ruleBodyExpression | ruleFunctionReferenceExpression | ruleArgumentList) |  '.' ruleBodyExpression |  '.?' ruleBodyExpression) ( '.' ruleFeatureChainMember)?)*;
+rulePrimaryExpression: ruleBaseExpression ( '.' ruleFeatureChainMember)? (( '#' '(' ruleSequenceExpression ')' |  '[' ruleSequenceExpression ']' |  '->' ruleInstantiatedTypeMember (ruleBodyExpression | ruleFunctionReferenceExpression | ruleArgumentList) |  '.' ruleBodyExpression |  '.?' ruleBodyExpression) ( '.' ruleFeatureChainMember)?)*;
 
 ruleFunctionReferenceExpression: ruleFunctionReferenceMember;
 
@@ -733,14 +735,17 @@ ruleFeatureChainMember:
   ruleQualifiedName #ruleFeatureChainMember1
   |  ruleOwnedFeatureChain #ruleFeatureChainMember2;
 
+ruleOwnedFeatureChain: ruleFeatureChain;
+
 ruleBaseExpression:
   ruleNullExpression #ruleBaseExpression1
   | ruleLiteralExpression #ruleBaseExpression2
   | ruleFeatureReferenceExpression #ruleBaseExpression3
   | ruleMetadataAccessExpression #ruleBaseExpression4
   | ruleInvocationExpression #ruleBaseExpression5
-  | ruleBodyExpression #ruleBaseExpression6
-  | '(' ruleSequenceExpression ')' #ruleBaseExpression7;
+  | ruleConstructorExpression #ruleBaseExpression6
+  | ruleBodyExpression #ruleBaseExpression7
+  | '(' ruleSequenceExpression ')' #ruleBaseExpression8;
 
 ruleBodyExpression: ruleExpressionBodyMember;
 
@@ -754,11 +759,21 @@ ruleFeatureReferenceExpression: ruleFeatureReferenceMember;
 
 ruleFeatureReferenceMember: ruleQualifiedName;
 
-ruleMetadataAccessExpression: ruleQualifiedName '.' 'metadata';
+ruleMetadataAccessExpression: ruleElementReferenceMember '.' 'metadata';
 
-ruleInvocationExpression: ruleOwnedFeatureTyping ruleArgumentList;
+ruleElementReferenceMember: ruleQualifiedName;
 
-ruleOwnedFeatureChain: ruleFeatureChain;
+ruleInvocationExpression: ruleInstantiatedTypeMember ruleArgumentList;
+
+ruleConstructorExpression: 'new' ruleInstantiatedTypeMember ruleConstructorResultMember;
+
+ruleConstructorResultMember: ruleConstructorResult;
+
+ruleConstructorResult: ruleArgumentList;
+
+ruleInstantiatedTypeMember:
+  ruleQualifiedName #ruleInstantiatedTypeMember1
+  |  ruleOwnedFeatureChain #ruleInstantiatedTypeMember2;
 
 ruleFeatureChain: ruleOwnedFeatureChaining ('.' ruleOwnedFeatureChaining)+;
 
@@ -813,9 +828,11 @@ ruleName:
   RULE_ID #ruleName1
   | RULE_UNRESTRICTED_NAME #ruleName2;
 
+ruleGlobalQualification: '$' '::';
+
 ruleQualification: (ruleName '::')+;
 
-ruleQualifiedName: ruleQualification? ruleName;
+ruleQualifiedName: ruleGlobalQualification? ruleQualification? ruleName;
 
 ruleFilterPackageMemberVisibility: '[';
 
@@ -863,10 +880,11 @@ K_CONJUGATE: 'conjugate';
 K_DISJOINING: 'disjoining';
 K_CLASSIFIER: 'classifier';
 K_SUBCLASSIFIER: 'subclassifier';
+K_DERIVED: 'derived';
 K_COMPOSITE: 'composite';
 K_PORTION: 'portion';
-K_READONLY: 'readonly';
-K_DERIVED: 'derived';
+K_VAR: 'var';
+K_CONST: 'const';
 K_END: 'end';
 K_FEATURE: 'feature';
 K_CHAINS: 'chains';
@@ -922,6 +940,7 @@ K_ISTYPE: 'istype';
 K_AS: 'as';
 K_META: 'meta';
 K_NOT: 'not';
+K_NEW: 'new';
 K_NULL: 'null';
 K_PUBLIC: 'public';
 K_PRIVATE: 'private';
@@ -974,6 +993,7 @@ OP_PERCENT: '%';
 OP_HAT: '^';
 OP_MINUS_RANGLE: '->';
 OP_DOT_QMARK: '.?';
+OP_DOLLAR: '$';
 
 RULE_DECIMAL_VALUE: '0'..'9' '0'..'9'*;
 
