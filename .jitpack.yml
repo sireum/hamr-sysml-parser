@@ -1,6 +1,7 @@
 jdk:
   - oraclejdk11
 before_install:
+  - mkdir bin
   - curl -JLso versions.properties https://raw.githubusercontent.com/sireum/kekinian/master/versions.properties
   - curl -JLso bin/init.sh https://raw.githubusercontent.com/sireum/kekinian/master/bin/init.sh
   - curl -JLso bin/sireum https://raw.githubusercontent.com/sireum/kekinian/master/bin/sireum
