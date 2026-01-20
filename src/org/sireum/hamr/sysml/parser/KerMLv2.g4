@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-09/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-12/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
 grammar KerMLv2;
 
 @parser::members {
@@ -38,12 +38,12 @@ grammar KerMLv2;
       case KerMLv2Lexer.K_DISJOINING:
       case KerMLv2Lexer.K_CLASSIFIER:
       case KerMLv2Lexer.K_SUBCLASSIFIER:
+      case KerMLv2Lexer.K_CONST:
+      case KerMLv2Lexer.K_END:
       case KerMLv2Lexer.K_DERIVED:
       case KerMLv2Lexer.K_COMPOSITE:
       case KerMLv2Lexer.K_PORTION:
       case KerMLv2Lexer.K_VAR:
-      case KerMLv2Lexer.K_CONST:
-      case KerMLv2Lexer.K_END:
       case KerMLv2Lexer.K_FEATURE:
       case KerMLv2Lexer.K_CHAINS:
       case KerMLv2Lexer.K_INVERSE:
@@ -335,15 +335,17 @@ ruleOwnedsubclassification: ruleQualifiedName;
 
 ruleClassifierConjugation: ruleQualifiedName;
 
+ruleEndFeaturePrefix: 'const'? 'end';
+
 ruleBasicFeaturePrefix: ruleFeatureDirection? 'derived'? 'abstract'? ('composite' | 'portion')? ('var' | 'const')?;
 
-ruleFeaturePrefix: ('end' ruleOwnedCrossingFeatureMember? | ruleBasicFeaturePrefix) rulePrefixMetadataMember*;
+ruleFeaturePrefix: (ruleEndFeaturePrefix ruleOwnedCrossingFeatureMember? | ruleBasicFeaturePrefix) rulePrefixMetadataMember*;
 
 ruleOwnedCrossingFeatureMember: ruleOwnedCrossingFeature;
 
 ruleOwnedCrossingFeature: ruleBasicFeaturePrefix ruleFeatureDeclaration;
 
-ruleFeature: (ruleFeaturePrefix ('feature' | rulePrefixMetadataMember) ruleFeatureDeclaration? | ('end' | ruleBasicFeaturePrefix) ruleFeatureDeclaration) ruleValuePart? ruleTypeBody;
+ruleFeature: (ruleFeaturePrefix ('feature' | rulePrefixMetadataMember) ruleFeatureDeclaration? | (ruleEndFeaturePrefix | ruleBasicFeaturePrefix) ruleFeatureDeclaration) ruleValuePart? ruleTypeBody;
 
 ruleFeatureDeclaration: 'all'? (ruleIdentification (ruleFeatureSpecializationPart | ruleFeatureConjugationPart)? | ruleFeatureSpecializationPart | ruleFeatureConjugationPart) ruleFeatureRelationshipPart*;
 
@@ -880,12 +882,12 @@ K_CONJUGATE: 'conjugate';
 K_DISJOINING: 'disjoining';
 K_CLASSIFIER: 'classifier';
 K_SUBCLASSIFIER: 'subclassifier';
+K_CONST: 'const';
+K_END: 'end';
 K_DERIVED: 'derived';
 K_COMPOSITE: 'composite';
 K_PORTION: 'portion';
 K_VAR: 'var';
-K_CONST: 'const';
-K_END: 'end';
 K_FEATURE: 'feature';
 K_CHAINS: 'chains';
 K_INVERSE: 'inverse';

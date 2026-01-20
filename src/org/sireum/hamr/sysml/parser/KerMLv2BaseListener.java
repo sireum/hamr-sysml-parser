@@ -1577,6 +1577,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleEndFeaturePrefix(KerMLv2Parser.RuleEndFeaturePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleEndFeaturePrefix(KerMLv2Parser.RuleEndFeaturePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleBasicFeaturePrefix(KerMLv2Parser.RuleBasicFeaturePrefixContext ctx) { }
 	/**
 	 * {@inheritDoc}

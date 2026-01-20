@@ -1470,6 +1470,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleClassifierConjugation(KerMLv2Parser.RuleClassifierConjugationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleEndFeaturePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleEndFeaturePrefix(KerMLv2Parser.RuleEndFeaturePrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleEndFeaturePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleEndFeaturePrefix(KerMLv2Parser.RuleEndFeaturePrefixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleBasicFeaturePrefix}.
 	 * @param ctx the parse tree
 	 */
