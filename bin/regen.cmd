@@ -25,10 +25,10 @@ val versions = home / "versions.properties"
 
 val cleanup: B = T
 
-val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure")
+val keywords: ISZ[String] = ISZ("\"GUMBO\"", "@strictpure", "@pure", "@spec")
 
 val sysmlVersion: String = "2025-12" // https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/tags
-val gumboVersion: String = "4.20250530.c06cb34" // https://github.com/sireum/aadl-gumbo/tags
+val gumboVersion: String = "4.20260130.9af5e42" // https://github.com/sireum/aadl-gumbo/tags
 
 val antlr4Version: String =
   if (versions.exists) versions.properties.get("org.antlr%antlr4-runtime%").get
@@ -60,7 +60,7 @@ def regenAntrl(grammarFile: Os.Path, outDir: Os.Path): Unit = {
   val classpath: ISZ[String] = for (dep <- deps) yield dep.path.string
   val java = Os.path(Sireum.javaHomePathString) / "bin" / (if (Os.isWin) "java.exe" else "java")
   Os.proc(ISZ(java.string, "-cp", st"${(classpath, Os.pathSep)}".render, "org.antlr.v4.Tool", "-o",
-    outDir.string, "-Xexact-output-dir", "-package", "org.sireum.hamr.sysml.parser", (grammarFile).string)).console.runCheck()
+    outDir.string, "-Xexact-output-dir", "-package", "org.sireum.hamr.sysml.parser", (grammarFile).string)).echo.console.runCheck()
   println(s"Generated lexer/parser for $grammarFile")
 }
 

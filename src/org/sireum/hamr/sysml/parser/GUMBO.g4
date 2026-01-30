@@ -20,6 +20,9 @@ grammar GUMBO;
       case GUMBOLexer.K_GUARANTEE:
       case GUMBOLexer.K_FUNCTIONS:
       case GUMBOLexer.K_DEF:
+      case GUMBOLexer.K__STRICTPURE:
+      case GUMBOLexer.K__PURE:
+      case GUMBOLexer.K__SPEC:
       case GUMBOLexer.K_MUT:
       case GUMBOLexer.K_INVARIANT:
       case GUMBOLexer.K_READS:
@@ -98,7 +101,12 @@ ruleFunctions: 'functions' ruleFuncSpec+;
 
 ruleFuncSpec: ruleSlangDefDef ';';
 
-ruleSlangDefDef: 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
+ruleSlangDefDef: ruleSlangDefMods? 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType (':=' ruleSlangDefContract ruleOwnedExpression)?;
+
+ruleSlangDefMods:
+  '@strictpure' #ruleSlangDefMods1
+  | '@pure' #ruleSlangDefMods2
+  | '@spec' #ruleSlangDefMods3;
 
 ruleSlangDefID: RULE_ID;
 
@@ -396,6 +404,9 @@ K_ASSUME: 'assume';
 K_GUARANTEE: 'guarantee';
 K_FUNCTIONS: 'functions';
 K_DEF: 'def';
+K__STRICTPURE: '@strictpure';
+K__PURE: '@pure';
+K__SPEC: '@spec';
 K_MUT: 'mut';
 K_INVARIANT: 'invariant';
 K_READS: 'reads';

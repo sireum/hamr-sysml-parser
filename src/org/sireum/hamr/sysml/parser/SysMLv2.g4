@@ -3,7 +3,7 @@
 //
 // Original grammars obtained from:
 //   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-12/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
-//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20250530.c06cb34/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260130.9af5e42/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
 
@@ -149,6 +149,9 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_HANDLE:
       case SysMLv2Lexer.K_GUARANTEE:
       case SysMLv2Lexer.K_FUNCTIONS:
+      case SysMLv2Lexer.K__STRICTPURE:
+      case SysMLv2Lexer.K__PURE:
+      case SysMLv2Lexer.K__SPEC:
       case SysMLv2Lexer.K_MUT:
       case SysMLv2Lexer.K_INVARIANT:
       case SysMLv2Lexer.K_READS:
@@ -1640,7 +1643,12 @@ ruleFunctions: 'functions' ruleFuncSpec+;
 
 ruleFuncSpec: ruleSlangDefDef ';';
 
-ruleSlangDefDef: 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType ':=' ruleSlangDefContract ruleOwnedExpression;
+ruleSlangDefDef: ruleSlangDefMods? 'def' ruleSlangDefID ruleSlangTypeParams? ruleSlangDefParams ':' ruleSlangType (':=' ruleSlangDefContract ruleOwnedExpression)?;
+
+ruleSlangDefMods:
+  '@strictpure' #ruleSlangDefMods1
+  | '@pure' #ruleSlangDefMods2
+  | '@spec' #ruleSlangDefMods3;
 
 ruleSlangDefID: RULE_ID;
 
@@ -1809,6 +1817,9 @@ K_INFOFLOW: 'infoflow';
 K_HANDLE: 'handle';
 K_GUARANTEE: 'guarantee';
 K_FUNCTIONS: 'functions';
+K__STRICTPURE: '@strictpure';
+K__PURE: '@pure';
+K__SPEC: '@spec';
 K_MUT: 'mut';
 K_INVARIANT: 'invariant';
 K_READS: 'reads';

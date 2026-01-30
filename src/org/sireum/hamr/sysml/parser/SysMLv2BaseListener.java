@@ -9857,6 +9857,42 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleSlangDefMods1(SysMLv2Parser.RuleSlangDefMods1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleSlangDefMods2(SysMLv2Parser.RuleSlangDefMods2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRuleSlangDefMods3(SysMLv2Parser.RuleSlangDefMods3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleSlangDefMods3(SysMLv2Parser.RuleSlangDefMods3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleSlangDefID(SysMLv2Parser.RuleSlangDefIDContext ctx) { }
 	/**
 	 * {@inheritDoc}
