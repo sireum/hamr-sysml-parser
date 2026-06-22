@@ -8804,6 +8804,248 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleCompute(SysMLv2Parser.RuleComputeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleComposition}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleComposition(SysMLv2Parser.RuleCompositionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleComposition}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleComposition(SysMLv2Parser.RuleCompositionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleComponentAliases}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleComponentAliases(SysMLv2Parser.RuleScheduleComponentAliasesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleComponentAliases}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleComponentAliases(SysMLv2Parser.RuleScheduleComponentAliasesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleComponentAlias}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleComponentAlias(SysMLv2Parser.RuleScheduleComponentAliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleComponentAlias}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleComponentAlias(SysMLv2Parser.RuleScheduleComponentAliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleSubcomponentPath}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleSubcomponentPath(SysMLv2Parser.RuleScheduleSubcomponentPathContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleSubcomponentPath}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleSubcomponentPath(SysMLv2Parser.RuleScheduleSubcomponentPathContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortAliases}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchedulePortAliases(SysMLv2Parser.RuleSchedulePortAliasesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortAliases}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchedulePortAliases(SysMLv2Parser.RuleSchedulePortAliasesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortAlias}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchedulePortAlias(SysMLv2Parser.RuleSchedulePortAliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortAlias}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchedulePortAlias(SysMLv2Parser.RuleSchedulePortAliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortPath}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchedulePortPath(SysMLv2Parser.RuleSchedulePortPathContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchedulePortPath}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchedulePortPath(SysMLv2Parser.RuleSchedulePortPathContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarAliases}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleStateVarAliases(SysMLv2Parser.RuleScheduleStateVarAliasesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarAliases}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleStateVarAliases(SysMLv2Parser.RuleScheduleStateVarAliasesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarAlias}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleStateVarAlias(SysMLv2Parser.RuleScheduleStateVarAliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarAlias}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleStateVarAlias(SysMLv2Parser.RuleScheduleStateVarAliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarPath}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleScheduleStateVarPath(SysMLv2Parser.RuleScheduleStateVarPathContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleScheduleStateVarPath}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleScheduleStateVarPath(SysMLv2Parser.RuleScheduleStateVarPathContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchema}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchema(SysMLv2Parser.RuleSchemaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchema}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchema(SysMLv2Parser.RuleSchemaContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaElement1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaElement1(SysMLv2Parser.RuleSchemaElement1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaElement1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaElement1(SysMLv2Parser.RuleSchemaElement1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaElement2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaElement2(SysMLv2Parser.RuleSchemaElement2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaElement2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaElement2(SysMLv2Parser.RuleSchemaElement2Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaElement3}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaElement3(SysMLv2Parser.RuleSchemaElement3Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaElement3}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaElement3(SysMLv2Parser.RuleSchemaElement3Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchemaLabel}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaLabel(SysMLv2Parser.RuleSchemaLabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchemaLabel}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaLabel(SysMLv2Parser.RuleSchemaLabelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchemaComponentRef}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaComponentRef(SysMLv2Parser.RuleSchemaComponentRefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchemaComponentRef}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaComponentRef(SysMLv2Parser.RuleSchemaComponentRefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchemaSplitJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaSplitJoin(SysMLv2Parser.RuleSchemaSplitJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchemaSplitJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaSplitJoin(SysMLv2Parser.RuleSchemaSplitJoinContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleSchemaSequence}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaSequence(SysMLv2Parser.RuleSchemaSequenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleSchemaSequence}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaSequence(SysMLv2Parser.RuleSchemaSequenceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleCompositionProperty}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleCompositionProperty(SysMLv2Parser.RuleCompositionPropertyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleCompositionProperty}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleCompositionProperty(SysMLv2Parser.RuleCompositionPropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#rulePropertyBinding}.
+	 * @param ctx the parse tree
+	 */
+	void enterRulePropertyBinding(SysMLv2Parser.RulePropertyBindingContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#rulePropertyBinding}.
+	 * @param ctx the parse tree
+	 */
+	void exitRulePropertyBinding(SysMLv2Parser.RulePropertyBindingContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaPoint1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaPoint1(SysMLv2Parser.RuleSchemaPoint1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaPoint1}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaPoint1(SysMLv2Parser.RuleSchemaPoint1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaPoint2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaPoint2(SysMLv2Parser.RuleSchemaPoint2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaPoint2}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaPoint2(SysMLv2Parser.RuleSchemaPoint2Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ruleSchemaPoint3}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleSchemaPoint3(SysMLv2Parser.RuleSchemaPoint3Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ruleSchemaPoint3}
+	 * labeled alternative in {@link SysMLv2Parser#ruleSchemaPoint}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleSchemaPoint3(SysMLv2Parser.RuleSchemaPoint3Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleInfoFlowClause}.
 	 * @param ctx the parse tree
 	 */

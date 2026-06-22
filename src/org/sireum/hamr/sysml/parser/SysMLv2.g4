@@ -3,7 +3,7 @@
 //
 // Original grammars obtained from:
 //   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2026-04/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
-//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260130.9af5e42/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260622.75e0d04/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
 
@@ -145,6 +145,15 @@ grammar SysMLv2;
       case SysMLv2Lexer.K_INITIALIZE:
       case SysMLv2Lexer.K_COMPUTE:
       case SysMLv2Lexer.K_COMPUTE_CASES:
+      case SysMLv2Lexer.K_COMPOSITION:
+      case SysMLv2Lexer.K_COMPONENTS:
+      case SysMLv2Lexer.K_PORTS:
+      case SysMLv2Lexer.K_SCHEMA:
+      case SysMLv2Lexer.K_LABEL:
+      case SysMLv2Lexer.K_SPLIT:
+      case SysMLv2Lexer.K_SEQUENCE:
+      case SysMLv2Lexer.K_PROPERTY:
+      case SysMLv2Lexer.K_BEFORE:
       case SysMLv2Lexer.K_INFOFLOW:
       case SysMLv2Lexer.K_HANDLE:
       case SysMLv2Lexer.K_GUARANTEE:
@@ -1603,7 +1612,7 @@ ruleGumboLibrary:  ruleFunctions?;
 
 ruleGumboSubclause:  ruleSpecSection;
 
-ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute?;
+ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute? ruleComposition*;
 
 ruleState: 'state' ruleStateVarDecl+;
 
@@ -1620,6 +1629,50 @@ ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStateme
 ruleInitializeSpecStatement: ruleGuaranteeStatement;
 
 ruleCompute:  'compute' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+
+ruleComposition: 'composition' RULE_ID '{' ruleScheduleComponentAliases? ruleSchedulePortAliases? ruleScheduleStateVarAliases? ruleSchema ruleCompositionProperty* '}';
+
+ruleScheduleComponentAliases: 'components' ruleScheduleComponentAlias+;
+
+ruleScheduleComponentAlias: RULE_ID '=' ruleScheduleSubcomponentPath ';';
+
+ruleScheduleSubcomponentPath: RULE_ID ('.' ruleScheduleSubcomponentPath)?;
+
+ruleSchedulePortAliases: 'ports' ruleSchedulePortAlias+;
+
+ruleSchedulePortAlias: RULE_ID '=' ruleSchedulePortPath ';';
+
+ruleSchedulePortPath: RULE_ID ('.' ruleSchedulePortPath)?;
+
+ruleScheduleStateVarAliases: 'state' ruleScheduleStateVarAlias+;
+
+ruleScheduleStateVarAlias: RULE_ID '=' ruleScheduleStateVarPath ';';
+
+ruleScheduleStateVarPath: RULE_ID ('.' ruleScheduleStateVarPath)?;
+
+ruleSchema: 'schema' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
+
+ruleSchemaElement:
+  ruleSchemaLabel #ruleSchemaElement1
+  | ruleSchemaSplitJoin #ruleSchemaElement2
+  | ruleSchemaComponentRef #ruleSchemaElement3;
+
+ruleSchemaLabel: 'label' RULE_ID;
+
+ruleSchemaComponentRef: RULE_ID ('@' RULE_ID)?;
+
+ruleSchemaSplitJoin: 'split' '{' ruleSchemaSequence (',' ruleSchemaSequence)+ '}';
+
+ruleSchemaSequence: 'sequence' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
+
+ruleCompositionProperty: 'property' RULE_ID RULE_STRING_VALUE? '{' rulePropertyBinding+ '}';
+
+rulePropertyBinding: ruleSchemaPoint RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
+
+ruleSchemaPoint:
+   'at' RULE_ID #ruleSchemaPoint1
+  |  'before' RULE_ID #ruleSchemaPoint2
+  |  'after' RULE_ID #ruleSchemaPoint3;
 
 ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
 
@@ -1815,6 +1868,15 @@ K_INTEGRATION: 'integration';
 K_INITIALIZE: 'initialize';
 K_COMPUTE: 'compute';
 K_COMPUTE_CASES: 'compute_cases';
+K_COMPOSITION: 'composition';
+K_COMPONENTS: 'components';
+K_PORTS: 'ports';
+K_SCHEMA: 'schema';
+K_LABEL: 'label';
+K_SPLIT: 'split';
+K_SEQUENCE: 'sequence';
+K_PROPERTY: 'property';
+K_BEFORE: 'before';
 K_INFOFLOW: 'infoflow';
 K_HANDLE: 'handle';
 K_GUARANTEE: 'guarantee';

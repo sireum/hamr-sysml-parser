@@ -11,6 +11,17 @@ grammar GUMBO;
       case GUMBOLexer.K_INITIALIZE:
       case GUMBOLexer.K_COMPUTE:
       case GUMBOLexer.K_COMPUTE_CASES:
+      case GUMBOLexer.K_COMPOSITION:
+      case GUMBOLexer.K_COMPONENTS:
+      case GUMBOLexer.K_PORTS:
+      case GUMBOLexer.K_SCHEMA:
+      case GUMBOLexer.K_LABEL:
+      case GUMBOLexer.K_SPLIT:
+      case GUMBOLexer.K_SEQUENCE:
+      case GUMBOLexer.K_PROPERTY:
+      case GUMBOLexer.K_AT:
+      case GUMBOLexer.K_BEFORE:
+      case GUMBOLexer.K_AFTER:
       case GUMBOLexer.K_INFOFLOW:
       case GUMBOLexer.K_FROM:
       case GUMBOLexer.K_TO:
@@ -59,7 +70,7 @@ ruleGumboLibrary:  ruleFunctions?;
 
 ruleGumboSubclause:  ruleSpecSection;
 
-ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute?;
+ruleSpecSection:  ruleState? ruleFunctions? ruleInvariants? ruleIntegration? ruleInitialize? ruleCompute? ruleComposition*;
 
 ruleState: 'state' ruleStateVarDecl+;
 
@@ -76,6 +87,50 @@ ruleInitialize:  'initialize' (ruleSlangModifies ';')? ruleInitializeSpecStateme
 ruleInitializeSpecStatement: ruleGuaranteeStatement;
 
 ruleCompute:  'compute' (ruleSlangModifies ';')? ruleAssumeStatement* ruleGuaranteeStatement* ('compute_cases' ruleCaseStatementClause+)* ruleHandlerClause* ruleInfoFlowClause*;
+
+ruleComposition: 'composition' RULE_ID '{' ruleScheduleComponentAliases? ruleSchedulePortAliases? ruleScheduleStateVarAliases? ruleSchema ruleCompositionProperty* '}';
+
+ruleScheduleComponentAliases: 'components' ruleScheduleComponentAlias+;
+
+ruleScheduleComponentAlias: RULE_ID '=' ruleScheduleSubcomponentPath ';';
+
+ruleScheduleSubcomponentPath: RULE_ID ('.' ruleScheduleSubcomponentPath)?;
+
+ruleSchedulePortAliases: 'ports' ruleSchedulePortAlias+;
+
+ruleSchedulePortAlias: RULE_ID '=' ruleSchedulePortPath ';';
+
+ruleSchedulePortPath: RULE_ID ('.' ruleSchedulePortPath)?;
+
+ruleScheduleStateVarAliases: 'state' ruleScheduleStateVarAlias+;
+
+ruleScheduleStateVarAlias: RULE_ID '=' ruleScheduleStateVarPath ';';
+
+ruleScheduleStateVarPath: RULE_ID ('.' ruleScheduleStateVarPath)?;
+
+ruleSchema: 'schema' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
+
+ruleSchemaElement:
+  ruleSchemaLabel #ruleSchemaElement1
+  | ruleSchemaSplitJoin #ruleSchemaElement2
+  | ruleSchemaComponentRef #ruleSchemaElement3;
+
+ruleSchemaLabel: 'label' RULE_ID;
+
+ruleSchemaComponentRef: RULE_ID ('@' RULE_ID)?;
+
+ruleSchemaSplitJoin: 'split' '{' ruleSchemaSequence (',' ruleSchemaSequence)+ '}';
+
+ruleSchemaSequence: 'sequence' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
+
+ruleCompositionProperty: 'property' RULE_ID RULE_STRING_VALUE? '{' rulePropertyBinding+ '}';
+
+rulePropertyBinding: ruleSchemaPoint RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
+
+ruleSchemaPoint:
+   'at' RULE_ID #ruleSchemaPoint1
+  |  'before' RULE_ID #ruleSchemaPoint2
+  |  'after' RULE_ID #ruleSchemaPoint3;
 
 ruleInfoFlowClause: 'infoflow' RULE_ID RULE_STRING_VALUE? ':' 'from' '(' (RULE_ID (',' RULE_ID)*)? ')' ',' 'to' '(' (RULE_ID (',' RULE_ID)*)? ')' ';';
 
@@ -395,6 +450,17 @@ K_INTEGRATION: 'integration';
 K_INITIALIZE: 'initialize';
 K_COMPUTE: 'compute';
 K_COMPUTE_CASES: 'compute_cases';
+K_COMPOSITION: 'composition';
+K_COMPONENTS: 'components';
+K_PORTS: 'ports';
+K_SCHEMA: 'schema';
+K_LABEL: 'label';
+K_SPLIT: 'split';
+K_SEQUENCE: 'sequence';
+K_PROPERTY: 'property';
+K_AT: 'at';
+K_BEFORE: 'before';
+K_AFTER: 'after';
 K_INFOFLOW: 'infoflow';
 K_FROM: 'from';
 K_TO: 'to';
@@ -430,17 +496,20 @@ K_NULL: 'null';
 K_TRUE: 'true';
 K_FALSE: 'false';
 
+LBRACE: '{';
+RBRACE: '}';
 LPAREN: '(';
 RPAREN: ')';
 LSQUARE: '[';
 RSQUARE: ']';
 LANGLE: '<';
 RANGLE: '>';
-LBRACE: '{';
-RBRACE: '}';
 
 OP_COLON: ':';
 OP_SEMI: ';';
+OP_EQ: '=';
+OP_DOT: '.';
+OP_AT: '@';
 OP_COMMA: ',';
 OP_COLON_EQ: ':=';
 OP_EQ_RANGLE: '=>';
@@ -453,7 +522,6 @@ OP_EQ_EQ: '==';
 OP_BANG_EQ: '!=';
 OP_EQ_EQ_EQ: '===';
 OP_BANG_EQ_EQ: '!==';
-OP_AT: '@';
 OP_AT_AT: '@@';
 OP_LANGLE_EQ: '<=';
 OP_RANGLE_EQ: '>=';
@@ -465,11 +533,9 @@ OP_PERCENT: '%';
 OP_STAR_STAR: '**';
 OP_HAT: '^';
 OP_TILDE: '~';
-OP_DOT: '.';
 OP_HASH: '#';
 OP_MINUS_RANGLE: '->';
 OP_DOT_QMARK: '.?';
-OP_EQ: '=';
 OP_DOLLAR: '$';
 OP_COLON_COLON: '::';
 
