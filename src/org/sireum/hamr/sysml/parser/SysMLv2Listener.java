@@ -1118,6 +1118,16 @@ public interface SysMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleMultiplicityPart2(SysMLv2Parser.RuleMultiplicityPart2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link SysMLv2Parser#ruleNonunique}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleNonunique(SysMLv2Parser.RuleNonuniqueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SysMLv2Parser#ruleNonunique}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleNonunique(SysMLv2Parser.RuleNonuniqueContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ruleFeatureSpecialization1}
 	 * labeled alternative in {@link SysMLv2Parser#ruleFeatureSpecialization}.
 	 * @param ctx the parse tree

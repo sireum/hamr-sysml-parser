@@ -1666,6 +1666,16 @@ public interface KerMLv2Listener extends ParseTreeListener {
 	 */
 	void exitRuleMultiplicityPart2(KerMLv2Parser.RuleMultiplicityPart2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link KerMLv2Parser#ruleNonunique}.
+	 * @param ctx the parse tree
+	 */
+	void enterRuleNonunique(KerMLv2Parser.RuleNonuniqueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KerMLv2Parser#ruleNonunique}.
+	 * @param ctx the parse tree
+	 */
+	void exitRuleNonunique(KerMLv2Parser.RuleNonuniqueContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ruleFeatureSpecialization1}
 	 * labeled alternative in {@link KerMLv2Parser#ruleFeatureSpecialization}.
 	 * @param ctx the parse tree

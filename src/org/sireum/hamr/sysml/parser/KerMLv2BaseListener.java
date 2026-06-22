@@ -1793,6 +1793,18 @@ public class KerMLv2BaseListener implements KerMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleNonunique(KerMLv2Parser.RuleNonuniqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleNonunique(KerMLv2Parser.RuleNonuniqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleFeatureSpecialization1(KerMLv2Parser.RuleFeatureSpecialization1Context ctx) { }
 	/**
 	 * {@inheritDoc}

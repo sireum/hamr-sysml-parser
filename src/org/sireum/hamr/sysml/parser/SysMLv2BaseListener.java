@@ -1205,6 +1205,18 @@ public class SysMLv2BaseListener implements SysMLv2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRuleNonunique(SysMLv2Parser.RuleNonuniqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRuleNonunique(SysMLv2Parser.RuleNonuniqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRuleFeatureSpecialization1(SysMLv2Parser.RuleFeatureSpecialization1Context ctx) { }
 	/**
 	 * {@inheritDoc}

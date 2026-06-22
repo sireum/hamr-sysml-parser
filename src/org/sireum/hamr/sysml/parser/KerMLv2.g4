@@ -1,4 +1,4 @@
-// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-12/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
+// Auto-generated from https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2026-04/org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/parser/antlr/internal/InternalKerML.g
 grammar KerMLv2;
 
 @parser::members {
@@ -367,7 +367,9 @@ ruleFeatureSpecializationPart:
 
 ruleMultiplicityPart:
   ruleOwnedMultiplicity #ruleMultiplicityPart1
-  | ruleOwnedMultiplicity? ('ordered' 'nonunique'? | 'nonunique' 'ordered'?) #ruleMultiplicityPart2;
+  | ruleOwnedMultiplicity? ('ordered' ruleNonunique? | ruleNonunique 'ordered'?) #ruleMultiplicityPart2;
+
+ruleNonunique: 'nonunique';
 
 ruleFeatureSpecialization:
   ruleTypings #ruleFeatureSpecialization1

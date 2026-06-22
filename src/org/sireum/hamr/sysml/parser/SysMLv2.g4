@@ -2,7 +2,7 @@
 // with modifications made to rules 'ruleTextualRepresentation' and 'RULE_REGULAR_COMMENT'
 //
 // Original grammars obtained from:
-//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2025-12/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
+//   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2026-04/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
 //   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260130.9af5e42/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
@@ -327,7 +327,9 @@ ruleFeatureSpecializationPart:
 
 ruleMultiplicityPart:
   ruleOwnedMultiplicity #ruleMultiplicityPart1
-  | ruleOwnedMultiplicity? ('ordered' 'nonunique'? | 'nonunique' 'ordered'?) #ruleMultiplicityPart2;
+  | ruleOwnedMultiplicity? ('ordered' ruleNonunique? | ruleNonunique 'ordered'?) #ruleMultiplicityPart2;
+
+ruleNonunique: 'nonunique';
 
 ruleFeatureSpecialization:
   ruleTypings #ruleFeatureSpecialization1
