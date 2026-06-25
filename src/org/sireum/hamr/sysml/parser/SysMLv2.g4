@@ -3,7 +3,7 @@
 //
 // Original grammars obtained from:
 //   https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Pilot-Implementation/2026-04/org.omg.sysml.xtext/src-gen/org/omg/sysml/xtext/parser/antlr/internal/InternalSysML.g
-//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260622.75e0d04/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
+//   https://raw.githubusercontent.com/sireum/aadl-gumbo/4.20260625.67d46a8/org.sireum.aadl.gumbo/src-gen/org/sireum/aadl/gumbo/parser/antlr/internal/InternalGumbo.g
 
 grammar SysMLv2;
 
@@ -1665,7 +1665,7 @@ ruleSchemaSplitJoin: 'split' '{' ruleSchemaSequence (',' ruleSchemaSequence)+ '}
 
 ruleSchemaSequence: 'sequence' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
 
-ruleCompositionProperty: 'property' RULE_ID RULE_STRING_VALUE? '{' rulePropertyBinding+ '}';
+ruleCompositionProperty: 'abstract'? 'property' RULE_ID ((':>' | 'specializes') RULE_ID (',' RULE_ID)*)? RULE_STRING_VALUE? '{' rulePropertyBinding* '}';
 
 rulePropertyBinding: ruleSchemaPoint RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
 

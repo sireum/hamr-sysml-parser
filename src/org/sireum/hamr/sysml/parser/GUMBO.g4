@@ -18,7 +18,9 @@ grammar GUMBO;
       case GUMBOLexer.K_LABEL:
       case GUMBOLexer.K_SPLIT:
       case GUMBOLexer.K_SEQUENCE:
+      case GUMBOLexer.K_ABSTRACT:
       case GUMBOLexer.K_PROPERTY:
+      case GUMBOLexer.K_SPECIALIZES:
       case GUMBOLexer.K_AT:
       case GUMBOLexer.K_BEFORE:
       case GUMBOLexer.K_AFTER:
@@ -123,7 +125,7 @@ ruleSchemaSplitJoin: 'split' '{' ruleSchemaSequence (',' ruleSchemaSequence)+ '}
 
 ruleSchemaSequence: 'sequence' '{' ruleSchemaElement (';' ruleSchemaElement)* ';'? '}';
 
-ruleCompositionProperty: 'property' RULE_ID RULE_STRING_VALUE? '{' rulePropertyBinding+ '}';
+ruleCompositionProperty: 'abstract'? 'property' RULE_ID ((':>' | 'specializes') RULE_ID (',' RULE_ID)*)? RULE_STRING_VALUE? '{' rulePropertyBinding* '}';
 
 rulePropertyBinding: ruleSchemaPoint RULE_STRING_VALUE? ':' ruleOwnedExpression ';';
 
@@ -457,7 +459,9 @@ K_SCHEMA: 'schema';
 K_LABEL: 'label';
 K_SPLIT: 'split';
 K_SEQUENCE: 'sequence';
+K_ABSTRACT: 'abstract';
 K_PROPERTY: 'property';
+K_SPECIALIZES: 'specializes';
 K_AT: 'at';
 K_BEFORE: 'before';
 K_AFTER: 'after';
@@ -511,6 +515,7 @@ OP_EQ: '=';
 OP_DOT: '.';
 OP_AT: '@';
 OP_COMMA: ',';
+OP_COLON_RANGLE: ':>';
 OP_COLON_EQ: ':=';
 OP_EQ_RANGLE: '=>';
 OP_STAR: '*';
