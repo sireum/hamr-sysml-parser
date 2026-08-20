@@ -107,6 +107,7 @@ sysmlp.writeOver(sysmlMod)
 
 
 val sysmlg = translate(parserDir, "SysMLv2.g4", F, None(), sysmlp.value)
+addTemporalExpressions(sysmlg)
 fixSL_Note(sysmlg)
 changeComment(sysmlg, sysmlUrl, gumboUrl)
 regenAntrl(sysmlg, parserDir)
@@ -162,6 +163,26 @@ if (cleanup) {
 }
 
 object Util {
+  // KerML has no GUMBO temporal operators, so restore that precedence layer after translation.
+  def addTemporalExpressions(path: Os.Path): Unit = {
+    val o = "ruleAndExpression: ruleEqualityExpression ( (ruleAndOperator ruleEqualityExpression | ruleConditionalAndOperator ruleEqualityExpressionReference))*;"
+    val m =
+      st"""ruleAndExpression: ruleBinaryTemporalExpression ( (ruleAndOperator ruleBinaryTemporalExpression | ruleConditionalAndOperator ruleBinaryTemporalExpressionReference))*;
+          |
+          |ruleBinaryTemporalExpressionReference: ruleBinaryTemporalExpression;
+          |
+          |ruleBinaryTemporalExpression: ruleUnaryTemporalExpression (ruleTemporalBinaryOperator ruleTemporalInterval ruleUnaryTemporalExpression)*;
+          |
+          |ruleUnaryTemporalExpression: ruleTemporalUnaryOperator ruleTemporalInterval ruleUnaryTemporalExpression | ruleEqualityExpression;
+          |
+          |ruleTemporalUnaryOperator: 'Future' | 'Eventually' | 'Globally' | 'Always' | 'Once' | 'Historically';
+          |
+          |ruleTemporalBinaryOperator: 'Until' | 'Release' | 'Since' | 'Trigger';
+          |
+          |ruleTemporalInterval: '[' RULE_DECIMAL_VALUE ',' RULE_DECIMAL_VALUE ']';""".render
+    path.writeOver(replace(path.read, o, o, m))
+  }
+
   def replace(content: String, searchStr: String, from: String, to: String): String = {
     val o = ops.StringOps(content)
     val s = o.stringIndexOf(searchStr)
